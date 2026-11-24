@@ -1,0 +1,15 @@
+PREFIX demo: <https://w3id.org/poc-kb/demo/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?head ?odino ?code ?inCodes ?inMech ?fixTitle ?partName
+WHERE {
+  BIND(<https://w3id.org/poc-kb/demo/complaint/11407338> AS ?c)
+  ?c demo:odino ?odino ; demo:hasComponent ?comp ; demo:mentionsDtc ?dtc .
+  ?comp demo:head "FUEL SYSTEM"^^xsd:string ; demo:head ?head .
+  ?dtc demo:code ?code ; demo:inCodesList ?inCodes ; demo:inMechanicSample ?inMech .
+  OPTIONAL {
+    ?step demo:forDtc ?dtc ; demo:title ?fixTitle .
+    OPTIONAL { ?step demo:usesPart ?part . ?part demo:partName ?partName . }
+  }
+}
+ORDER BY ?code ?fixTitle ?partName
+LIMIT 12

@@ -1,0 +1,52 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix demo: <https://w3id.org/poc-kb/demo/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Open shapes only. sh:in values use xsd:string to match the ABox literals.
+
+demo:ComplaintShape a sh:NodeShape ;
+    sh:targetClass demo:Complaint ;
+    sh:property [
+        sh:path demo:odino ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Complaint must have odino" ;
+    ] ;
+    sh:property [
+        sh:path demo:vehicle ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Complaint must link to a VehicleModelYear" ;
+    ] .
+
+demo:VehicleShape a sh:NodeShape ;
+    sh:targetClass demo:VehicleModelYear ;
+    sh:property [ sh:path demo:make ; sh:minCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path demo:model ; sh:minCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path demo:modelYear ; sh:minCount 1 ; sh:datatype xsd:string ] .
+
+demo:CandidateLinkShape a sh:NodeShape ;
+    sh:targetClass demo:CandidateLink ;
+    sh:property [
+        sh:path demo:fromEntity ; sh:minCount 1 ; sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        sh:path demo:toEntity ; sh:minCount 1 ; sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        sh:path demo:method ; sh:minCount 1 ; sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path demo:score ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "score must be in [0, 1]" ;
+    ] ;
+    sh:property [
+        sh:path demo:reviewStatus ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:in ( "unreviewed"^^xsd:string "accepted"^^xsd:string "rejected"^^xsd:string "uncertain"^^xsd:string ) ;
+    ] .

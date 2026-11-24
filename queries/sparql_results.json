@@ -1,0 +1,235 @@
+{
+  "shacl_conforms": true,
+  "shacl_file": "rdf/shacl_report.txt",
+  "queries": {
+    "Q1_complaint_component_recall": {
+      "n": 3,
+      "rows": [
+        {
+          "odino": "11324947",
+          "modelYearLabel": "HONDA ACCORD 2018",
+          "head": "BACK OVER PREVENTION",
+          "campno": "18V629000",
+          "score": "0.90",
+          "method": "mmy_comp_exact",
+          "review": "accepted",
+          "remedy": "Honda will notify owners, and dealers will reprogram the display audio unit software, free of charge.  The recall began October 30, 2018.  Owners may contact Honda customer service at 1-888-234-2138.  Honda's numbers for this recall are K2G and V2F."
+        },
+        {
+          "odino": "11324947",
+          "modelYearLabel": "HONDA ACCORD 2018",
+          "head": "BACK OVER PREVENTION",
+          "campno": "20V771000",
+          "score": "0.90",
+          "method": "mmy_comp_exact",
+          "review": "unreviewed",
+          "remedy": "Honda will notify owners, and dealers will update the BCM software, free of charge.  The recall is expected to begin February 22, 2021.  Owners may contact Honda customer service at 1-888-234-2138.  Honda's number for this recall is X95."
+        },
+        {
+          "odino": "11499094",
+          "modelYearLabel": "HONDA CR-V 2018",
+          "head": "SEAT BELTS",
+          "campno": "23V158000",
+          "score": "0.60",
+          "method": "mmy_comp_head",
+          "review": "accepted",
+          "remedy": "Dealers will replace the driver and front passenger seat belt buckle release buttons or the buckle assemblies as necessary, free of charge.  Owner notification letters were mailed April 18, 2023.  Owners may contact Honda customer service at 1-888-234-2138.  Honda's numbers for this recall are NDA, QDB, BDC, MDD, LD9. TDF, FDG, ODH, YDI, ZDE."
+        }
+      ]
+    },
+    "Q2_investigation_to_recall_hard": {
+      "n": 3,
+      "rows": [
+        {
+          "action": "EA24002",
+          "subject": "Inadvertent Automatic Emergency Braking",
+          "campno": ""
+        },
+        {
+          "action": "PE22003",
+          "subject": "Inadvertent Automatic Emergency Braking",
+          "campno": ""
+        },
+        {
+          "action": "PE22011",
+          "subject": "Rear Differential Seizure",
+          "campno": ""
+        }
+      ]
+    },
+    "Q3_component_dtc_repair_part": {
+      "n": 12,
+      "rows": [
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0172",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Clean MAF sensor and inspect for false-high airflow readings",
+          "partName": "Mass air flow sensor cleaner spray"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0172",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Replace stuck-open fuel pressure regulator",
+          "partName": "Fuel pressure regulator"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0172",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Replace stuck-open fuel pressure regulator",
+          "partName": "Regulator seal kit"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0172",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Test fuel injectors for leakage and replace as needed",
+          "partName": "Fuel injector"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0172",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Test fuel injectors for leakage and replace as needed",
+          "partName": "Injector seal/washer kit"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0300",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Replace spark plugs and inspect ignition coils as a set",
+          "partName": "Ignition coil boot/seal kit"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0300",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Replace spark plugs and inspect ignition coils as a set",
+          "partName": "Spark plug set"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0300",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Smoke-test intake and vacuum lines for a shared leak",
+          "partName": "Engine smoke machine test solution"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0300",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Smoke-test intake and vacuum lines for a shared leak",
+          "partName": "Intake gasket set"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0300",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Test fuel pump output pressure and delivery volume",
+          "partName": "Electric fuel pump assembly"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0300",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Test fuel pump output pressure and delivery volume",
+          "partName": "Fuel pressure test gauge"
+        },
+        {
+          "head": "FUEL SYSTEM",
+          "odino": "11407338",
+          "code": "P0300",
+          "inCodes": "true",
+          "inMech": "true",
+          "fixTitle": "Verify fuel delivery and refuel if the tank is low",
+          "partName": "Fresh fuel (top off tank)"
+        }
+      ]
+    },
+    "Q4_qa_component_complaint_count": {
+      "n": 5,
+      "rows": [
+        {
+          "qid": "Q70024",
+          "brand": "本田",
+          "model": "本田CR-V",
+          "head": "ENGINE",
+          "nComplaints": "767"
+        },
+        {
+          "qid": "Q70083",
+          "brand": "本田",
+          "model": "雅阁",
+          "head": "ELECTRICAL SYSTEM",
+          "nComplaints": "462"
+        },
+        {
+          "qid": "Q70083",
+          "brand": "本田",
+          "model": "雅阁",
+          "head": "ENGINE",
+          "nComplaints": "767"
+        },
+        {
+          "qid": "Q70083",
+          "brand": "本田",
+          "model": "雅阁",
+          "head": "POWER TRAIN",
+          "nComplaints": "161"
+        },
+        {
+          "qid": "Q70083",
+          "brand": "本田",
+          "model": "雅阁",
+          "head": "SERVICE BRAKES",
+          "nComplaints": "297"
+        }
+      ]
+    },
+    "Q5_complaint_to_investigation_no_recall": {
+      "n": 2,
+      "rows": [
+        {
+          "odino": "11407338",
+          "vehicle": "HONDA CR-V 2018",
+          "head": "FORWARD COLLISION AVOIDANCE",
+          "action": "EA24002",
+          "subject": "Inadvertent Automatic Emergency Braking",
+          "hasCampaign": "false"
+        },
+        {
+          "odino": "11407338",
+          "vehicle": "HONDA CR-V 2018",
+          "head": "FORWARD COLLISION AVOIDANCE",
+          "action": "PE22003",
+          "subject": "Inadvertent Automatic Emergency Braking",
+          "hasCampaign": "false"
+        }
+      ]
+    }
+  }
+}

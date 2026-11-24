@@ -1,0 +1,5 @@
+# 本体工具链钉死版本（与 docs/ONTOLOGY-TECH-STACK-v3.md 一致，核对日期 2026-11-24）
+linkml==1.12.1
+linkml-runtime>=1.12.0
+rdflib==7.6.0
+pyshacl==0.40.2

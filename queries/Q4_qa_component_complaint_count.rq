@@ -1,0 +1,17 @@
+PREFIX demo: <https://w3id.org/poc-kb/demo/>
+SELECT ?qid ?brand ?model ?head ?nComplaints
+WHERE {
+  VALUES ?q {
+    <https://w3id.org/poc-kb/demo/qa/Q70024>
+    <https://w3id.org/poc-kb/demo/qa/Q70083>
+  }
+  ?q demo:brandRaw ?brand ; demo:modelRaw ?model ; demo:hasComponent ?comp .
+  BIND(STRAFTER(STR(?q), "/qa/") AS ?qid)
+  ?comp demo:head ?head .
+  {
+    SELECT ?comp (COUNT(DISTINCT ?c) AS ?nComplaints)
+    WHERE { ?c a demo:Complaint ; demo:hasComponent ?comp . }
+    GROUP BY ?comp
+  }
+}
+ORDER BY ?qid ?head

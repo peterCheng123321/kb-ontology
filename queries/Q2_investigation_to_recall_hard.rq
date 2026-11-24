@@ -1,0 +1,7 @@
+PREFIX demo: <https://w3id.org/poc-kb/demo/>
+SELECT ?action ?subject ?campno
+WHERE {
+  ?i a demo:Investigation ; demo:actionNumber ?action ; demo:subject ?subject .
+  OPTIONAL { ?i demo:campaign ?r . ?r demo:campno ?campno . }
+}
+ORDER BY ?action

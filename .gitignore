@@ -1,0 +1,23 @@
+# 本地下载的第三方数据与生成物，一律不提交
+data/
+gen/
+rdf/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+
+# 压缩包与大文件
+*.zip
+*.pkl
+*.parquet
+*.duckdb
+*.sqlite
+*.tsv
+*.csv
+
+# 本地环境与凭证（文件名即排除；仓库内文档不讨论具体凭证内容）
+.env
+.env.*

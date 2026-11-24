@@ -1,0 +1,1782 @@
+{
+  "scope": {
+    "cmpl_files": [
+      "COMPLAINTS_RECEIVED_2020-2024.zip",
+      "COMPLAINTS_RECEIVED_2025-2026.zip"
+    ],
+    "cmpl_note": "Not the full FLAT_CMPL history; recent received-date chunks only. Match rates are for this window vs full recall/investigation files.",
+    "rcl_files": [
+      "FLAT_RCL_PRE_2010.zip",
+      "FLAT_RCL_POST_2010.zip"
+    ],
+    "inv_files": [
+      "FLAT_INV.zip"
+    ],
+    "measured_at": "2026-11-24 Asia/Shanghai"
+  },
+  "counts": {
+    "rcl_rows": 330296,
+    "rcl_bad_short_rows": 5,
+    "rcl_distinct_campno": 30483,
+    "rcl_distinct_mmy": 77934,
+    "rcl_rows_missing_mmy": 30849,
+    "rcl_type": {
+      "V": 289079,
+      "E": 17209,
+      "T": 22313,
+      "C": 1159,
+      "I": 393,
+      "X": 143
+    },
+    "inv_rows": 154505,
+    "inv_bad_short_rows": 0,
+    "inv_distinct_actions": 5361,
+    "inv_distinct_campno_nonempty": 2826,
+    "inv_rows_empty_campno": 28740,
+    "inv_actions_with_any_campno": 1552,
+    "inv_distinct_mmy": 16188,
+    "inv_action_prefix": {
+      "PE": 2332,
+      "DP": 512,
+      "RQ": 248,
+      "SQ": 159,
+      "EA": 1934,
+      "EQ": 85,
+      "ID": 24,
+      "AQ": 43,
+      "C": 11,
+      "TA": 7,
+      "RP": 6
+    },
+    "cmpl_rows_2020_2026": 635872,
+    "cmpl_bad_short_rows": 0,
+    "cmpl_distinct_odino": 437240,
+    "cmpl_distinct_mmy": 12612,
+    "cmpl_rows_missing_mmy": 9317,
+    "cmpl_prod_type": {
+      "V": 627121,
+      "C": 1677,
+      "E": 2505,
+      "T": 4562
+    }
+  },
+  "joins_nhtsa": {
+    "inv_campno_found_in_rcl": {
+      "num": 2453,
+      "den_inv_nonempty_campno": 2826,
+      "pct": 86.8,
+      "inv_campno_not_in_rcl": 373
+    },
+    "inv_actions_with_campno_that_exists_in_rcl": {
+      "num": 1454,
+      "den_actions": 5361,
+      "den_actions_that_have_campno": 1552,
+      "pct_of_all_actions": 27.12,
+      "pct_of_actions_with_campno": 93.69,
+      "pct_actions_having_any_campno": 28.95
+    },
+    "mmy_strict_make_model_year": {
+      "cmpl_mmy_in_rcl": {
+        "num": 10033,
+        "den": 12612,
+        "pct": 79.55
+      },
+      "cmpl_mmy_in_inv": {
+        "num": 4271,
+        "den": 12612,
+        "pct": 33.86
+      },
+      "rcl_mmy_in_inv": {
+        "num": 10915,
+        "den": 77934,
+        "pct": 14.01
+      },
+      "inv_mmy_in_rcl": {
+        "num": 10915,
+        "den": 16188,
+        "pct": 67.43
+      },
+      "mmy_in_all_three": {
+        "num": 3883,
+        "den_cmpl": 12612,
+        "pct_of_cmpl_mmy": 30.79
+      }
+    },
+    "cmpl_row_level_2020_2026": {
+      "rows_with_valid_mmy": 626555,
+      "rows_mmy_in_rcl_strict": {
+        "num": 598140,
+        "den": 626555,
+        "pct": 95.46
+      },
+      "rows_mmy_in_rcl_loose_model": {
+        "num": 598225,
+        "den": 626555,
+        "pct": 95.48
+      },
+      "rows_mmy_in_inv_strict": {
+        "num": 415645,
+        "den": 626555,
+        "pct": 66.34
+      },
+      "of_rows_with_mmy_in_rcl__comp_exact": {
+        "num": 50651,
+        "den": 598140,
+        "pct": 8.47
+      },
+      "of_rows_with_mmy_in_rcl__comp_head": {
+        "num": 198481,
+        "den": 598140,
+        "pct": 33.18
+      },
+      "of_rows_with_mmy_in_inv__comp_exact": {
+        "num": 76341,
+        "den": 415645,
+        "pct": 18.37
+      },
+      "of_rows_with_mmy_in_inv__comp_head": {
+        "num": 120928,
+        "den": 415645,
+        "pct": 29.09
+      }
+    },
+    "cmpl_odino_level_2020_2026": {
+      "distinct_odino": 437240,
+      "odino_with_some_row_mmy_in_rcl_strict": {
+        "num": 415972,
+        "pct": 95.14
+      },
+      "odino_with_some_row_mmy_in_rcl_loose": {
+        "num": 416028,
+        "pct": 95.15
+      },
+      "odino_with_some_row_mmy_in_inv": {
+        "num": 289825,
+        "pct": 66.29
+      },
+      "odino_with_mmy_and_comp_exact_rcl": {
+        "num": 49476,
+        "pct_of_odino_in_rcl_mmy": 11.89
+      },
+      "odino_with_mmy_and_comp_head_rcl": {
+        "num": 176434,
+        "pct_of_odino_in_rcl_mmy": 42.41
+      }
+    },
+    "component_vocab_global": {
+      "distinct_cmpl_comp": 719,
+      "distinct_rcl_comp": 668,
+      "distinct_inv_comp": 428,
+      "cmpl_comp_exact_in_rcl": {
+        "num": 577,
+        "den": 719,
+        "pct": 80.25
+      },
+      "cmpl_comp_exact_in_inv": {
+        "num": 393,
+        "den": 719,
+        "pct": 54.66
+      },
+      "cmpl_head_in_rcl_head": {
+        "num": 40,
+        "den": 49,
+        "pct": 81.63
+      }
+    },
+    "inv_actions_sharing_mmy_with_cmpl_2020_2026": {
+      "num": 1526,
+      "den": 5361,
+      "pct": 28.46
+    }
+  },
+  "joins_dtc_qa": {
+    "codeslist": {
+      "rows": 9414,
+      "unique_codes": 9414,
+      "category_top": {
+        "Powertrain - Fuel/Air Metering": 2693,
+        "Powertrain - Hybrid Propulsion": 1352,
+        "Network Communications": 1230,
+        "Powertrain - Transmission": 1129,
+        "Powertrain - Computer and Auxiliary Controls": 1025,
+        "Powertrain - Auxiliary Emissions Controls": 675,
+        "Powertrain - Ignition": 512,
+        "Chassis": 498,
+        "Body": 300
+      }
+    },
+    "mechanicdb": {
+      "dtc_codes_rows": 90,
+      "dtc_codes_unique": 89,
+      "dtc_code_cols": [
+        "code_id",
+        "dtc_code",
+        "system_category",
+        "is_oem_specific",
+        "oem_make",
+        "fault_family",
+        "short_description",
+        "detailed_technical_explanation"
+      ],
+      "fixes_rows": 326,
+      "fixes_cols": [
+        "fix_id",
+        "code_id",
+        "fix_title",
+        "probability_rank",
+        "difficulty_level",
+        "est_parts_cost_min_usd",
+        "est_parts_cost_max_usd",
+        "est_labor_hours",
+        "step_by_step_instructions",
+        "action_type",
+        "parts_cost_status",
+        "labor_status",
+        "cost_basis_id",
+        "procedure_rationale"
+      ],
+      "joined_rows": 326,
+      "joined_cols": [
+        "code_id",
+        "dtc_code",
+        "system_category",
+        "is_oem_specific",
+        "oem_make",
+        "fault_family",
+        "short_description",
+        "detailed_technical_explanation",
+        "fix_id",
+        "fix_title",
+        "probability_rank",
+        "difficulty_level",
+        "est_parts_cost_min_usd",
+        "est_parts_cost_max_usd",
+        "est_labor_hours",
+        "step_by_step_instructions",
+        "action_type",
+        "parts_cost_status",
+        "labor_status",
+        "cost_basis_id",
+        "procedure_rationale"
+      ],
+      "joined_unique_codes": 89,
+      "parts_rows": 449,
+      "parts_cols": [
+        "part_id",
+        "fix_id",
+        "part_name",
+        "amazon_search_query"
+      ],
+      "parts_unique_names": 157,
+      "system_category_counts": {
+        "Powertrain": 84,
+        "Chassis": 3,
+        "Network": 3
+      },
+      "fault_family_counts": {
+        "misfire_single_cylinder": 6,
+        "fuel_trim_lean": 5,
+        "o2_sensor_circuit": 4,
+        "fuel_trim_rich": 4,
+        "evap_small_leak": 4,
+        "throttle_position_sensor_circuit": 3,
+        "o2_heater_circuit": 3,
+        "idle_air_control_system": 3,
+        "lost_comm_powertrain_module": 3,
+        "wheel_speed_sensor_circuit": 2,
+        "crank_cam_correlation": 2,
+        "maf_circuit": 2,
+        "iat_sensor_circuit": 2,
+        "coolant_thermostat_performance": 2,
+        "o2_sensor_slow_response": 2,
+        "cam_position_sensor_circuit": 2,
+        "egr_flow_performance": 2,
+        "catalyst_efficiency_below_threshold": 2,
+        "system_voltage_charging_circuit": 2,
+        "pcm_internal_processor_fault": 2
+      },
+      "oem_make_counts": {
+        "": 75,
+        "BMW": 2,
+        "Chevrolet": 2,
+        "Ford": 2,
+        "Toyota": 2,
+        "Audi": 1,
+        "Dodge": 1,
+        "GMC": 1,
+        "Honda": 1,
+        "Lincoln": 1,
+        "Nissan": 1,
+        "Volkswagen": 1
+      }
+    },
+    "codeslist_vs_mechanicdb": {
+      "mechanic_codes_in_codeslist": {
+        "num": 80,
+        "den": 89,
+        "pct": 89.89
+      },
+      "codeslist_codes_in_mechanic": {
+        "num": 80,
+        "den": 9414,
+        "pct": 0.85
+      }
+    },
+    "cmpl_narratives_dtc_regex": {
+      "pattern": "\\\\b([PCBU][0-9A-Fa-f]{4})\\\\b",
+      "rows_with_dtc": {
+        "num": 14545,
+        "den": 635872,
+        "pct": 2.29
+      },
+      "odino_with_dtc": {
+        "num": 9187,
+        "den": 437240,
+        "pct": 2.1
+      },
+      "distinct_dtc_extracted": 2588,
+      "extracted_dtc_in_codeslist": {
+        "num": 1267,
+        "den": 2588,
+        "pct": 48.96
+      },
+      "extracted_dtc_in_mechanicdb": {
+        "num": 81,
+        "den": 2588,
+        "pct": 3.13
+      },
+      "odino_with_dtc_also_in_codeslist": {
+        "num": 6812,
+        "den_odino_with_dtc": 9187,
+        "pct": 74.15
+      },
+      "top_dtc": [
+        {
+          "code": "P1326",
+          "cmpl_rows_mention": 580,
+          "in_codeslist": false,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0302",
+          "cmpl_rows_mention": 494,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P0300",
+          "cmpl_rows_mention": 472,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P0304",
+          "cmpl_rows_mention": 469,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P0303",
+          "cmpl_rows_mention": 464,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P0301",
+          "cmpl_rows_mention": 439,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "U3000",
+          "cmpl_rows_mention": 432,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "C0020",
+          "cmpl_rows_mention": 423,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0420",
+          "cmpl_rows_mention": 413,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "C1391",
+          "cmpl_rows_mention": 359,
+          "in_codeslist": false,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0087",
+          "cmpl_rows_mention": 248,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P052E",
+          "cmpl_rows_mention": 243,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0700",
+          "cmpl_rows_mention": 241,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P2138",
+          "cmpl_rows_mention": 223,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P0720",
+          "cmpl_rows_mention": 191,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "C2200",
+          "cmpl_rows_mention": 191,
+          "in_codeslist": false,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0128",
+          "cmpl_rows_mention": 187,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P1450",
+          "cmpl_rows_mention": 186,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0316",
+          "cmpl_rows_mention": 184,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0016",
+          "cmpl_rows_mention": 180,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        }
+      ]
+    },
+    "mechanic_parts_vs_nhtsa_comp": {
+      "unique_part_names": 157,
+      "exact_name_in_nhtsa_comp": {
+        "num": 0,
+        "pct": 0.0
+      },
+      "token_overlap_with_nhtsa_comp": {
+        "num": 139,
+        "pct": 88.54
+      }
+    },
+    "vehicle_qa": {
+      "rows": 12943,
+      "cols": [
+        "QID",
+        "Brand",
+        "Model",
+        "Question",
+        "Dialogue",
+        "Report"
+      ],
+      "rows_with_dtc_regex": {
+        "num": 28,
+        "pct": 0.22
+      },
+      "rows_dtc_in_codeslist": {
+        "num": 20,
+        "pct": 0.15
+      },
+      "rows_dtc_in_mechanicdb": {
+        "num": 10,
+        "pct": 0.08
+      },
+      "distinct_qa_dtc": 51,
+      "qa_dtc_in_codeslist": {
+        "num": 38,
+        "den": 51,
+        "pct": 74.51
+      },
+      "rows_hitting_zh_component_lexicon": {
+        "num": 10696,
+        "pct": 82.64,
+        "by_nhtsa_head": {
+          "ENGINE": 4884,
+          "FUEL SYSTEM": 1690,
+          "ELECTRICAL SYSTEM": 2448,
+          "ENGINE AND ENGINE COOLING": 4598,
+          "FUEL/PROPULSION SYSTEM": 1971,
+          "BACK OVER PREVENTION": 371,
+          "EXTERIOR LIGHTING": 518,
+          "EV / HYBRID / FUEL CELL": 1104,
+          "SERVICE BRAKES": 1226,
+          "POWER TRAIN": 1610,
+          "STEERING": 1082,
+          "VISIBILITY": 615,
+          "TRACTION CONTROL SYSTEM": 61,
+          "STRUCTURE": 1262,
+          "VEHICLE SPEED CONTROL": 1447,
+          "TIRES": 848,
+          "SUSPENSION": 571,
+          "AIR CONDITIONER": 608,
+          "WHEELS": 164,
+          "PARKING BRAKE": 211,
+          "AIR BAGS": 159,
+          "SEAT BELTS": 46,
+          "LATCHES/LOCKS/LINKAGES": 141,
+          "HYBRID PROPULSION SYSTEM": 25,
+          "FORWARD COLLISION AVOIDANCE": 1,
+          "LANE DEPARTURE": 1
+        }
+      },
+      "rows_brand_mapped_to_nhtsa_make": {
+        "num": 8783,
+        "pct": 67.86
+      },
+      "rows_brand_and_model_mapped_to_nhtsa": {
+        "num": 4198,
+        "pct": 32.43
+      },
+      "mapped_make_counts": {
+        "BUICK": 814,
+        "PEUGEOT": 238,
+        "HYUNDAI": 561,
+        "VOLKSWAGEN": 1838,
+        "FORD": 488,
+        "TOYOTA": 650,
+        "CHEVROLET": 512,
+        "BMW": 407,
+        "AUDI": 441,
+        "HONDA": 710,
+        "VOLVO": 41,
+        "NISSAN": 499,
+        "SUZUKI": 108,
+        "CADILLAC": 57,
+        "LINCOLN": 4,
+        "CITROEN": 183,
+        "MERCEDES-BENZ": 270,
+        "SMART": 5,
+        "INFINITI": 15,
+        "SUBARU": 34,
+        "KIA": 307,
+        "LEXUS": 62,
+        "LAND ROVER": 79,
+        "MAZDA": 189,
+        "FIAT": 44,
+        "MITSUBISHI": 61,
+        "JEEP": 56,
+        "PORSCHE": 42,
+        "JAGUAR": 24,
+        "CHRYSLER": 12,
+        "MINI": 11,
+        "TESLA": 1,
+        "DODGE": 18,
+        "ACURA": 2
+      },
+      "top_brands_raw": [
+        {
+          "brand": "大众",
+          "rows": 1838
+        },
+        {
+          "brand": "别克",
+          "rows": 814
+        },
+        {
+          "brand": "本田",
+          "rows": 710
+        },
+        {
+          "brand": "丰田",
+          "rows": 650
+        },
+        {
+          "brand": "现代",
+          "rows": 561
+        },
+        {
+          "brand": "雪佛兰",
+          "rows": 512
+        },
+        {
+          "brand": "日产",
+          "rows": 499
+        },
+        {
+          "brand": "福特",
+          "rows": 488
+        },
+        {
+          "brand": "奥迪",
+          "rows": 441
+        },
+        {
+          "brand": "宝马",
+          "rows": 407
+        },
+        {
+          "brand": "nan",
+          "rows": 371
+        },
+        {
+          "brand": "吉利汽车",
+          "rows": 336
+        },
+        {
+          "brand": "起亚",
+          "rows": 307
+        },
+        {
+          "brand": "比亚迪",
+          "rows": 282
+        },
+        {
+          "brand": "奔驰",
+          "rows": 270
+        },
+        {
+          "brand": "长安",
+          "rows": 260
+        },
+        {
+          "brand": "标致",
+          "rows": 238
+        },
+        {
+          "brand": "奇瑞",
+          "rows": 215
+        },
+        {
+          "brand": "五菱汽车",
+          "rows": 208
+        },
+        {
+          "brand": "哈弗",
+          "rows": 195
+        }
+      ],
+      "top_dtc": [
+        {
+          "code": "P0441",
+          "rows": 2,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "U0100",
+          "rows": 2,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P0340",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P0444",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0341",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P0103",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P1857",
+          "rows": 1,
+          "in_codeslist": false,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0238",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0627",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0133",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": true
+        },
+        {
+          "code": "P162B",
+          "rows": 1,
+          "in_codeslist": false,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0163",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0021",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P0116",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        },
+        {
+          "code": "P1133",
+          "rows": 1,
+          "in_codeslist": true,
+          "in_mechanicdb": false
+        }
+      ]
+    }
+  },
+  "slice_candidates_mmy_in_all_three_by_cmpl_rows": [
+    {
+      "make": "RAM",
+      "model": "2500",
+      "year": "2018",
+      "cmpl_rows_2020_2026": 3814,
+      "rcl_campaigns": 10,
+      "inv_actions": 4
+    },
+    {
+      "make": "HONDA",
+      "model": "ACCORD",
+      "year": "2018",
+      "cmpl_rows_2020_2026": 2590,
+      "rcl_campaigns": 6,
+      "inv_actions": 2
+    },
+    {
+      "make": "FORD",
+      "model": "F-150",
+      "year": "2018",
+      "cmpl_rows_2020_2026": 2493,
+      "rcl_campaigns": 19,
+      "inv_actions": 2
+    },
+    {
+      "make": "HONDA",
+      "model": "CR-V",
+      "year": "2018",
+      "cmpl_rows_2020_2026": 2214,
+      "rcl_campaigns": 5,
+      "inv_actions": 3
+    },
+    {
+      "make": "FORD",
+      "model": "ESCAPE",
+      "year": "2020",
+      "cmpl_rows_2020_2026": 2173,
+      "rcl_campaigns": 23,
+      "inv_actions": 2
+    },
+    {
+      "make": "TESLA",
+      "model": "MODEL Y",
+      "year": "2023",
+      "cmpl_rows_2020_2026": 2113,
+      "rcl_campaigns": 17,
+      "inv_actions": 14
+    },
+    {
+      "make": "TESLA",
+      "model": "MODEL Y",
+      "year": "2021",
+      "cmpl_rows_2020_2026": 2081,
+      "rcl_campaigns": 23,
+      "inv_actions": 15
+    },
+    {
+      "make": "RAM",
+      "model": "1500",
+      "year": "2019",
+      "cmpl_rows_2020_2026": 1907,
+      "rcl_campaigns": 30,
+      "inv_actions": 1
+    },
+    {
+      "make": "FORD",
+      "model": "EXPLORER",
+      "year": "2016",
+      "cmpl_rows_2020_2026": 1890,
+      "rcl_campaigns": 15,
+      "inv_actions": 2
+    },
+    {
+      "make": "FISKER",
+      "model": "OCEAN",
+      "year": "2023",
+      "cmpl_rows_2020_2026": 1841,
+      "rcl_campaigns": 6,
+      "inv_actions": 4
+    },
+    {
+      "make": "HONDA",
+      "model": "PILOT",
+      "year": "2016",
+      "cmpl_rows_2020_2026": 1822,
+      "rcl_campaigns": 8,
+      "inv_actions": 4
+    },
+    {
+      "make": "FORD",
+      "model": "F-150",
+      "year": "2016",
+      "cmpl_rows_2020_2026": 1791,
+      "rcl_campaigns": 14,
+      "inv_actions": 4
+    },
+    {
+      "make": "FORD",
+      "model": "EXPLORER",
+      "year": "2020",
+      "cmpl_rows_2020_2026": 1775,
+      "rcl_campaigns": 33,
+      "inv_actions": 3
+    },
+    {
+      "make": "FORD",
+      "model": "F-150",
+      "year": "2013",
+      "cmpl_rows_2020_2026": 1728,
+      "rcl_campaigns": 3,
+      "inv_actions": 3
+    },
+    {
+      "make": "HONDA",
+      "model": "ODYSSEY",
+      "year": "2019",
+      "cmpl_rows_2020_2026": 1707,
+      "rcl_campaigns": 20,
+      "inv_actions": 4
+    }
+  ],
+  "slice_candidates_make_model": [
+    {
+      "make": "FORD",
+      "model": "F-150",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 18138,
+      "years_in_all_three": [
+        "1991",
+        "1993",
+        "1994",
+        "1995",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022"
+      ],
+      "n_years_in_all_three": 29
+    },
+    {
+      "make": "FORD",
+      "model": "ESCAPE",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 16794,
+      "years_in_all_three": [
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2020",
+        "2021",
+        "2022"
+      ],
+      "n_years_in_all_three": 18
+    },
+    {
+      "make": "RAM",
+      "model": "1500",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 13405,
+      "years_in_all_three": [
+        "2009",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022"
+      ],
+      "n_years_in_all_three": 11
+    },
+    {
+      "make": "FORD",
+      "model": "EXPLORER",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 12746,
+      "years_in_all_three": [
+        "1991",
+        "1993",
+        "1994",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2007",
+        "2008",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "n_years_in_all_three": 32
+    },
+    {
+      "make": "CHEVROLET",
+      "model": "SILVERADO 1500",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 11082,
+      "years_in_all_three": [
+        "1999",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2026"
+      ],
+      "n_years_in_all_three": 18
+    },
+    {
+      "make": "JEEP",
+      "model": "WRANGLER",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 10253,
+      "years_in_all_three": [
+        "1989",
+        "1991",
+        "1992",
+        "1993",
+        "1994",
+        "1995",
+        "1999",
+        "2000",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "n_years_in_all_three": 27
+    },
+    {
+      "make": "FORD",
+      "model": "FUSION",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 10052,
+      "years_in_all_three": [
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018"
+      ],
+      "n_years_in_all_three": 13
+    },
+    {
+      "make": "HONDA",
+      "model": "CR-V",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 9962,
+      "years_in_all_three": [
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "n_years_in_all_three": 18
+    },
+    {
+      "make": "HONDA",
+      "model": "ACCORD",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 9627,
+      "years_in_all_three": [
+        "1990",
+        "1995",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "n_years_in_all_three": 26
+    },
+    {
+      "make": "JEEP",
+      "model": "GRAND CHEROKEE",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 9563,
+      "years_in_all_three": [
+        "1993",
+        "1995",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2022",
+        "2023"
+      ],
+      "n_years_in_all_three": 26
+    },
+    {
+      "make": "HONDA",
+      "model": "PILOT",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 8632,
+      "years_in_all_three": [
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "n_years_in_all_three": 18
+    },
+    {
+      "make": "JEEP",
+      "model": "CHEROKEE",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 8576,
+      "years_in_all_three": [
+        "1990",
+        "1991",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2001",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018"
+      ],
+      "n_years_in_all_three": 12
+    },
+    {
+      "make": "HYUNDAI",
+      "model": "SONATA",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 8409,
+      "years_in_all_three": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2020",
+        "2021"
+      ],
+      "n_years_in_all_three": 20
+    },
+    {
+      "make": "FORD",
+      "model": "EDGE",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 8245,
+      "years_in_all_three": [
+        "2007",
+        "2008",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2020",
+        "2021",
+        "2022"
+      ],
+      "n_years_in_all_three": 13
+    },
+    {
+      "make": "TESLA",
+      "model": "MODEL Y",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 8001,
+      "years_in_all_three": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "n_years_in_all_three": 7
+    },
+    {
+      "make": "KIA",
+      "model": "SORENTO",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 7958,
+      "years_in_all_three": [
+        "2003",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021"
+      ],
+      "n_years_in_all_three": 16
+    },
+    {
+      "make": "TESLA",
+      "model": "MODEL 3",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 7690,
+      "years_in_all_three": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "n_years_in_all_three": 10
+    },
+    {
+      "make": "GMC",
+      "model": "SIERRA 1500",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 7403,
+      "years_in_all_three": [
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "n_years_in_all_three": 22
+    },
+    {
+      "make": "HONDA",
+      "model": "ODYSSEY",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 7395,
+      "years_in_all_three": [
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "n_years_in_all_three": 27
+    },
+    {
+      "make": "CHEVROLET",
+      "model": "MALIBU",
+      "cmpl_rows_on_rcl_mmy_2020_2026": 7279,
+      "years_in_all_three": [
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2004",
+        "2005",
+        "2009",
+        "2020"
+      ],
+      "n_years_in_all_three": 10
+    }
+  ],
+  "top_cmpl_component_heads": [
+    {
+      "head": "ENGINE",
+      "rows": 94371
+    },
+    {
+      "head": "ELECTRICAL SYSTEM",
+      "rows": 81287
+    },
+    {
+      "head": "POWER TRAIN",
+      "rows": 64915
+    },
+    {
+      "head": "UNKNOWN OR OTHER",
+      "rows": 62532
+    },
+    {
+      "head": "STEERING",
+      "rows": 40512
+    },
+    {
+      "head": "SERVICE BRAKES",
+      "rows": 36279
+    },
+    {
+      "head": "FORWARD COLLISION AVOIDANCE",
+      "rows": 29409
+    },
+    {
+      "head": "FUEL",
+      "rows": 29167
+    },
+    {
+      "head": "AIR BAGS",
+      "rows": 25807
+    },
+    {
+      "head": "STRUCTURE",
+      "rows": 23760
+    },
+    {
+      "head": "VISIBILITY",
+      "rows": 17222
+    },
+    {
+      "head": "VEHICLE SPEED CONTROL",
+      "rows": 16685
+    },
+    {
+      "head": "SUSPENSION",
+      "rows": 16510
+    },
+    {
+      "head": "EXTERIOR LIGHTING",
+      "rows": 14030
+    },
+    {
+      "head": "ENGINE AND ENGINE COOLING",
+      "rows": 11584
+    },
+    {
+      "head": "BACK OVER PREVENTION",
+      "rows": 8631
+    },
+    {
+      "head": "LANE DEPARTURE",
+      "rows": 8355
+    },
+    {
+      "head": "TIRES",
+      "rows": 8116
+    },
+    {
+      "head": "SERVICE BRAKES, HYDRAULIC",
+      "rows": 6938
+    },
+    {
+      "head": "SEAT BELTS",
+      "rows": 6618
+    }
+  ],
+  "top_rcl_component_heads": [
+    {
+      "head": "ELECTRICAL SYSTEM",
+      "rows": 48173
+    },
+    {
+      "head": "EQUIPMENT",
+      "rows": 37544
+    },
+    {
+      "head": "TIRES",
+      "rows": 25486
+    },
+    {
+      "head": "FUEL SYSTEM, GASOLINE",
+      "rows": 17238
+    },
+    {
+      "head": "COMMUNICATION",
+      "rows": 17235
+    },
+    {
+      "head": "EXTERIOR LIGHTING",
+      "rows": 16307
+    },
+    {
+      "head": "AIR BAGS",
+      "rows": 14983
+    },
+    {
+      "head": "STRUCTURE",
+      "rows": 14205
+    },
+    {
+      "head": "STEERING",
+      "rows": 13974
+    },
+    {
+      "head": "BACK OVER PREVENTION",
+      "rows": 13212
+    },
+    {
+      "head": "SERVICE BRAKES, HYDRAULIC",
+      "rows": 12474
+    },
+    {
+      "head": "SEAT BELTS",
+      "rows": 11566
+    },
+    {
+      "head": "SUSPENSION",
+      "rows": 11318
+    },
+    {
+      "head": "POWER TRAIN",
+      "rows": 10101
+    },
+    {
+      "head": "ENGINE AND ENGINE COOLING",
+      "rows": 9979
+    }
+  ],
+  "top_cmpl_makes": [
+    {
+      "make": "FORD",
+      "rows": 108246
+    },
+    {
+      "make": "CHEVROLET",
+      "rows": 55363
+    },
+    {
+      "make": "HONDA",
+      "rows": 54570
+    },
+    {
+      "make": "HYUNDAI",
+      "rows": 40915
+    },
+    {
+      "make": "JEEP",
+      "rows": 40749
+    },
+    {
+      "make": "KIA",
+      "rows": 35171
+    },
+    {
+      "make": "TOYOTA",
+      "rows": 34755
+    },
+    {
+      "make": "NISSAN",
+      "rows": 26332
+    },
+    {
+      "make": "RAM",
+      "rows": 23636
+    },
+    {
+      "make": "TESLA",
+      "rows": 22530
+    },
+    {
+      "make": "GMC",
+      "rows": 21794
+    },
+    {
+      "make": "SUBARU",
+      "rows": 17500
+    },
+    {
+      "make": "DODGE",
+      "rows": 16170
+    },
+    {
+      "make": "VOLKSWAGEN",
+      "rows": 15471
+    },
+    {
+      "make": "BMW",
+      "rows": 13297
+    }
+  ],
+  "sample_schema_rows_redacted": [
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 5,
+      "model_len": 6,
+      "year": "2018",
+      "comp_head": "SERVICE BRAKES",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 5,
+      "model_len": 6,
+      "year": "2018",
+      "comp_head": "ELECTRICAL SYSTEM",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 5,
+      "model_len": 6,
+      "year": "2018",
+      "comp_head": "ENGINE",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 4,
+      "model_len": 8,
+      "year": "2020",
+      "comp_head": "ELECTRICAL SYSTEM",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 9,
+      "model_len": 4,
+      "year": "2017",
+      "comp_head": "SERVICE BRAKES",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": false
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 9,
+      "model_len": 4,
+      "year": "2017",
+      "comp_head": "ELECTRONIC STABILITY CONTROL (ESC)",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": false
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 9,
+      "model_len": 4,
+      "year": "2017",
+      "comp_head": "VEHICLE SPEED CONTROL",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": false
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 6,
+      "model_len": 5,
+      "year": "2014",
+      "comp_head": "POWER TRAIN",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 9,
+      "model_len": 6,
+      "year": "2007",
+      "comp_head": "STEERING",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 7,
+      "model_len": 5,
+      "year": "2015",
+      "comp_head": "SERVICE BRAKES",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 7,
+      "model_len": 5,
+      "year": "2015",
+      "comp_head": "STEERING",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 7,
+      "model_len": 5,
+      "year": "2015",
+      "comp_head": "SUSPENSION",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 3,
+      "model_len": 4,
+      "year": "2020",
+      "comp_head": "ENGINE",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 3,
+      "model_len": 4,
+      "year": "2020",
+      "comp_head": "UNKNOWN OR OTHER",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    },
+    {
+      "field_names_only_note": "values below are make/model/year/component/type only; no VIN/city/dealer/narrative",
+      "make_len": 5,
+      "model_len": 5,
+      "year": "2018",
+      "comp_head": "ENGINE",
+      "prod_type": "V",
+      "has_dtc_in_narrative": false,
+      "mmy_in_rcl": true
+    }
+  ]
+}

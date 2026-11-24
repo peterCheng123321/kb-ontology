@@ -1,0 +1,19 @@
+PREFIX demo: <https://w3id.org/poc-kb/demo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?odino ?modelYearLabel ?head ?campno ?score ?method ?review ?remedy
+WHERE {
+  VALUES ?c {
+    <https://w3id.org/poc-kb/demo/complaint/11324947>
+    <https://w3id.org/poc-kb/demo/complaint/11499094>
+  }
+  ?c demo:odino ?odino ; demo:vehicle ?v ; demo:hasComponent ?comp .
+  ?v rdfs:label ?modelYearLabel .
+  ?comp demo:head ?head .
+  ?link a demo:CandidateLink ;
+        demo:fromEntity ?c ; demo:toEntity ?r ;
+        demo:method ?method ; demo:score ?score ;
+        demo:reviewStatus ?review ; demo:matchedHead ?mh .
+  ?r a demo:Recall ; demo:campno ?campno ; demo:correctiveAction ?remedy ; demo:hasComponent ?comp .
+  FILTER(CONTAINS(?mh, ?head))
+}
+ORDER BY ?odino ?campno ?head

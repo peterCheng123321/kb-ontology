@@ -1,0 +1,23 @@
+本仓库中由维护者撰写的代码与文档以 Apache License 2.0 发布。
+
+第三方公开数据本身不随本仓库分发，使用时须遵守各自许可证，并按要求署名：
+
+- NHTSA ODI 平面文件（投诉、召回、调查、厂商通信）：美国政府作品，公有领域
+  （Public Domain, U.S. Government）。官方说明见
+  https://www.nhtsa.gov/nhtsa-datasets-and-apis
+- CodesList/obd2-codes：CC BY 4.0，需署名
+  https://huggingface.co/datasets/CodesList/obd2-codes
+- Ichlibitiche/mechanicdb-obd2-repair-sample：ODbL 1.0（署名 + 相同方式共享）
+  https://huggingface.co/datasets/Ichlibitiche/mechanicdb-obd2-repair-sample
+- wushan/vehicle_qa：Apache-2.0
+  https://huggingface.co/datasets/wushan/vehicle_qa
+- BAAI/IndustryInstruction_Automobiles、BAAI/IndustryCorpus_automobile、
+  BAAI/IndustryCorpus2_automobile：Apache-2.0
+  https://huggingface.co/datasets/BAAI/IndustryInstruction_Automobiles
+  https://huggingface.co/datasets/BAAI/IndustryCorpus_automobile
+  https://huggingface.co/datasets/BAAI/IndustryCorpus2_automobile
+- PedroCuisinier2025/OBD2_panel_opel_2012：见该数据集卡片上的许可证声明
+  https://huggingface.co/datasets/PedroCuisinier2025/OBD2_panel_opel_2012
+
+CodesList 词表是第三方汇编，不是 SAE J2012 官方文本，不能当作法规引用源。
+NHTSA 投诉是车主陈述，不是已证实的缺陷。不得暗示美国政府或上述数据集作者背书。

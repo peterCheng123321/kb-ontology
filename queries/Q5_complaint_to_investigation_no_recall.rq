@@ -1,0 +1,12 @@
+PREFIX demo: <https://w3id.org/poc-kb/demo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?odino ?vehicle ?head ?action ?subject ?hasCampaign
+WHERE {
+  BIND(<https://w3id.org/poc-kb/demo/complaint/11407338> AS ?c)
+  ?c demo:odino ?odino ; demo:vehicle ?v .
+  ?v rdfs:label ?vehicle .
+  ?link a demo:CandidateLink ; demo:fromEntity ?c ; demo:toEntity ?i ; demo:matchedHead ?head .
+  ?i a demo:Investigation ; demo:actionNumber ?action ; demo:subject ?subject .
+  BIND(EXISTS { ?i demo:campaign ?any } AS ?hasCampaign)
+}
+ORDER BY ?action

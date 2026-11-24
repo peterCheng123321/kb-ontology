@@ -1,0 +1,173 @@
+id: https://w3id.org/poc-kb/demo
+name: honda_2018_trial
+title: Honda CR-V and Accord 2018 exploratory trial schema
+description: Minimal schema for a public-data exploratory trial. Capabilities are not pre-declared. No VIN or complaint narrative properties.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  demo: https://w3id.org/poc-kb/demo/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: demo
+imports:
+  - linkml:types
+default_range: string
+
+enums:
+  ReviewStatusEnum:
+    permissible_values:
+      unreviewed:
+      accepted:
+      rejected:
+      uncertain:
+  LinkMethodEnum:
+    permissible_values:
+      inv_campno:
+        description: Official investigation CAMPNO equals recall CAMPNO (hard key)
+      dtc_code:
+        description: Repair step or part joins a DTC by official/sample code (hard key)
+      mmy_comp_exact:
+        description: Same make, model, year and exact component description
+      mmy_comp_head:
+        description: Same make, model, year and canonical component head
+      qa_zh_lexicon:
+        description: Chinese QA text hits a bilingual component lexicon; no model year
+      dtc_regex_cooccur:
+        description: DTC regex extracted from a complaint narrative (narrative itself is not stored) and co-occurs with a component row
+
+classes:
+  NamedThing:
+    abstract: true
+    attributes:
+      id:
+        identifier: true
+        range: uri
+
+  VehicleModelYear:
+    is_a: NamedThing
+    description: A make + model + model year, not an individual vehicle and not a VIN.
+    attributes:
+      make:
+        required: true
+      model:
+        required: true
+      modelYear:
+        required: true
+
+  Complaint:
+    is_a: NamedThing
+    description: One NHTSA owner complaint folded by ODINO. No VIN, no narrative text.
+    attributes:
+      odino:
+        required: true
+      vehicle:
+        range: VehicleModelYear
+        required: true
+        slot_uri: demo:vehicle
+      hasComponent:
+        range: Component
+        multivalued: true
+      mentionsDtc:
+        range: DTC
+        multivalued: true
+      receivedDate:
+      crashFlag:
+      fireFlag:
+
+  Recall:
+    is_a: NamedThing
+    attributes:
+      campno:
+        required: true
+      defectSummary:
+      correctiveAction:
+      potentiallyAffected:
+        range: integer
+      coversVehicle:
+        range: VehicleModelYear
+        multivalued: true
+      hasComponent:
+        range: Component
+        multivalued: true
+
+  Investigation:
+    is_a: NamedThing
+    attributes:
+      actionNumber:
+        required: true
+      actionType:
+      subject:
+      summary:
+      campaign:
+        range: Recall
+        description: Filled only when CAMPNO is present and matches a recall.
+      coversVehicle:
+        range: VehicleModelYear
+        multivalued: true
+      hasComponent:
+        range: Component
+        multivalued: true
+
+  Component:
+    is_a: NamedThing
+    attributes:
+      head:
+        required: true
+      labelEn:
+      labelZh:
+
+  DTC:
+    is_a: NamedThing
+    attributes:
+      code:
+        required: true
+      description:
+      category:
+      inCodesList:
+        range: boolean
+      inMechanicSample:
+        range: boolean
+
+  RepairStep:
+    is_a: NamedThing
+    attributes:
+      fixId:
+        required: true
+      title:
+      difficulty:
+      laborHours:
+        range: float
+      forDtc:
+        range: DTC
+        required: true
+      usesPart:
+        range: Part
+        multivalued: true
+
+  Part:
+    is_a: NamedThing
+    attributes:
+      partName:
+        required: true
+
+  CandidateLink:
+    is_a: NamedThing
+    description: A derived or official-candidate relation that must carry method, score and review status.
+    attributes:
+      fromEntity:
+        range: NamedThing
+        required: true
+      toEntity:
+        range: NamedThing
+        required: true
+      method:
+        range: LinkMethodEnum
+        required: true
+      score:
+        range: float
+        required: true
+        minimum_value: 0.0
+        maximum_value: 1.0
+      reviewStatus:
+        range: ReviewStatusEnum
+        required: true
+      matchedHead:
+      note:
