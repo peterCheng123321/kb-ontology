@@ -1,28 +1,15 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix core: <https://w3id.org/poc-kb/core/> .
-
 core:PrivacyGuardShape a sh:NodeShape ;
     sh:targetSubjectsOf rdf:type ;
     sh:sparql [
         a sh:SPARQLConstraint ;
         sh:message "Privacy violation: literal matches 17-character VIN pattern." ;
-        sh:select """
-            SELECT $this ?p ?v
-            WHERE {
-                $this ?p ?v .
-                FILTER(isLiteral(?v) && REGEX(STR(?v), "(^|[^A-Za-z0-9])[A-HJ-NPR-Z0-9]{17}([^A-Za-z0-9]|$)", "i"))
-            }
-        """ ;
+        sh:select """SELECT $this ?p ?v WHERE { $this ?p ?v . FILTER(isLiteral(?v) && REGEX(STR(?v), "(^|[^A-Za-z0-9])[A-HJ-NPR-Z0-9]{17}([^A-Za-z0-9]|$)", "i")) }""" ;
     ] ;
     sh:sparql [
         a sh:SPARQLConstraint ;
         sh:message "Privacy violation: forbidden PII/narrative/vehicle_id predicate detected." ;
-        sh:select """
-            SELECT $this ?p
-            WHERE {
-                $this ?p ?v .
-                FILTER(REGEX(LCASE(STR(?p)), "(^|/|#)(vin|vehicle_id|vehicleid|cdescr|narrative|rawdialogue|dialogue)$"))
-            }
-        """ ;
+        sh:select """SELECT $this ?p WHERE { $this ?p ?v . FILTER(REGEX(LCASE(STR(?p)), "(^|/|#)(vin|vehicle_id|vehicleid|cdescr|narrative|rawdialogue|dialogue)$")) }""" ;
     ] .
