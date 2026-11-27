@@ -1,0 +1,258 @@
+id: https://w3id.org/poc-kb/core
+name: poc_kb_core
+title: Core After-Sales Entities and Candidate Link Vocabulary
+version: 3.0.0-exp
+description: >-
+  Shared core classes (VehicleModelYear, Component, Complaint, Investigation,
+  QaThread, CandidateLink, DataSource) and cross-module reusable slots.
+imports:
+  - prefixes
+  - linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  core: https://w3id.org/poc-kb/core/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: core
+default_range: string
+
+enums:
+  ReviewStatusEnum:
+    description: Human review judgment for a CandidateLink.
+    permissible_values:
+      unreviewed:
+        description: Not yet reviewed by a human reviewer.
+      accepted:
+        description: Plausible at structured/official-field level (does not assert legal causation).
+      rejected:
+        description: Over-broad, mismatched make/scope, or refuted by official text.
+      uncertain:
+        description: Insufficient structured field evidence to confirm or reject.
+
+  LinkMethodEnum:
+    description: Provenance method used to derive a CandidateLink.
+    permissible_values:
+      inv_campno:
+        description: Official investigation CAMPNO equals recall CAMPNO (hard key).
+      dtc_code:
+        description: Repair step or part joins a DTC by code (hard key).
+      mmy_comp_exact:
+        description: Same make, model, year, and exact NHTSA component description.
+      mmy_comp_head:
+        description: Same make, model, year, and canonical component head.
+      qa_zh_lexicon:
+        description: Chinese QA text hits bilingual component lexicon; no model year.
+      dtc_regex_cooccur:
+        description: DTC regex extracted from complaint narrative (narrative not stored) co-occurring with component row.
+      xjur_mfr_token:
+        description: Cross-jurisdiction recall hard key via shared manufacturer campaign token.
+      xjur_mmy_system_window:
+        description: Cross-jurisdiction recall candidate via shared MMY, mapped system class, +/-180 day date window, and official text token Jaccard.
+      dtc_make_context:
+        description: Complaint DTC linked to DtcDefinition scored by makeContext alignment (0.90 exact make, 0.70 GENERIC, 0.20 other-make mismatch).
+      component_mot_group:
+        description: NHTSA Component linked to UK MOT top-level item group via SKOS crosswalk.
+      component_can_message:
+        description: NHTSA Component linked to Honda opendbc CAN message via curated mapping.
+      dtc_pid_subsystem:
+        description: DTC linked to OBD-II PIDs via SAE J2012 subsystem code range mapping.
+      battery_fault_signal:
+        description: EV battery fault summary/type linked to COVESA VSS TractionBattery signal.
+
+  ComplianceTierEnum:
+    description: Dataset licensing compliance tier from Phase 2 audit.
+    permissible_values:
+      A:
+        description: Commercially permissive open license eligible for POC ABox ingestion.
+      B:
+        description: Schema/slot reference only; prohibited from POC ABox ingestion.
+
+slots:
+  id:
+    identifier: true
+    range: uri
+  label:
+    slot_uri: rdfs:label
+    description: Human-readable display label.
+  description:
+    description: Concise official or technical description (never raw consumer narrative).
+  labelEn:
+    description: English canonical label.
+  labelZh:
+    description: Chinese canonical label.
+  hasComponent:
+    range: Component
+    multivalued: true
+    description: Links an entity to one or more canonical vehicle components/systems.
+  coversVehicle:
+    range: VehicleModelYear
+    multivalued: true
+    description: Links a recall or investigation to covered make/model/year cohorts.
+  fromSource:
+    range: DataSource
+    description: Provenance pointer to the open dataset or standard record.
+  unit:
+    description: Engineering unit of measure.
+  minValue:
+    range: decimal
+    description: Lower bound of physical or engineering signal range.
+  maxValue:
+    range: decimal
+    description: Upper bound of physical or engineering signal range.
+  broader:
+    slot_uri: skos:broader
+    range: NamedThing
+    multivalued: true
+    description: SKOS hierarchical broader concept.
+  exactMatch:
+    slot_uri: skos:exactMatch
+    range: uri
+    multivalued: true
+    description: SKOS exactMatch alignment to external vocabulary or crosswalked concept.
+  closeMatch:
+    slot_uri: skos:closeMatch
+    range: uri
+    multivalued: true
+    description: SKOS closeMatch alignment to external vocabulary or standard concept.
+  seeAlso:
+    slot_uri: rdfs:seeAlso
+    range: uri
+    multivalued: true
+    description: Informational reference link.
+
+classes:
+  NamedThing:
+    abstract: true
+    description: Abstract base class for all addressable entities in the knowledge base.
+    slots:
+      - id
+      - label
+
+  DataSource:
+    is_a: NamedThing
+    description: Provenance metadata for an ingested Tier-A public dataset or standard.
+    attributes:
+      sourceKey:
+        required: true
+      licenseName:
+        required: true
+      complianceTier:
+        range: ComplianceTierEnum
+        required: true
+      sourceUrl:
+        range: uri
+      retrievedAt:
+    slots:
+      - description
+
+  VehicleModelYear:
+    is_a: NamedThing
+    description: A make + model + model year cohort (never an individual vehicle or VIN).
+    annotations:
+      bfo_alignment: BFO_0000030 (object) cohort specification
+    attributes:
+      make:
+        required: true
+      model:
+        required: true
+      modelYear:
+        required: true
+
+  Component:
+    is_a: NamedThing
+    description: Canonical vehicle component or subsystem head (supports finer hierarchy via skos:broader).
+    annotations:
+      bfo_alignment: BFO_0000024 (fiat object part) / BFO_0000030 (object)
+    slots:
+      - labelEn
+      - labelZh
+      - broader
+      - exactMatch
+      - closeMatch
+      - seeAlso
+    attributes:
+      head:
+        required: true
+      componentPath:
+        description: Optional fine-grained colon-delimited NHTSA component path.
+
+  Complaint:
+    is_a: NamedThing
+    description: One NHTSA owner complaint folded by ODINO. Strictly excludes VIN and raw narrative text.
+    annotations:
+      bfo_alignment: BFO_0000031 (generically dependent continuant / information artifact)
+    slots:
+      - hasComponent
+      - fromSource
+    attributes:
+      odino:
+        required: true
+      vehicle:
+        range: VehicleModelYear
+        required: true
+      mentionsDtcCode:
+        multivalued: true
+        description: Raw uppercase DTC string extracted via regex (linked to diag:DTC via mentionsDtc in diagnostics).
+      receivedDate:
+      crashFlag:
+      fireFlag:
+
+  Investigation:
+    is_a: NamedThing
+    description: Official NHTSA ODI defect investigation (PE/EA/DP/RQ/SQ/EQ/AQ).
+    slots:
+      - coversVehicle
+      - hasComponent
+      - fromSource
+    attributes:
+      actionNumber:
+        required: true
+      actionType:
+      subject:
+      summary:
+      officialCampaignId:
+        description: Official CAMPNO string when present on the investigation record.
+
+  QaThread:
+    is_a: NamedThing
+    description: De-identified Chinese after-sales Q&A thread (wushan/vehicle_qa; raw dialogue excluded).
+    slots:
+      - hasComponent
+      - fromSource
+    attributes:
+      qid:
+        required: true
+      brandRaw:
+      modelRaw:
+      makeMapped:
+      modelMapped:
+      reportShort:
+        description: Short de-identified conclusion excerpt (<= 60 chars).
+
+  CandidateLink:
+    is_a: NamedThing
+    description: >-
+      A derived or cross-source candidate relation that carries explicit method,
+      score (decimal in [0, 1]), and human review status.
+    attributes:
+      fromEntity:
+        range: NamedThing
+        required: true
+      toEntity:
+        range: NamedThing
+        required: true
+      method:
+        range: LinkMethodEnum
+        required: true
+      score:
+        range: decimal
+        required: true
+        description: Confidence score in [0.0, 1.0]; bounded in SHACL extras to avoid OWL float-facet issues.
+      reviewStatus:
+        range: ReviewStatusEnum
+        required: true
+      matchedHead:
+      mismatchFlag:
+        range: boolean
+        description: True when a cross-make or semantic conflict is explicitly flagged (e.g., P1326 VW vs Honda).
+      note:

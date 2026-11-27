@@ -1,0 +1,22 @@
+id: https://w3id.org/poc-kb/prefixes
+name: poc_kb_prefixes
+title: Shared URI prefixes for Automotive After-Sales Knowledge Base Ontology v3
+prefixes:
+  linkml: https://w3id.org/linkml/
+  pockb: https://w3id.org/poc-kb/
+  core: https://w3id.org/poc-kb/core/
+  recall: https://w3id.org/poc-kb/recall/
+  diag: https://w3id.org/poc-kb/diag/
+  insp: https://w3id.org/poc-kb/insp/
+  signal: https://w3id.org/poc-kb/signal/
+  evb: https://w3id.org/poc-kb/evb/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  owl: http://www.w3.org/2002/07/owl#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  sosa: http://www.w3.org/ns/sosa/
+  vsso: https://github.com/w3c/vsso#
+  bfo: http://purl.obolibrary.org/obo/BFO_
+default_prefix: pockb
