@@ -1,0 +1,32 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix insp: <https://w3id.org/poc-kb/insp/> .
+
+# Enforces k<5 small-cell suppression policy on UK MOT aggregated cohort statistics.
+insp:InspectionDefectStatSuppressionShape a sh:NodeShape ;
+    sh:targetClass insp:InspectionDefectStat ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Suppressed MOT stat cell (suppressed=true) MUST NOT emit insp:defectCount." ;
+        sh:select """
+            PREFIX insp: <https://w3id.org/poc-kb/insp/>
+            SELECT $this ?cnt
+            WHERE {
+                $this insp:suppressed true ;
+                      insp:defectCount ?cnt .
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Non-suppressed MOT stat cell (suppressed=false) MUST have insp:defectCount >= 5." ;
+        sh:select """
+            PREFIX insp: <https://w3id.org/poc-kb/insp/>
+            SELECT $this
+            WHERE {
+                $this insp:suppressed false .
+                OPTIONAL { $this insp:defectCount ?cnt . }
+                FILTER(!BOUND(?cnt) || ?cnt < 5)
+            }
+        """ ;
+    ] .

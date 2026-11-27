@@ -1,0 +1,12 @@
+@prefix core: <https://w3id.org/poc-kb/core/> .
+
+<https://w3id.org/poc-kb/core/vehicle/BAD_VEH2> a core:VehicleModelYear, core:NamedThing ;
+    core:make "HONDA" ;
+    core:model "CR-V" ;
+    core:modelYear "2018" .
+
+# Deliberate negative fixture: forbidden narrative/cdescr predicate must be rejected.
+<https://w3id.org/poc-kb/core/complaint/BAD_NARR> a core:Complaint, core:NamedThing ;
+    core:odino "99999998" ;
+    core:vehicle <https://w3id.org/poc-kb/core/vehicle/BAD_VEH2> ;
+    core:cdescr "synthetic forbidden narrative field" .

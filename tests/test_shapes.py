@@ -9,7 +9,16 @@ from rdflib import Graph
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXTRAS_DIR = REPO_ROOT / "src" / "shacl" / "extras"
-POSITIVE_DIR = REPO_ROOT / "tests" / "fixtures" / "positive"
+FIXTURES_DIR = REPO_ROOT / "tests" / "fixtures"
+POSITIVE_DIR = FIXTURES_DIR / "positive"
+VIN_PLACEHOLDER = "VIN_PLACEHOLDER"
+NEGATIVE_EXPECTATIONS = {
+    "neg_privacy_vin.ttl": "17-character VIN",
+    "neg_privacy_predicate.ttl": "forbidden PII/narrative",
+    "neg_mot_unsuppressed_small_cell.ttl": "defectCount >= 5",
+    "neg_candidate_score_oob.ttl": "score must be xsd:decimal in [0.0, 1.0]",
+    "neg_dtc_def_missing_make.ttl": "makeContext",
+}
 
 
 def load_combined_shapes(schema_gen) -> Graph:
@@ -20,6 +29,11 @@ def load_combined_shapes(schema_gen) -> Graph:
         for path in sorted(EXTRAS_DIR.glob("*.ttl")):
             shapes.parse(path, format="turtle")
     return shapes
+
+
+def synthetic_vin() -> str:
+    """两段拼成 17 位合成标记，仓库里不存放完整串。"""
+    return "JH4KA" + "8260MC000000"
 
 
 def parse_data(path: Path, text: str | None = None) -> Graph:
@@ -77,6 +91,31 @@ def test_empty_data_graph_conforms(shapes_graph: Graph) -> None:
         abort_on_first=False,
     )
     assert conforms, report
+
+
+def load_fixture(path: Path) -> Graph:
+    """隐私反例在解析前把占位符换成合成标记。"""
+    if path.name == "neg_privacy_vin.ttl":
+        text = path.read_text(encoding="utf-8").replace(VIN_PLACEHOLDER, synthetic_vin())
+        return parse_data(path, text)
+    return parse_data(path)
+
+
+@pytest.mark.parametrize("filename,expected_substr", sorted(NEGATIVE_EXPECTATIONS.items()))
+def test_negative_fixtures_fail_with_expected_reason(
+    shapes_graph: Graph, filename: str, expected_substr: str
+) -> None:
+    """每份反例都不符合，且报告含预期原文。"""
+    path = FIXTURES_DIR / "negative" / filename
+    assert path.is_file(), f"缺少反例夹具：{filename}"
+    conforms, _, report = validate(
+        data_graph=load_fixture(path),
+        shacl_graph=shapes_graph,
+        inference="none",
+        abort_on_first=False,
+    )
+    assert not conforms, f"反例 {filename} 意外通过"
+    assert expected_substr in report, f"反例 {filename} 的报告缺少 {expected_substr!r}:\n{report}"
 
 
 def test_unparseable_fixture_names_file(tmp_path: Path) -> None:

@@ -1,0 +1,34 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://w3id.org/poc-kb/core/> .
+@prefix recall: <https://w3id.org/poc-kb/recall/> .
+@prefix insp: <https://w3id.org/poc-kb/insp/> .
+@prefix evb: <https://w3id.org/poc-kb/evb/> .
+
+# Global privacy guardrails across core, recall, inspection, and EV battery entities.
+core:PrivacyGuardShape a sh:NodeShape ;
+    sh:targetClass core:Complaint, core:VehicleModelYear, core:QaThread,
+                   recall:JurisdictionRecall, insp:InspectionDefectStat,
+                   evb:BatteryVehicleRef, evb:BatterySnippetSummary ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Privacy violation: literal matches 17-character VIN pattern." ;
+        sh:select """
+            SELECT $this ?p ?v
+            WHERE {
+                $this ?p ?v .
+                FILTER(isLiteral(?v) && REGEX(STR(?v), "^[A-HJ-NPR-Z0-9]{17}$"))
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Privacy violation: forbidden PII/narrative/vehicle_id predicate detected." ;
+        sh:select """
+            SELECT $this ?p
+            WHERE {
+                $this ?p ?v .
+                FILTER(REGEX(LCASE(STR(?p)), "(^|/|#)(vin|vehicle_id|vehicleid|cdescr|narrative|rawdialogue|dialogue)$"))
+            }
+        """ ;
+    ] .
