@@ -1,5 +1,6 @@
 """VSSo 许可、说明文档与 Makefile 目标。"""
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -9,6 +10,22 @@ import pytest
 R = Path(__file__).resolve().parents[1]
 def _make(*args: str) -> subprocess.CompletedProcess[str]:
     return subprocess.run(["make", *args], cwd=R, capture_output=True, text=True, check=False)
+def test_notice_identifiers_are_referenced_by_a_shipped_file() -> None:
+    """NOTICE 里的数据集标识必须在别的已跟踪文件中出现。"""
+    notice = (R / "NOTICE").read_text(encoding="utf-8")
+    identifiers = re.findall(r"(?:figshare\.|zenodo\.)(\d+)", notice)
+    assert identifiers
+    skipped = {".git", ".venv", "gen", "__pycache__"}
+    for identifier in identifiers:
+        found = False
+        for path in R.rglob("*"):
+            if not path.is_file() or path.name == "NOTICE" or skipped.intersection(path.parts):
+                continue
+            if identifier in path.read_text(encoding="utf-8", errors="ignore"):
+                found = True
+                break
+        assert found, identifier
+
 def test_notice_vsso_uses_w3c_document_license() -> None:
     text = (R / "NOTICE").read_text(encoding="utf-8")
     assert "W3C Document License" in text and "https://www.w3.org/Consortium/Legal/copyright-documents" in text
