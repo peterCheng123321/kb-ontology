@@ -12,20 +12,23 @@ LABEL = "<http://www.w3.org/2000/01/rdf-schema#label>"
 
 def synthetic_vin() -> str:
     return "JH4KA" + "8260MC000000"
-
 def _class_names() -> list[str]:
     pytest.importorskip("linkml_runtime")
     from linkml_runtime.utils.schemaview import SchemaView
     view = SchemaView(str(ROOT / "src" / "linkml" / "catalog.yaml"))
     return [name for name, cls in view.all_classes().items() if not cls.abstract]
 
-@pytest.fixture(scope="module")
 def shapes_graph(schema_gen):
     shapes = Graph()
     shapes.parse(schema_gen.artifacts()["shacl"], format="turtle")
     for path in sorted((ROOT / "src" / "shacl" / "extras").glob("*.ttl")):
         shapes.parse(path, format="turtle")
     return shapes
+shapes_graph = pytest.fixture(scope="module")(shapes_graph)
+
+def pytest_generate_tests(metafunc):
+    if "class_name" in metafunc.fixturenames:
+        metafunc.parametrize("class_name", _class_names())
 
 def outcome(shapes: Graph, turtle: str) -> tuple[bool, str]:
     data = Graph()
@@ -79,7 +82,6 @@ def test_forbidden_predicate_rejected_on_unlisted_class(shapes_graph: Graph) -> 
     _conforms, report = outcome(shapes_graph, turtle)
     assert "forbidden PII/narrative" in report, report
 
-@pytest.mark.parametrize("class_name", _class_names())
 def test_vin_rejected_on_every_class(shapes_graph: Graph, schema_gen, class_name: str) -> None:
     from linkml_runtime.utils.schemaview import SchemaView
     view = SchemaView(str(schema_gen.catalog_path()))

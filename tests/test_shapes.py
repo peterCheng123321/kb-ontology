@@ -19,11 +19,8 @@ NEGATIVE_EXPECTATIONS = {
 }
 
 def synthetic_vin() -> str:
-    # 两段拼成 17 位合成标记，仓库里不存放完整串。
     return "JH4KA" + "8260MC000000"
-
 def load_combined_shapes(schema_gen) -> Graph:
-    # extras 目录不存在时只返回生成结果。
     shapes = Graph()
     shapes.parse(schema_gen.artifacts()["shacl"], format="turtle")
     if EXTRAS_DIR.is_dir():
@@ -49,9 +46,16 @@ def _check(shapes: Graph, data: Graph) -> tuple[bool, str]:
     conforms, _, report = validate(data_graph=data, shacl_graph=shapes, inference="none", abort_on_first=False)
     return bool(conforms), report
 
-@pytest.fixture(scope="module")
 def shapes_graph(schema_gen):
     return load_combined_shapes(schema_gen)
+shapes_graph = pytest.fixture(scope="module")(shapes_graph)
+
+def pytest_generate_tests(metafunc):
+    if "fixture_path" in metafunc.fixturenames:
+        paths = _positive_paths() or [None]
+        metafunc.parametrize("fixture_path", paths, ids=lambda path: path.name if isinstance(path, Path) else "none")
+    if "filename" in metafunc.fixturenames:
+        metafunc.parametrize("filename,expected_substr", sorted(NEGATIVE_EXPECTATIONS.items()))
 
 def _positive_paths() -> list[Path]:
     return sorted(POSITIVE_DIR.glob("*.ttl")) if POSITIVE_DIR.is_dir() else []
@@ -60,7 +64,6 @@ def test_positive_fixture_set_not_empty() -> None:
     """正例目录至少有一份 ttl。"""
     assert _positive_paths(), "positive 目录没有 ttl 夹具"
 
-@pytest.mark.parametrize("fixture_path", _positive_paths() or [None], ids=lambda path: path.name if isinstance(path, Path) else "none")
 def test_positive_fixtures_conform(shapes_graph: Graph, fixture_path: Path | None) -> None:
     """每份正例图符合生成形状；extras 目录不存在时仍只检查生成形状。"""
     assert fixture_path is not None, "没有正例夹具"
@@ -71,7 +74,6 @@ def test_empty_data_graph_conforms(shapes_graph: Graph) -> None:
     conforms, report = _check(shapes_graph, Graph())
     assert conforms, report
 
-@pytest.mark.parametrize("filename,expected_substr", sorted(NEGATIVE_EXPECTATIONS.items()))
 def test_negative_fixtures_fail_with_expected_reason(shapes_graph: Graph, filename: str, expected_substr: str) -> None:
     """每份反例都不符合，且报告含预期原文。"""
     path = FIXTURES_DIR / "negative" / filename
