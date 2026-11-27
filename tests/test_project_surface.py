@@ -1,8 +1,11 @@
 """VSSo 许可、说明文档与 Makefile 目标。"""
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
+
+import pytest
 R = Path(__file__).resolve().parents[1]
 def _make(*args: str) -> subprocess.CompletedProcess[str]:
     return subprocess.run(["make", *args], cwd=R, capture_output=True, text=True, check=False)
@@ -18,9 +21,15 @@ def test_readme_explains_offline_pytest() -> None:
 def test_make_dry_run_lists_gen_and_pytest() -> None:
     gen, test = _make("-n", "gen"), _make("-n", "test")
     assert gen.returncode == 0 and "gen-shacl" in gen.stdout and test.returncode == 0 and "pytest -q" in test.stdout
+test_make_dry_run_lists_gen_and_pytest = pytest.mark.skipif(
+    shutil.which("make") is None, reason="make 不在 PATH",
+)(test_make_dry_run_lists_gen_and_pytest)
 def test_make_test_missing_interpreter_errors() -> None:
     result = _make("test", "PY=/nonexistent/python-b8")
     assert result.returncode != 0 and "找不到" in result.stderr + result.stdout
+test_make_test_missing_interpreter_errors = pytest.mark.skipif(
+    shutil.which("make") is None, reason="make 不在 PATH",
+)(test_make_test_missing_interpreter_errors)
 
 def test_make_checks_skip_when_make_missing(tmp_path: Path) -> None:
     """机器上没有 make 时，两条 make 检查应跳过，而不是失败。"""
