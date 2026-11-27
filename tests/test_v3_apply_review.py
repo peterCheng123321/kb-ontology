@@ -234,6 +234,21 @@ def _run_in(script: Path, output: str, pool_path: Path, judgments_path: Path, cw
         capture_output=True, text=True, encoding="utf-8", env=env, check=False, cwd=cwd,
     )
 
+def test_output_dir_refused_without_git_dir(tmp_path: Path) -> None:
+    """没有 .git 时，脚本根目录下的 docs/stats 仍然拒绝写入。"""
+    layout, script = stage_repo(tmp_path)
+    assert not (layout / ".git").exists()
+    inputs = tmp_path / "inputs"
+    inputs.mkdir()
+    pool_path, judgments_path = inputs / "pool.json", inputs / "judgments.json"
+    pool_path.write_text(json.dumps(one_pool()), encoding="utf-8")
+    judgments_path.write_text(json.dumps(judged([ACCEPTED]), ensure_ascii=False), encoding="utf-8")
+    keep = layout / "docs" / "stats" / "keep.txt"
+    before = keep.read_bytes()
+    result = _run_in(script, str(layout / "docs" / "stats"), pool_path, judgments_path, layout)
+    assert result.returncode == 1 and "拒绝" in result.stderr, (result.returncode, result.stderr)
+    assert keep.read_bytes() == before and not (layout / "docs" / "stats" / "v3_review_samples.json").exists()
+
 def test_output_dir_inside_repo_outside_review_refused(tmp_path: Path) -> None:
     """仓库内除 review/ 以外的输出目录（含相对路径、..、符号链接和仓库根）一律拒绝。"""
     layout, script = stage_repo(tmp_path)
