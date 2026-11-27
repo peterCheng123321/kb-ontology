@@ -1,0 +1,151 @@
+{
+  "measured_at": "2026-11-25 Asia/Shanghai",
+  "slice_script": "scripts/build_slice_honda_2018.py",
+  "abox_triples": 75726,
+  "basic_shacl_conforms": true,
+  "basic_shacl_seconds": 1.47,
+  "phase1_queries_readonly": {
+    "Q1_complaint_component_recall": {
+      "n": 3,
+      "seconds": 0.0054
+    },
+    "Q2_investigation_to_recall_hard": {
+      "n": 4,
+      "seconds": 0.0005
+    },
+    "Q3_component_dtc_repair_part": {
+      "n": 12,
+      "seconds": 0.001
+    },
+    "Q4_qa_component_complaint_count": {
+      "n": 8,
+      "seconds": 0.0061
+    },
+    "Q5_complaint_to_investigation_no_recall": {
+      "n": 2,
+      "seconds": 0.0005
+    }
+  },
+  "comparison_vs_phase1_trial_results": {
+    "nodes": {
+      "VehicleModelYear": {
+        "phase1_v1": 2,
+        "rebuilt": 2,
+        "delta": 0,
+        "delta_pct": 0.0
+      },
+      "Complaint": {
+        "phase1_v1": 3210,
+        "rebuilt": 3296,
+        "delta": 86,
+        "delta_pct": 2.68
+      },
+      "Recall": {
+        "phase1_v1": 8,
+        "rebuilt": 8,
+        "delta": 0,
+        "delta_pct": 0.0
+      },
+      "Investigation": {
+        "phase1_v1": 3,
+        "rebuilt": 4,
+        "delta": 1,
+        "delta_pct": 33.33
+      },
+      "Component": {
+        "phase1_v1": 32,
+        "rebuilt": 27,
+        "delta": -5,
+        "delta_pct": -15.62
+      },
+      "DTC": {
+        "phase1_v1": 47,
+        "rebuilt": 48,
+        "delta": 1,
+        "delta_pct": 2.13
+      },
+      "RepairStep": {
+        "phase1_v1": 46,
+        "rebuilt": 46,
+        "delta": 0,
+        "delta_pct": 0.0
+      },
+      "Part": {
+        "phase1_v1": 77,
+        "rebuilt": 77,
+        "delta": 0,
+        "delta_pct": 0.0
+      },
+      "QaThread": {
+        "phase1_v1": 301,
+        "rebuilt": 301,
+        "delta": 0,
+        "delta_pct": 0.0
+      },
+      "CandidateLink": {
+        "phase1_v1": 4886,
+        "rebuilt": 5435,
+        "delta": 549,
+        "delta_pct": 11.24
+      }
+    },
+    "hard_edges": {
+      "investigation_to_recall_via_CAMPNO": {
+        "phase1_v1": 0,
+        "rebuilt": 0,
+        "delta": 0,
+        "delta_pct": null
+      },
+      "dtc_to_repair_step": {
+        "phase1_v1": 46,
+        "rebuilt": 46,
+        "delta": 0,
+        "delta_pct": 0.0
+      },
+      "repair_step_to_part": {
+        "phase1_v1": 77,
+        "rebuilt": 77,
+        "delta": 0,
+        "delta_pct": 0.0
+      },
+      "hard_total": {
+        "phase1_v1": 123,
+        "rebuilt": 123,
+        "delta": 0,
+        "delta_pct": 0.0
+      }
+    },
+    "candidate_edges": {
+      "complaint_to_recall_mmy_component": {
+        "phase1_v1": 2583,
+        "rebuilt": 2641,
+        "delta": 58,
+        "delta_pct": 2.25
+      },
+      "complaint_to_investigation_mmy_component": {
+        "phase1_v1": 1516,
+        "rebuilt": 1805,
+        "delta": 289,
+        "delta_pct": 19.06
+      },
+      "qa_to_component_lexicon": {
+        "phase1_v1": 554,
+        "rebuilt": 731,
+        "delta": 177,
+        "delta_pct": 31.95
+      },
+      "complaint_to_dtc_regex_cooccur": {
+        "phase1_v1": 253,
+        "rebuilt": 258,
+        "delta": 5,
+        "delta_pct": 1.98
+      }
+    }
+  },
+  "notes": [
+    "Complaint delta (+2.68%) reflects daily NHTSA updates in COMPLAINTS_RECEIVED_2025-2026.zip.",
+    "Investigation delta (+1: DP22005) occurs because ACCORD HYBRID is folded into ACCORD; hard key investigation_to_recall_via_CAMPNO remains 0.",
+    "qa_to_component_lexicon delta (+31.95%) reflects rebuilt src/mappings/zh_component_lexicon.yaml (original Phase 1 lexicon was not in Git); no tuning to force old counts.",
+    "Pre-existing script note: untouched scripts/build_trial.py has an inline Q1 RDFLib slow-join and undefined ROOT on line 931; ABox/stats/review_10 outputs succeed before line 689."
+  ]
+}

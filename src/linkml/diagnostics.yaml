@@ -1,0 +1,130 @@
+id: https://w3id.org/poc-kb/diag
+name: poc_kb_diagnostics
+title: Multi-OEM DTC, Repair Step, Part, and OBD-II PID Diagnostics Module
+version: 3.0.0-exp
+description: >-
+  Models diagnostic trouble codes separately from make-scoped definitions
+  (DtcDefinition keyed by code + makeContext + source), plus repair procedures,
+  replacement parts, and OBD-II live PIDs (from CodesList, Wal33D, OBDex, MechanicDB).
+imports:
+  - prefixes
+  - linkml:types
+  - core
+prefixes:
+  linkml: https://w3id.org/linkml/
+  diag: https://w3id.org/poc-kb/diag/
+default_prefix: diag
+default_range: string
+
+slots:
+  mentionsDtc:
+    domain: Complaint
+    range: DTC
+    multivalued: true
+    description: Links a Complaint to a normalized DTC entity extracted from narrative text.
+
+classes:
+  DTC:
+    is_a: NamedThing
+    description: >-
+      A canonical SAE J2012 / ISO 15031-6 diagnostic trouble code identifier.
+      Make-specific interpretations live on DtcDefinition nodes, never collapsed onto DTC.
+    slots:
+      - seeAlso
+    attributes:
+      code:
+        required: true
+      codeFamily:
+        description: First character family (P, B, C, U).
+      isGenericCode:
+        range: boolean
+        description: True if second digit is 0 or 2 (or 3 for P34xx-P39xx generic) per SAE J2012.
+      inCodesList:
+        range: boolean
+      inWal33d:
+        range: boolean
+      inObdex:
+        range: boolean
+      inMechanicSample:
+        range: boolean
+      hasDefinition:
+        range: DtcDefinition
+        multivalued: true
+
+  DtcDefinition:
+    is_a: NamedThing
+    description: >-
+      A (code, makeContext, source) contextual definition. Required because OEM
+      codes carry distinct meanings per brand (e.g., P1326 VW vs Hyundai/Kia).
+    slots:
+      - description
+      - fromSource
+    attributes:
+      definesCode:
+        range: DTC
+        required: true
+      makeContext:
+        required: true
+        description: GENERIC for SAE standard codes, or upper-case manufacturer name (e.g. HONDA, VOLKSWAGEN).
+      titleEn:
+      titleDe:
+      category:
+      isGenericDefinition:
+        range: boolean
+      referenceUrl:
+        multivalued: true
+
+  RepairStep:
+    is_a: NamedThing
+    description: Structured diagnostic or repair procedure linked to a DTC (MechanicDB sample).
+    slots:
+      - fromSource
+    attributes:
+      fixId:
+        required: true
+      title:
+        required: true
+      difficulty:
+      laborHours:
+        range: decimal
+      forDtc:
+        range: DTC
+        required: true
+      usesPart:
+        range: Part
+        multivalued: true
+
+  Part:
+    is_a: NamedThing
+    description: Replacement part referenced by a repair step or official recall part number.
+    slots:
+      - fromSource
+    attributes:
+      partName:
+        required: true
+      oemPartNumber:
+        description: Optional OEM part number extracted from official recall metadata.
+
+  ObdPid:
+    is_a: NamedThing
+    description: Standard OBD-II Mode 01 / Mode 09 parameter identifier (sourced from OBDex CC0-1.0).
+    slots:
+      - unit
+      - minValue
+      - maxValue
+      - fromSource
+      - closeMatch
+      - seeAlso
+    attributes:
+      obdMode:
+        required: true
+        description: Hex OBD mode, e.g. 01 or 09.
+      pidHex:
+        required: true
+        description: Hex PID code, e.g. 0C, 05, 0B.
+      pidNameEn:
+        required: true
+      pidNameDe:
+      dataBytes:
+        range: integer
+      formula:

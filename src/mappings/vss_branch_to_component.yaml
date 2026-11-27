@@ -1,0 +1,54 @@
+# Crosswalk: COVESA VSS v6.1 branches -> NHTSA canonical Component head / Track 2 EV subsystems
+version: "3.0.0-exp"
+source: "COVESA VSS v6.1 (MPL-2.0)"
+entries:
+  - vss_prefix: "Vehicle.ADAS.ObstacleDetection"
+    relation: closeMatch
+    nhtsa_heads: ["FORWARD COLLISION AVOIDANCE", "BACK OVER PREVENTION"]
+  - vss_prefix: "Vehicle.ADAS.CruiseControl"
+    relation: closeMatch
+    nhtsa_heads: ["VEHICLE SPEED CONTROL", "FORWARD COLLISION AVOIDANCE"]
+  - vss_prefix: "Vehicle.ADAS.LaneDepartureDetection"
+    relation: exactMatch
+    nhtsa_heads: ["LANE DEPARTURE"]
+  - vss_prefix: "Vehicle.ADAS.ABS"
+    relation: closeMatch
+    nhtsa_heads: ["SERVICE BRAKES"]
+  - vss_prefix: "Vehicle.ADAS.ESC"
+    relation: exactMatch
+    nhtsa_heads: ["ELECTRONIC STABILITY CONTROL"]
+  - vss_prefix: "Vehicle.Chassis.Brake"
+    relation: exactMatch
+    nhtsa_heads: ["SERVICE BRAKES"]
+  - vss_prefix: "Vehicle.Chassis.ParkingBrake"
+    relation: closeMatch
+    nhtsa_heads: ["SERVICE BRAKES"]
+  - vss_prefix: "Vehicle.Chassis.SteeringWheel"
+    relation: exactMatch
+    nhtsa_heads: ["STEERING"]
+  - vss_prefix: "Vehicle.Chassis.Axle"
+    relation: closeMatch
+    nhtsa_heads: ["WHEELS", "TIRES", "SUSPENSION"]
+  - vss_prefix: "Vehicle.Powertrain.CombustionEngine"
+    relation: exactMatch
+    nhtsa_heads: ["ENGINE"]
+  - vss_prefix: "Vehicle.Powertrain.FuelSystem"
+    relation: exactMatch
+    nhtsa_heads: ["FUEL SYSTEM"]
+  - vss_prefix: "Vehicle.Powertrain.TractionBattery"
+    relation: closeMatch
+    nhtsa_heads: ["ELECTRICAL SYSTEM"]
+    track2_subsystem: "EV_TRACTION_BATTERY"
+  - vss_prefix: "Vehicle.Powertrain.ElectricMotor"
+    relation: closeMatch
+    nhtsa_heads: ["POWER TRAIN", "ELECTRICAL SYSTEM"]
+    track2_subsystem: "EV_ELECTRIC_MOTOR"
+  - vss_prefix: "Vehicle.Body.Lights"
+    relation: exactMatch
+    nhtsa_heads: ["EXTERIOR LIGHTING"]
+  - vss_prefix: "Vehicle.Cabin.Seat"
+    relation: closeMatch
+    nhtsa_heads: ["SEAT BELTS", "SEATS"]
+  - vss_prefix: "Vehicle.Diagnostics"
+    relation: closeMatch
+    nhtsa_heads: ["ELECTRICAL SYSTEM"]

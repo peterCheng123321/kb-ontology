@@ -1,0 +1,71 @@
+# Crosswalk: Transport Canada VRDB SYSTEM_TYPE_ETXT -> NHTSA canonical Component head
+# Grounded in data/raw/extended/vrdb_full_monthly.csv (all 22 distinct SYSTEM_TYPE_ETXT values)
+version: "3.0.0-exp"
+source: "Transport Canada VRDB (OGL - Canada)"
+entries:
+  - tc_system: "Brakes"
+    relation: exactMatch
+    nhtsa_heads: ["SERVICE BRAKES"]
+  - tc_system: "Electrical"
+    relation: exactMatch
+    nhtsa_heads: ["ELECTRICAL SYSTEM"]
+  - tc_system: "Fuel System"
+    relation: exactMatch
+    nhtsa_heads: ["FUEL SYSTEM"]
+  - tc_system: "Structure"
+    relation: exactMatch
+    nhtsa_heads: ["STRUCTURE"]
+  - tc_system: "Steering"
+    relation: exactMatch
+    nhtsa_heads: ["STEERING"]
+  - tc_system: "Lights And Instruments"
+    relation: closeMatch
+    nhtsa_heads: ["EXTERIOR LIGHTING", "ELECTRICAL SYSTEM"]
+  - tc_system: "Seats And Restraints"
+    relation: closeMatch
+    nhtsa_heads: ["SEAT BELTS", "SEATS", "AIR BAGS"]
+  - tc_system: "Airbag"
+    relation: exactMatch
+    nhtsa_heads: ["AIR BAGS"]
+  - tc_system: "Engine"
+    relation: exactMatch
+    nhtsa_heads: ["ENGINE"]
+  - tc_system: "Visual System"
+    relation: closeMatch
+    nhtsa_heads: ["BACK OVER PREVENTION", "VISIBILITY"]
+  - tc_system: "Powertrain"
+    relation: exactMatch
+    nhtsa_heads: ["POWER TRAIN"]
+  - tc_system: "Suspension"
+    relation: exactMatch
+    nhtsa_heads: ["SUSPENSION"]
+  - tc_system: "Tires"
+    relation: exactMatch
+    nhtsa_heads: ["TIRES"]
+  - tc_system: "Wheels"
+    relation: exactMatch
+    nhtsa_heads: ["WHEELS"]
+  - tc_system: "High Voltage"
+    relation: closeMatch
+    nhtsa_heads: ["ELECTRICAL SYSTEM", "FUEL SYSTEM"]
+  - tc_system: "Emissions"
+    relation: closeMatch
+    nhtsa_heads: ["ENGINE", "FUEL SYSTEM"]
+  - tc_system: "Heater And Defroster"
+    relation: closeMatch
+    nhtsa_heads: ["VISIBILITY", "EQUIPMENT"]
+  - tc_system: "Accessories"
+    relation: closeMatch
+    nhtsa_heads: ["EQUIPMENT"]
+  - tc_system: "Label"
+    relation: noMatch
+    nhtsa_heads: []
+  - tc_system: "Fabrics"
+    relation: noMatch
+    nhtsa_heads: []
+  - tc_system: "Other"
+    relation: noMatch
+    nhtsa_heads: []
+  - tc_system: "Not Entered"
+    relation: noMatch
+    nhtsa_heads: []

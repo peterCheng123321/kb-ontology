@@ -30,7 +30,7 @@
 | 推理 | 运行时 OWL 2 RL；发布时 OWL 2 DL / HermiT | 经 ROBOT 1.9.11 |
 | 校验 | SHACL + pySHACL | pySHACL 0.40.2，RDFLib 7.6.0 |
 
-能力、类和字段从数据观察得出，不预先规定一整张能力表。文档里规划的完整目录（`src/linkml/` 等）是目标布局；本仓库当前先放入试验模式、形状、脚本与报告。
+能力、类和字段从数据观察得出，不预先规定一整张能力表。第三阶段已按目标布局在 `src/linkml/`、`src/mappings/`、`src/shacl/extras/`、`src/sparql/`、`tests/` 与 `ci/` 落地模块化 v3 本体实验（详见 [docs/TRIAL-v3-RESULTS.md](docs/TRIAL-v3-RESULTS.md)），第一阶段 `schema/`、`shapes/`、`queries/` 完整保留作基线对照。
 
 可选的文档检索可对接开源 [Tencent/WeKnora](https://github.com/Tencent/WeKnora) v0.9.0，检索命中须带知识库标识才能提升结构化证据级别。本仓库不包含检索服务配置或凭证。
 
@@ -38,18 +38,27 @@
 
 ```
 kb-ontology/
-  README.md                 本文件（含数据链接与许可证）
+  README.md                 本文件（含数据链接、许可证与复现步骤）
   LICENSE                   本仓库代码与文档：Apache-2.0
   NOTICE                    第三方数据署名与许可证提示
-  requirements.txt          本体工具链依赖
-  docs/                     技术栈、数据核查、演示方案、试验报告
-  schema/                   LinkML 手写源，以及由其生成的 OWL
-  shapes/                   SHACL 形状
-  scripts/                  下载公开数据、构建试验图、对齐部件路径
-  queries/                  试验用 SPARQL
-  figs/                     由公开数据生成的关系图（图中无车辆识别号）
+  Makefile                  v3 复现入口（gen / slice / baseline / build / validate / robot / query / all）
+  requirements.txt          本体工具链钉死版本（linkml 1.12.1 / rdflib 7.6.0 / pyshacl 0.40.2）
+  requirements-dev.txt      辅助依赖（pyarrow / matplotlib / networkx / pytest）
+  docs/                     技术栈、数据核查、演示方案、第一/三阶段试验报告与 stats/
+  src/
+    linkml/                 v3 模块化 LinkML 唯一手写源（core / recall / diagnostics / inspection / signal / ev_battery）
+    mappings/               手写 SKOS 跨源对照表、中英部件词表与对齐政策
+    shacl/extras/           生成器覆盖不到的手写补充 SHACL（隐私 VIN、MOT k<5 抑制、score 区间）
+    sparql/                 v3 能力问题 CQ1–CQ7 SPARQL 验收查询
+  tests/                    SHACL 正反例夹具与 pytest 断言
+  ci/                       ROBOT 1.9.11 剖面校验 / HermiT 推理脚本与版本清单
+  schema/                   第一阶段试验 LinkML 与 OWL（基线对照，原样保留）
+  shapes/                   第一阶段 SHACL（基线对照，原样保留）
+  queries/                  第一阶段 SPARQL（基线对照，原样保留）
+  scripts/                  下载公开数据、切片重建、基线/v3 构建、校验、抽检与出图脚本
+  figs/                     由公开数据生成的关系图与模块总览图（无车辆识别号）
   data/                     本地下载目录，已列入 .gitignore，不提交
-  gen/                      本地生成物，不提交
+  gen/ / rdf/ / tools/      本地生成物、ABox TTL 与 ROBOT JAR，不提交
 ```
 
 ## 数据来源、直接链接与许可证
@@ -100,7 +109,24 @@ kb-ontology/
 | BAAI/IndustryCorpus2_automobile | https://huggingface.co/datasets/BAAI/IndustryCorpus2_automobile | Apache-2.0 | 上述语料的后续版本，用途相同 |
 | PedroCuisinier2025/OBD2_panel_opel_2012 | https://huggingface.co/datasets/PedroCuisinier2025/OBD2_panel_opel_2012 | 以数据集卡片为准 | 真实 OBD-II PID / 遥测字段形状（转速、车速、水温等），用于冻结帧或实况数据槽位，不是投诉或召回 |
 
-更完整的核查表、匹配率与不适用数据说明见 [docs/PUBLIC-DATASETS-HF.md](docs/PUBLIC-DATASETS-HF.md)。关系库方案见 [docs/DEMO-RELATIONAL-DB-PLAN.md](docs/DEMO-RELATIONAL-DB-PLAN.md)。本仓库代码与文档为 Apache-2.0；第三方数据不随仓库分发，见 [NOTICE](NOTICE)。
+更完整的 HF 核查表、匹配率与不适用数据说明见 [docs/PUBLIC-DATASETS-HF.md](docs/PUBLIC-DATASETS-HF.md)。
+
+### 跨平台扩展 A 级公开源（第二阶段补充，2026-11-25 核对）
+
+为补足多国召回互链、实车定期年检里程与缺陷严重度、多厂标 DTC 覆盖、车端标准信号与新能源三电（BMS）实车故障槽位，第二阶段拓展核查了政府开放网、GitHub 标准仓、学术仓储与国内外竞赛平台，入选 **A 级（开放可商用）** 代表源如下（含 B 级隔离参考与避坑清单的完整报告见 [docs/PUBLIC-DATASETS-EXTENDED.md](docs/PUBLIC-DATASETS-EXTENDED.md)）：
+
+| 数据集 / 标准 | 直接链接 | 许可证 | 用途 |
+|---|---|---|---|
+| 加拿大 Transport Canada VRDB | https://opendatatc.tc.canada.ca/vrdb_full_monthly.csv | OGL - Canada | 13.4 万行全量召回；实测打通 4,461 条加库 ↔ 4,333 条 NHTSA 召回硬键 |
+| 英国 DVSA MOT 字典与年检 | https://data.dft.gov.uk/anonymised-mot-test/lookup.zip | UK OGL v3.0 | Class 4 乘用车 934 节点 / 4,432 缺陷项与严重度、14 种燃料（含纯电/混动） |
+| Wal33D/dtc-database | https://github.com/Wal33D/dtc-database | MIT | 12,128 唯一码（通用 + 33 厂商厂标，含 Honda 94 条），攻克高频 `P1326` |
+| foerbsnavi/OBDex | https://github.com/foerbsnavi/OBDex | CC0-1.0 / MIT | 9,533 条带出处 SAE J2012 码与 132 个 Mode 01/09 OBD-II PID |
+| COVESA VSS v6.1 + W3C VSSo | https://github.com/COVESA/vehicle_signal_specification | MPL-2.0 / CC-BY-4.0 | 1,737 个标准车端信号（含三电/ADAS）与 SOSA/SSN OWL 对齐模型 |
+| commaai/opendbc | https://github.com/commaai/opendbc | MIT | 本田 Bosch ADAS、BYD ATTO3、Tesla Model 3 实车 CAN DBC 信号定义 |
+| Figshare EVBattery / Faults | https://doi.org/10.6084/m9.figshare.23301881 | CC BY 4.0 | 实车动力电池充电时序、SOH/容量标注与充电异常片段（`23659323` / `30162841`） |
+| Zenodo BMS & Automotive Faults | https://doi.org/10.5281/zenodo.10656500 | CC BY 4.0 | 515 车 BMS 热失控/内短路数据及结构化故障—症状—诊断流程图（`15626055`） |
+
+关系库方案见 [docs/DEMO-RELATIONAL-DB-PLAN.md](docs/DEMO-RELATIONAL-DB-PLAN.md)。本仓库代码与文档为 Apache-2.0；第三方数据不随仓库分发，见 [NOTICE](NOTICE)。
 
 ## 如何下载公开数据并复现试验
 
@@ -138,12 +164,33 @@ pip install -r requirements.txt
    python scripts/align_and_rematch.py
    ```
 
-5. 若要加载到 Jena Fuseki 6.3.0，将生成的 Turtle（TBox + 审过的 ABox）导入 TDB2。TDB2 数据目录不要提交到 git。试验报告中的数字是在 RDFLib 内存图上复现的；当时未启动 Fuseki。
+5. 复现第二阶段跨平台扩展数据源下载与双轨连接探查（仅拉取免登录 A 级源到本地 `data/raw/extended/`，输出 [docs/stats/extended-probe-stats.json](docs/stats/extended-probe-stats.json)）：
+
+   ```bash
+   python scripts/download_public_data.py --dry-run --include-extended
+   python scripts/probe_extended_datasets.py --fetch
+   ```
+
+6. **复现第三阶段模块化 v3 本体实验（推荐入口 `Makefile`）**：
+
+   需先安装 `requirements.txt` 与 `requirements-dev.txt`，准备好 Java 21+ 及 `tools/robot.jar`（ROBOT 1.9.11，见 [ci/pins.txt](ci/pins.txt)），再下载基线与 v3 扩展数据（MOT 2023 年度包、Figshare `30162841`）：
+
+   ```bash
+   pip install -r requirements.txt -r requirements-dev.txt
+   python scripts/download_public_data.py --include-baseline --include-extended --fetch-large --include-v3-extras
+   make all    # 依次执行 baseline -> gen -> build -> validate -> robot -> query
+   ```
+
+   各分步入口：`make slice`（可复现重建本田 2018 切片）、`make baseline`（基线回归对照）、`make gen`（LinkML 生成 OWL/SHACL/JSON-LD/JSON Schema）、`make build`（构建 6 模块 `rdf/v3/*.ttl`）、`make validate`（全图 pySHACL + 隐私扫描 + `pytest tests`）、`make robot`（OWL 2 DL/RL 剖面与 HermiT 一致性）、`make query`（CQ1–CQ7 验收断言与出图）。实验结论见 [docs/TRIAL-v3-RESULTS.md](docs/TRIAL-v3-RESULTS.md)。
+
+7. 若要加载到 Jena Fuseki 6.3.0，将生成的 Turtle（`gen/owl/poc-kb.owl.ttl` 与 `rdf/v3/*.ttl`）导入 TDB2。TDB2 数据目录不要提交到 git。本阶段 CQ1–CQ7 在 `pyoxigraph` 内存三元组库上复现并执行全图 pySHACL 校验；未启动 Fuseki。
 
 关系图：
 
-- [figs/chain_odino_11407338.png](figs/chain_odino_11407338.png)：CR-V 2018 投诉 `11407338`，从燃油系统走到故障码、维修步骤、零件，旁路召回候选与无召回号的调查。
-- [figs/chain_odino_11519200_fuel_pump.png](figs/chain_odino_11519200_fuel_pump.png)：雅阁 2018 投诉 `11519200`，经细粒度「燃油泵」路径连到召回与原厂零件号。
+- [figs/chain_odino_11407338.png](figs/chain_odino_11407338.png)：第一阶段 CR-V 2018 投诉 `11407338`，从燃油系统走到故障码、维修步骤、零件，旁路召回候选与无召回号的调查。
+- [figs/chain_odino_11519200_fuel_pump.png](figs/chain_odino_11519200_fuel_pump.png)：第一阶段雅阁 2018 投诉 `11519200`，经细粒度「燃油泵」路径连到召回与原厂零件号。
+- [figs/v3_chain_odino_11407338.png](figs/v3_chain_odino_11407338.png)：第三阶段 CR-V 2018 投诉 `11407338` 六源闭环链（美加跨国召回、多厂标 DTC/维修零件、英国 MOT 2023 年检频次、本田 CAN DBC 与 COVESA VSS）。
+- [figs/v3_module_overview.png](figs/v3_module_overview.png)：第三阶段 6 个 LinkML v3 模块 ABox 三元组规模与跨源候选边分布总览。
 
 ## 本仓库不包含什么
 

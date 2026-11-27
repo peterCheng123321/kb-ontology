@@ -1,0 +1,195 @@
+# Crosswalk: commaai/opendbc CAN messages -> NHTSA Component head & COVESA VSS v6.1 signal paths
+# Curated from real BO_/SG_ messages in data/raw/extended/opendbc/*.dbc
+version: "3.0.0-exp"
+source: "commaai/opendbc (MIT) + COVESA VSS v6.1 (MPL-2.0)"
+entries:
+  - dbc_file: "_bosch_radar_acc.dbc"
+    message: "ACC_CONTROL"
+    platform: "HONDA_2018_BOSCH"
+    nhtsa_heads: ["FORWARD COLLISION AVOIDANCE", "VEHICLE SPEED CONTROL"]
+    vss_paths:
+      - "Vehicle.ADAS.CruiseControl"
+      - "Vehicle.ADAS.ObstacleDetection"
+    score: "0.90"
+    note: "Bosch radar ACC deceleration/FCW control command on 2018 Honda CR-V/Accord"
+  - dbc_file: "_bosch_radar_acc.dbc"
+    message: "ACC_CONTROL_ON"
+    platform: "HONDA_2018_BOSCH"
+    nhtsa_heads: ["FORWARD COLLISION AVOIDANCE", "VEHICLE SPEED CONTROL"]
+    vss_paths:
+      - "Vehicle.ADAS.CruiseControl.IsActive"
+    score: "0.85"
+    note: "Bosch radar ACC active state"
+  - dbc_file: "_bosch_2018.dbc"
+    message: "RADAR_HUD"
+    platform: "HONDA_2018_BOSCH"
+    nhtsa_heads: ["FORWARD COLLISION AVOIDANCE"]
+    vss_paths:
+      - "Vehicle.ADAS.ObstacleDetection.IsWarning"
+    score: "0.85"
+    note: "CMBS / forward collision HUD warning flags"
+  - dbc_file: "_bosch_2018.dbc"
+    message: "STEERING_CONTROL"
+    platform: "HONDA_2018_BOSCH"
+    nhtsa_heads: ["STEERING", "LANE DEPARTURE"]
+    vss_paths:
+      - "Vehicle.Chassis.SteeringWheel.Angle"
+      - "Vehicle.ADAS.LaneDepartureDetection"
+    score: "0.90"
+    note: "LKAS electric power steering torque command"
+  - dbc_file: "_bosch_2018.dbc"
+    message: "STEER_STATUS"
+    platform: "HONDA_2018_BOSCH"
+    nhtsa_heads: ["STEERING"]
+    vss_paths:
+      - "Vehicle.Chassis.SteeringWheel.Angle"
+    score: "0.90"
+    note: "EPS steering torque, fault, and status signals"
+  - dbc_file: "_bosch_2018.dbc"
+    message: "BRAKE_MODULE"
+    platform: "HONDA_2018_BOSCH"
+    nhtsa_heads: ["SERVICE BRAKES"]
+    vss_paths:
+      - "Vehicle.Chassis.Brake.PedalPosition"
+    score: "0.90"
+    note: "Bosch hydraulic brake module pressure and pressed state"
+  - dbc_file: "_bosch_2018.dbc"
+    message: "BRAKE_HOLD"
+    platform: "HONDA_2018_BOSCH"
+    nhtsa_heads: ["SERVICE BRAKES"]
+    vss_paths:
+      - "Vehicle.Chassis.Brake.IsDriverEmergencyBrakingDetected"
+    score: "0.80"
+    note: "Auto brake hold status"
+  - dbc_file: "_bosch_2018.dbc"
+    message: "LKAS_HUD_A"
+    platform: "HONDA_2018_BOSCH"
+    nhtsa_heads: ["LANE DEPARTURE"]
+    vss_paths:
+      - "Vehicle.ADAS.LaneDepartureDetection.IsWarning"
+    score: "0.85"
+    note: "Lane keeping assist visual/HUD status"
+  - dbc_file: "_honda_common.dbc"
+    message: "ENGINE_DATA"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["ENGINE", "FUEL SYSTEM"]
+    vss_paths:
+      - "Vehicle.Powertrain.CombustionEngine.Speed"
+      - "Vehicle.Speed"
+    score: "0.90"
+    note: "Engine RPM and vehicle speed telemetry"
+  - dbc_file: "_honda_common.dbc"
+    message: "POWERTRAIN_DATA"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["POWER TRAIN", "SERVICE BRAKES", "VEHICLE SPEED CONTROL"]
+    vss_paths:
+      - "Vehicle.Powertrain.CombustionEngine.TPS"
+      - "Vehicle.Chassis.Brake.PedalPosition"
+    score: "0.85"
+    note: "Pedal, brake switch, and cruise/powertrain data"
+  - dbc_file: "_honda_common.dbc"
+    message: "HYBRID_BRAKE_ERROR"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["SERVICE BRAKES"]
+    vss_paths:
+      - "Vehicle.ADAS.ABS.IsError"
+    score: "0.85"
+    note: "Brake error status message"
+  - dbc_file: "_honda_common.dbc"
+    message: "VSA_STATUS"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["SERVICE BRAKES", "ELECTRONIC STABILITY CONTROL"]
+    vss_paths:
+      - "Vehicle.ADAS.ESC.IsError"
+      - "Vehicle.ADAS.TCS.IsError"
+    score: "0.90"
+    note: "Honda Vehicle Stability Assist (ESC/TCS/Brake) status"
+  - dbc_file: "_honda_common.dbc"
+    message: "STEER_MOTOR_TORQUE"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["STEERING"]
+    vss_paths:
+      - "Vehicle.Chassis.SteeringWheel.Angle"
+    score: "0.90"
+    note: "EPS motor torque feedback and fault flags"
+  - dbc_file: "_honda_common.dbc"
+    message: "EPB_STATUS"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["SERVICE BRAKES"]
+    vss_paths:
+      - "Vehicle.Chassis.ParkingBrake.IsEngaged"
+    score: "0.85"
+    note: "Electric parking brake status"
+  - dbc_file: "_honda_common.dbc"
+    message: "WHEEL_SPEEDS"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["SERVICE BRAKES", "WHEELS", "TIRES"]
+    vss_paths:
+      - "Vehicle.Chassis.Axle.Row1.Wheel.Left.Speed"
+      - "Vehicle.Chassis.Axle.Row1.Wheel.Right.Speed"
+    score: "0.85"
+    note: "Four-wheel speed sensors used by ABS/VSA"
+  - dbc_file: "_honda_common.dbc"
+    message: "SEATBELT_STATUS"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["SEAT BELTS"]
+    vss_paths:
+      - "Vehicle.Cabin.Seat.Row1.DriverSide.IsBelted"
+    score: "0.90"
+    note: "Driver and passenger seat belt buckle latch status"
+  - dbc_file: "_honda_common.dbc"
+    message: "ACC_HUD"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["FORWARD COLLISION AVOIDANCE", "VEHICLE SPEED CONTROL"]
+    vss_paths:
+      - "Vehicle.ADAS.CruiseControl.SpeedSet"
+    score: "0.85"
+    note: "ACC HUD speed set and forward collision alert"
+  - dbc_file: "_honda_common.dbc"
+    message: "STALK_STATUS"
+    platform: "HONDA_COMMON"
+    nhtsa_heads: ["EXTERIOR LIGHTING", "VISIBILITY"]
+    vss_paths:
+      - "Vehicle.Body.Lights.Beam.High.IsOn"
+    score: "0.80"
+    note: "Wiper and exterior lighting stalk signals"
+  - dbc_file: "honda_crv_ex_2017_body.dbc"
+    message: "BSM_STATUS_RIGHT"
+    platform: "HONDA_CRV_BODY"
+    nhtsa_heads: ["LANE DEPARTURE", "BACK OVER PREVENTION"]
+    vss_paths:
+      - "Vehicle.ADAS.ObstacleDetection.IsWarning"
+    score: "0.85"
+    note: "CR-V right blind-spot monitoring radar status"
+  - dbc_file: "honda_crv_ex_2017_body.dbc"
+    message: "BSM_STATUS_LEFT"
+    platform: "HONDA_CRV_BODY"
+    nhtsa_heads: ["LANE DEPARTURE", "BACK OVER PREVENTION"]
+    vss_paths:
+      - "Vehicle.ADAS.ObstacleDetection.IsWarning"
+    score: "0.85"
+    note: "CR-V left blind-spot monitoring radar status"
+  - dbc_file: "byd_atto3.dbc"
+    message: "DRIVE_STATE"
+    platform: "BYD_ATTO3"
+    nhtsa_heads: ["POWER TRAIN"]
+    vss_paths:
+      - "Vehicle.Powertrain.ElectricMotor.Speed"
+    score: "0.80"
+    note: "Track 2 NEV drive state signal"
+  - dbc_file: "tesla_powertrain.dbc"
+    message: "DI_torque1"
+    platform: "TESLA_MODEL3"
+    nhtsa_heads: ["POWER TRAIN"]
+    vss_paths:
+      - "Vehicle.Powertrain.ElectricMotor.Torque"
+    score: "0.85"
+    note: "Track 2 NEV drive inverter motor torque"
+  - dbc_file: "tesla_powertrain.dbc"
+    message: "DI_state"
+    platform: "TESLA_MODEL3"
+    nhtsa_heads: ["POWER TRAIN", "ELECTRICAL SYSTEM"]
+    vss_paths:
+      - "Vehicle.Powertrain.TractionBattery.StateOfCharge.Current"
+    score: "0.80"
+    note: "Track 2 NEV drive inverter operational state"

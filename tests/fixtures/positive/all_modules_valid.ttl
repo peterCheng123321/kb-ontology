@@ -1,0 +1,193 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix core: <https://w3id.org/poc-kb/core/> .
+@prefix recall: <https://w3id.org/poc-kb/recall/> .
+@prefix diag: <https://w3id.org/poc-kb/diag/> .
+@prefix insp: <https://w3id.org/poc-kb/insp/> .
+@prefix signal: <https://w3id.org/poc-kb/signal/> .
+@prefix evb: <https://w3id.org/poc-kb/evb/> .
+@prefix vsso: <https://github.com/w3c/vsso#> .
+
+<https://w3id.org/poc-kb/core/source/demo_src> a core:DataSource, core:NamedThing ;
+    rdfs:label "Demo Public Source" ;
+    core:sourceKey "demo_src" ;
+    core:licenseName "Apache-2.0" ;
+    core:complianceTier "A" .
+
+<https://w3id.org/poc-kb/core/vehicle/HONDA_CR-V_2018> a core:VehicleModelYear, core:NamedThing ;
+    rdfs:label "HONDA CR-V 2018" ;
+    core:make "HONDA" ;
+    core:model "CR-V" ;
+    core:modelYear "2018" .
+
+<https://w3id.org/poc-kb/core/component/FUEL_SYSTEM> a core:Component, core:NamedThing ;
+    rdfs:label "FUEL SYSTEM" ;
+    core:head "FUEL SYSTEM" ;
+    core:labelEn "FUEL SYSTEM" ;
+    core:labelZh "燃油系统" .
+
+<https://w3id.org/poc-kb/core/complaint/99900001> a core:Complaint, core:NamedThing ;
+    rdfs:label "Complaint 99900001" ;
+    core:odino "99900001" ;
+    core:vehicle <https://w3id.org/poc-kb/core/vehicle/HONDA_CR-V_2018> ;
+    core:hasComponent <https://w3id.org/poc-kb/core/component/FUEL_SYSTEM> ;
+    core:mentionsDtcCode "P0300" ;
+    core:receivedDate "20230115" ;
+    core:crashFlag "N" ;
+    core:fireFlag "N" ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/core/qa/Q99901> a core:QaThread, core:NamedThing ;
+    rdfs:label "QA Q99901" ;
+    core:qid "Q99901" ;
+    core:brandRaw "本田" ;
+    core:modelRaw "本田CR-V" ;
+    core:makeMapped "HONDA" ;
+    core:modelMapped "CR-V" ;
+    core:reportShort "检查燃油压力传感器" ;
+    core:hasComponent <https://w3id.org/poc-kb/core/component/FUEL_SYSTEM> ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/recall/recall/US_20V314000> a recall:JurisdictionRecall, core:NamedThing ;
+    rdfs:label "US Recall 20V314000" ;
+    recall:jurisdiction "US" ;
+    recall:officialRecallId "20V314000" ;
+    recall:unitsAffected 136057 ;
+    recall:recallDate "2020-05-28" ;
+    recall:defectSummary "Low-pressure fuel pump impeller may swell." ;
+    core:coversVehicle <https://w3id.org/poc-kb/core/vehicle/HONDA_CR-V_2018> ;
+    core:hasComponent <https://w3id.org/poc-kb/core/component/FUEL_SYSTEM> ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/recall/recall/CA_2020236> a recall:JurisdictionRecall, core:NamedThing ;
+    rdfs:label "CA Recall 2020236" ;
+    recall:jurisdiction "CA" ;
+    recall:officialRecallId "2020236" ;
+    recall:systemType "Fuel System" ;
+    recall:recallDate "2020-05-28" ;
+    core:coversVehicle <https://w3id.org/poc-kb/core/vehicle/HONDA_CR-V_2018> ;
+    core:hasComponent <https://w3id.org/poc-kb/core/component/FUEL_SYSTEM> ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/core/link/xjur_demo_1> a core:CandidateLink, core:NamedThing ;
+    rdfs:label "xjur candidate" ;
+    core:fromEntity <https://w3id.org/poc-kb/recall/recall/US_20V314000> ;
+    core:toEntity <https://w3id.org/poc-kb/recall/recall/CA_2020236> ;
+    core:method "xjur_mmy_system_window" ;
+    core:score "0.85"^^xsd:decimal ;
+    core:reviewStatus "accepted" ;
+    core:matchedHead "FUEL SYSTEM" .
+
+<https://w3id.org/poc-kb/diag/dtc/P0300> a diag:DTC, core:NamedThing ;
+    rdfs:label "P0300" ;
+    diag:code "P0300" ;
+    diag:codeFamily "P" ;
+    diag:isGenericCode true ;
+    diag:inCodesList true ;
+    diag:inWal33d true ;
+    diag:inObdex true ;
+    diag:inMechanicSample true .
+
+<https://w3id.org/poc-kb/diag/dtc-def/P0300__GENERIC__obdex> a diag:DtcDefinition, core:NamedThing ;
+    rdfs:label "P0300 (GENERIC)" ;
+    diag:definesCode <https://w3id.org/poc-kb/diag/dtc/P0300> ;
+    diag:makeContext "GENERIC" ;
+    diag:titleEn "Random/Multiple Cylinder Misfire Detected" ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/diag/pid/01_0C> a diag:ObdPid, core:NamedThing ;
+    rdfs:label "OBD PID 01-0C" ;
+    diag:obdMode "01" ;
+    diag:pidHex "0C" ;
+    diag:pidNameEn "Engine RPM" ;
+    core:unit "rpm" ;
+    core:minValue "0"^^xsd:decimal ;
+    core:maxValue "16383.75"^^xsd:decimal ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/insp/mot-group/c4_5730> a insp:MotItemGroup, core:NamedThing ;
+    rdfs:label "Exhaust, Fuel and Emissions" ;
+    insp:testItemId "5730" ;
+    insp:testClassId "4" ;
+    insp:itemName "Exhaust, Fuel and Emissions" ;
+    insp:hierarchyDepth 1 ;
+    skos:closeMatch <https://w3id.org/poc-kb/core/component/FUEL_SYSTEM> ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/insp/mot-defect/c4_rfr_9001> a insp:MotDefectItem, core:NamedThing ;
+    rdfs:label "Fuel system leak" ;
+    insp:rfrId "9001" ;
+    insp:testClassId "4" ;
+    insp:inItemGroup <https://w3id.org/poc-kb/insp/mot-group/c4_5730> ;
+    insp:defaultSeverity "Dangerous" ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/insp/stat/demo_visible> a insp:InspectionDefectStat, core:NamedThing ;
+    rdfs:label "MOT Stat Visible" ;
+    insp:forVehicle <https://w3id.org/poc-kb/core/vehicle/HONDA_CR-V_2018> ;
+    insp:testYear 2023 ;
+    insp:forDefectItem <https://w3id.org/poc-kb/insp/mot-defect/c4_rfr_9001> ;
+    insp:observedSeverity "Dangerous" ;
+    insp:mileageBucket "30k_60k" ;
+    insp:defectCount 12 ;
+    insp:testsInCohort 1000 ;
+    insp:suppressed false ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/insp/stat/demo_suppressed> a insp:InspectionDefectStat, core:NamedThing ;
+    rdfs:label "MOT Stat Suppressed" ;
+    insp:forVehicle <https://w3id.org/poc-kb/core/vehicle/HONDA_CR-V_2018> ;
+    insp:testYear 2023 ;
+    insp:forDefectItem <https://w3id.org/poc-kb/insp/mot-defect/c4_rfr_9001> ;
+    insp:observedSeverity "Dangerous" ;
+    insp:mileageBucket "90k_plus" ;
+    insp:testsInCohort 1000 ;
+    insp:suppressed true ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/signal/vss/Vehicle.Powertrain.TractionBattery.StateOfCharge.Current> a signal:VehicleSignal, core:NamedThing ;
+    rdfs:label "TractionBattery.StateOfCharge.Current" ;
+    signal:vssPath "Vehicle.Powertrain.TractionBattery.StateOfCharge.Current" ;
+    signal:nodeType "sensor" ;
+    signal:dataType "float" ;
+    core:unit "percent" ;
+    skos:closeMatch vsso:StateOfCharge ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/signal/can-msg/bosch_2018__ACC_CONTROL> a signal:CanMessage, core:NamedThing ;
+    rdfs:label "ACC_CONTROL" ;
+    signal:dbcFile "_bosch_radar_acc.dbc" ;
+    signal:vehiclePlatform "HONDA_2018_BOSCH" ;
+    signal:frameId 479 ;
+    signal:messageName "ACC_CONTROL" ;
+    signal:byteLength 8 ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/evb/dataset/fig30162841> a evb:BatteryDataset, core:NamedThing ;
+    rdfs:label "Figshare 30162841" ;
+    evb:doi "10.6084/m9.figshare.30162841.v1" ;
+    evb:vehicleCount 100 ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/evb/veh/fig30162841__V001> a evb:BatteryVehicleRef, core:NamedThing ;
+    rdfs:label "Anonymous EV V001" ;
+    evb:datasetVehicleCode "V001" ;
+    evb:inDataset <https://w3id.org/poc-kb/evb/dataset/fig30162841> ;
+    evb:vehicleFaultStatus "fault_abnormal" ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .
+
+<https://w3id.org/poc-kb/evb/snippet/fig30162841__V001__S01> a evb:BatterySnippetSummary, core:NamedThing ;
+    rdfs:label "Snippet V001 S01" ;
+    evb:snippetId "V001_S01" ;
+    evb:forBatteryVehicle <https://w3id.org/poc-kb/evb/veh/fig30162841__V001> ;
+    evb:faultLabel "fault_abnormal" ;
+    evb:sampleCount 128 ;
+    evb:socMin "22.5"^^xsd:decimal ;
+    evb:socMax "89.0"^^xsd:decimal ;
+    evb:cellVoltageMin "3.42"^^xsd:decimal ;
+    evb:cellVoltageMax "4.18"^^xsd:decimal ;
+    evb:cellTempMax "46.5"^^xsd:decimal ;
+    evb:observesSignal <https://w3id.org/poc-kb/signal/vss/Vehicle.Powertrain.TractionBattery.StateOfCharge.Current> ;
+    core:fromSource <https://w3id.org/poc-kb/core/source/demo_src> .

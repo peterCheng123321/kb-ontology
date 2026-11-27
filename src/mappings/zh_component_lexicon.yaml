@@ -1,0 +1,69 @@
+# Rebuilt Chinese QA -> NHTSA canonical Component head lexicon
+# Provenance: rebuilt-2026-11 (Phase 1 original lexicon script was not committed to repo)
+version: "3.0.0-exp"
+provenance: "rebuilt-2026-11"
+note: >-
+  Conservative automotive keyword mapping from Chinese after-sales QA text
+  (wushan/vehicle_qa) to NHTSA canonical component heads. Does not tune for
+  exact Phase 1 counts; baseline deltas are reported transparently.
+heads:
+  ENGINE:
+    zh_label: "发动机"
+    keywords: ["发动机", "引擎", "缸", "机油", "拉缸", "烧机油", "抖动", "怠速", "正时", "冷却液", "防冻液", "水温", "水箱", "节温器", "火花塞", "点火线圈", "增压", "涡轮", "机油增多", "乳化", "三元催化", "积碳", "曲轴", "凸轮轴", "皮带"]
+  FUEL SYSTEM:
+    zh_label: "燃油系统"
+    keywords: ["燃油", "油泵", "汽油泵", "喷油嘴", "油路", "油箱", "汽油", "油耗", "供油", "碳罐", "节气门", "油压", "熄火", "加不上油", "油表"]
+  POWER TRAIN:
+    zh_label: "传动系统"
+    keywords: ["变速箱", "变速器", "波箱", "cvt", "CVT", "换挡", "顿挫", "离合器", "传动轴", "半轴", "差速器", "打滑", "档位", "挡位", "驱动轴", "四驱"]
+  SERVICE BRAKES:
+    zh_label: "制动"
+    keywords: ["刹车", "制动", "abs", "ABS", "刹车片", "刹车盘", "手刹", "电子手刹", "制动液", "卡钳", "刹不住", "抱死", "刹车异响", "驻车"]
+  STEERING:
+    zh_label: "转向"
+    keywords: ["转向", "方向盘", "方向机", "助力", "跑偏", "打方向", "转向机", "eps", "EPS", "转向柱"]
+  SUSPENSION:
+    zh_label: "悬挂"
+    keywords: ["悬挂", "悬架", "减震", "减振", "避震", "底盘", "摆臂", "平衡杆", "球头", "轴承", "弹簧", "过坑"]
+  ELECTRICAL SYSTEM:
+    zh_label: "电气系统"
+    keywords: ["电瓶", "蓄电池", "电池", "电路", "线路", "保险丝", "继电器", "发电机", "起动机", "启动机", "马达", "电脑板", "ecu", "ECU", "bcm", "BCM", "传感器", "仪表", "中控", "导航", "屏幕", "黑屏", "蓝牙", "音响", "喇叭", "雨刮电机", "车窗", "玻璃升降", "钥匙", "遥控", "一键启动", "门锁", "故障灯", "故障码", "漏电", "亏电", "点烟器"]
+  EXTERIOR LIGHTING:
+    zh_label: "外部灯光"
+    keywords: ["大灯", "车灯", "尾灯", "刹车灯", "转向灯", "雾灯", "日行灯", "灯泡", "近光", "远光", "灯光", "示宽灯"]
+  AIR BAGS:
+    zh_label: "安全气囊"
+    keywords: ["气囊", "安全气囊", "srs", "SRS", "游丝", "气帘"]
+  SEAT BELTS:
+    zh_label: "安全带"
+    keywords: ["安全带", "卡扣", "锁扣", "卷收器"]
+  SEATS:
+    zh_label: "座椅"
+    keywords: ["座椅", "头枕", "坐垫", "座椅加热", "靠背"]
+  STRUCTURE:
+    zh_label: "车身结构"
+    keywords: ["车门", "天窗", "后备箱", "尾门", "引擎盖", "机盖", "保险杠", "车身", "车漆", "生锈", "漏水", "密封条", "框架", "车架", "异响"]
+  VISIBILITY:
+    zh_label: "视野/玻璃"
+    keywords: ["玻璃", "挡风", "风挡", "雨刷", "雨刮", "后视镜", "倒车镜", "除雾", "视野", "起雾"]
+  TIRES:
+    zh_label: "轮胎"
+    keywords: ["轮胎", "胎压", "爆胎", "吃胎", "偏磨", "补胎", "胎噪"]
+  WHEELS:
+    zh_label: "轮毂"
+    keywords: ["轮毂", "轮圈", "钢圈", "车轮", "轮毂轴承"]
+  FORWARD COLLISION AVOIDANCE:
+    zh_label: "前向碰撞避免/自动紧急制动"
+    keywords: ["防撞", "碰撞预警", "主动刹车", "紧急制动", "aeb", "AEB", "雷达", "自适应巡航", "acc", "ACC", "毫米波"]
+  LANE DEPARTURE:
+    zh_label: "车道偏离"
+    keywords: ["车道偏离", "车道保持", "lkas", "LKAS", "盲区", "并线辅助"]
+  BACK OVER PREVENTION:
+    zh_label: "倒车防撞/后视"
+    keywords: ["倒车影像", "倒车雷达", "摄像头", "后视影像", "360影像"]
+  VEHICLE SPEED CONTROL:
+    zh_label: "车速控制"
+    keywords: ["定速巡航", "巡航", "油门踏板", "油门", "车速", "限速", "加速"]
+  EQUIPMENT:
+    zh_label: "空调/附属设备"
+    keywords: ["空调", "压缩机", "制冷", "暖风", "鼓风机", "冷凝器", "蒸发箱", "冷媒", "氟利昂", "出风口"]

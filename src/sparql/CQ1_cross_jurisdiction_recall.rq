@@ -1,0 +1,41 @@
+PREFIX core: <https://w3id.org/poc-kb/core/>
+PREFIX recall: <https://w3id.org/poc-kb/recall/>
+
+# CQ1: Given Honda 2018 US recalls, find corresponding Canadian recalls (distinguishing hard key vs candidate)
+SELECT ?usId ?usDate ?caId ?caDate ?caSystem ?linkKind ?method ?score ?reviewStatus ?matchedHead ?note
+WHERE {
+  ?us a recall:JurisdictionRecall ;
+      recall:jurisdiction "US" ;
+      recall:officialRecallId ?usId .
+  OPTIONAL { ?us recall:recallDate ?usDate . }
+  {
+    ?us recall:linkedByHardKeyRecall ?ca .
+    ?ca recall:jurisdiction "CA" ;
+        recall:officialRecallId ?caId .
+    OPTIONAL { ?ca recall:recallDate ?caDate . }
+    OPTIONAL { ?ca recall:systemType ?caSystem . }
+    BIND("hard" AS ?linkKind)
+    BIND("xjur_mfr_token" AS ?method)
+    BIND(1.00 AS ?score)
+    BIND("hard_key" AS ?reviewStatus)
+    BIND("" AS ?matchedHead)
+    BIND("Exact shared manufacturer campaign token" AS ?note)
+  }
+  UNION
+  {
+    ?link core:fromEntity ?us ;
+          core:method "xjur_mmy_system_window" ;
+          core:toEntity ?ca ;
+          core:score ?score ;
+          core:reviewStatus ?reviewStatus .
+    OPTIONAL { ?link core:matchedHead ?matchedHead . }
+    OPTIONAL { ?link core:note ?note . }
+    ?ca recall:jurisdiction "CA" ;
+        recall:officialRecallId ?caId .
+    OPTIONAL { ?ca recall:recallDate ?caDate . }
+    OPTIONAL { ?ca recall:systemType ?caSystem . }
+    BIND("candidate" AS ?linkKind)
+    BIND("xjur_mmy_system_window" AS ?method)
+  }
+}
+ORDER BY ?usId DESC(?score) ?caId

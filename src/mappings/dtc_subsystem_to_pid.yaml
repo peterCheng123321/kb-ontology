@@ -1,0 +1,118 @@
+# Crosswalk: SAE J2012 DTC subsystem prefix -> OBDex Mode 01 PIDs & COVESA VSS v6.1 signal paths
+# Every PID below is verified present in data/raw/extended/obdex/data/pids/mode01.yaml
+version: "3.0.0-exp"
+source: "SAE J2012 subsystem structure + foerbsnavi/OBDex mode01.yaml (CC0-1.0) + COVESA VSS v6.1"
+rules:
+  - dtc_prefix: "P00"
+    subsystem_name: "Fuel and Air Metering and Auxiliary Emission Controls (ISO/SAE)"
+    score: "0.75"
+    pids: ["01-05", "01-06", "01-07", "01-0A", "01-23", "01-44"]
+    vss_paths:
+      - "Vehicle.Powertrain.FuelSystem.RelativeLevel"
+      - "Vehicle.Powertrain.CombustionEngine.ECT"
+  - dtc_prefix: "P01"
+    subsystem_name: "Fuel and Air Metering (MAF/MAP/IAT/ECT/O2/Fuel Trim)"
+    score: "0.85"
+    pids: ["01-03", "01-05", "01-06", "01-07", "01-0B", "01-0F", "01-10", "01-11", "01-14", "01-23"]
+    vss_paths:
+      - "Vehicle.Powertrain.CombustionEngine.MAF"
+      - "Vehicle.Powertrain.CombustionEngine.MAP"
+      - "Vehicle.Powertrain.CombustionEngine.ECT"
+      - "Vehicle.Powertrain.CombustionEngine.TPS"
+      - "Vehicle.Powertrain.FuelSystem.RelativeLevel"
+  - dtc_prefix: "P02"
+    subsystem_name: "Fuel and Air Metering (Injector Circuit & Fuel Pump)"
+    score: "0.85"
+    pids: ["01-03", "01-06", "01-07", "01-0A", "01-22", "01-23", "01-59", "01-5E"]
+    vss_paths:
+      - "Vehicle.Powertrain.FuelSystem.InstantConsumption"
+      - "Vehicle.Powertrain.CombustionEngine.Speed"
+  - dtc_prefix: "P03"
+    subsystem_name: "Ignition System or Misfire"
+    score: "0.85"
+    pids: ["01-04", "01-06", "01-07", "01-0C", "01-0E", "01-10", "01-23", "01-42"]
+    vss_paths:
+      - "Vehicle.Powertrain.CombustionEngine.Speed"
+      - "Vehicle.Powertrain.CombustionEngine.EngineLoad"
+      - "Vehicle.Powertrain.CombustionEngine.MAF"
+  - dtc_prefix: "P04"
+    subsystem_name: "Auxiliary Emission Controls (Catalyst, EGR, EVAP)"
+    score: "0.85"
+    pids: ["01-14", "01-15", "01-2C", "01-2D", "01-2E", "01-32", "01-3C", "01-53"]
+    vss_paths:
+      - "Vehicle.Powertrain.CombustionEngine.Speed"
+      - "Vehicle.Powertrain.FuelSystem.RelativeLevel"
+  - dtc_prefix: "P05"
+    subsystem_name: "Vehicle Speed Controls, Idle Control, and Auxiliary Inputs"
+    score: "0.80"
+    pids: ["01-04", "01-0C", "01-0D", "01-11", "01-42", "01-45"]
+    vss_paths:
+      - "Vehicle.Speed"
+      - "Vehicle.Powertrain.CombustionEngine.Speed"
+      - "Vehicle.Powertrain.CombustionEngine.TPS"
+  - dtc_prefix: "P06"
+    subsystem_name: "Computer Output Circuit & Control Module Voltage"
+    score: "0.75"
+    pids: ["01-01", "01-02", "01-21", "01-42", "01-4D"]
+    vss_paths:
+      - "Vehicle.Diagnostics.DTCCount"
+      - "Vehicle.Diagnostics.DTCList"
+  - dtc_prefix: "P07"
+    subsystem_name: "Transmission Controls"
+    score: "0.75"
+    pids: ["01-04", "01-0C", "01-0D", "01-11", "01-62"]
+    vss_paths:
+      - "Vehicle.Speed"
+      - "Vehicle.Powertrain.CombustionEngine.Speed"
+  - dtc_prefix: "P1"
+    subsystem_name: "Manufacturer-Controlled Powertrain (OEM specific; general baseline monitors)"
+    score: "0.60"
+    pids: ["01-01", "01-04", "01-05", "01-06", "01-07", "01-0C", "01-42"]
+    vss_paths:
+      - "Vehicle.Powertrain.CombustionEngine.Speed"
+      - "Vehicle.Powertrain.CombustionEngine.ECT"
+      - "Vehicle.Diagnostics.DTCList"
+  - dtc_prefix: "P2"
+    subsystem_name: "ISO/SAE Generic Powertrain Extended (Fuel/Air/Turbo/O2/Throttle)"
+    score: "0.75"
+    pids: ["01-06", "01-07", "01-0B", "01-10", "01-11", "01-23", "01-24", "01-44"]
+    vss_paths:
+      - "Vehicle.Powertrain.CombustionEngine.MAF"
+      - "Vehicle.Powertrain.CombustionEngine.MAP"
+      - "Vehicle.Powertrain.CombustionEngine.TPS"
+  - dtc_prefix: "U0"
+    subsystem_name: "Generic Network / CAN Communication"
+    score: "0.65"
+    pids: ["01-01", "01-42", "01-21"]
+    vss_paths:
+      - "Vehicle.Diagnostics.DTCCount"
+      - "Vehicle.Diagnostics.DTCList"
+  - dtc_prefix: "C"
+    subsystem_name: "Chassis (ABS/VSA/Steering/Wheel Speed)"
+    score: "0.60"
+    pids: ["01-0D", "01-42", "01-01"]
+    vss_paths:
+      - "Vehicle.Speed"
+      - "Vehicle.ADAS.ABS.IsError"
+      - "Vehicle.Chassis.SteeringWheel.Angle"
+  - dtc_prefix: "B"
+    subsystem_name: "Body (SRS/Airbag/BCM/Lighting/Seatbelt)"
+    score: "0.55"
+    pids: ["01-01", "01-42"]
+    vss_paths:
+      - "Vehicle.Diagnostics.DTCCount"
+      - "Vehicle.Body.Lights.Beam.High.IsOn"
+
+# Direct PID -> VSS closeMatch alignments used on ObdPid nodes (verified against COVESA VSS v6.1 CSV)
+pid_to_vss:
+  "01-05": "Vehicle.Powertrain.CombustionEngine.EngineCoolant.Temperature"
+  "01-0B": "Vehicle.Powertrain.CombustionEngine.MAP"
+  "01-0C": "Vehicle.Powertrain.CombustionEngine.Speed"
+  "01-0D": "Vehicle.Speed"
+  "01-10": "Vehicle.Powertrain.CombustionEngine.MAF"
+  "01-11": "Vehicle.Powertrain.CombustionEngine.TPS"
+  "01-2F": "Vehicle.Powertrain.FuelSystem.RelativeLevel"
+  "01-5B": "Vehicle.Powertrain.TractionBattery.StateOfHealth"
+  "01-5C": "Vehicle.Powertrain.CombustionEngine.EOT"
+  "01-5E": "Vehicle.Powertrain.FuelSystem.InstantConsumption"
+  "01-A6": "Vehicle.TraveledDistance"

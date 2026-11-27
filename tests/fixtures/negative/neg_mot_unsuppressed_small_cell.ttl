@@ -1,0 +1,23 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://w3id.org/poc-kb/core/> .
+@prefix insp: <https://w3id.org/poc-kb/insp/> .
+
+<https://w3id.org/poc-kb/core/vehicle/V1> a core:VehicleModelYear, core:NamedThing ;
+    core:make "HONDA" ; core:model "CR-V" ; core:modelYear "2018" .
+
+<https://w3id.org/poc-kb/insp/mot-group/G1> a insp:MotItemGroup, core:NamedThing ;
+    insp:testItemId "5430" ; insp:testClassId "4" ; insp:itemName "Brakes" .
+
+<https://w3id.org/poc-kb/insp/mot-defect/D1> a insp:MotDefectItem, core:NamedThing ;
+    insp:rfrId "100" ; insp:testClassId "4" ; insp:inItemGroup <https://w3id.org/poc-kb/insp/mot-group/G1> .
+
+# Deliberate negative fixture: count=3 (<5) with suppressed=false violates k<5 suppression policy.
+<https://w3id.org/poc-kb/insp/stat/BAD_CELL> a insp:InspectionDefectStat, core:NamedThing ;
+    insp:forVehicle <https://w3id.org/poc-kb/core/vehicle/V1> ;
+    insp:testYear 2023 ;
+    insp:forDefectItem <https://w3id.org/poc-kb/insp/mot-defect/D1> ;
+    insp:observedSeverity "Major" ;
+    insp:mileageBucket "0_30k" ;
+    insp:defectCount 3 ;
+    insp:testsInCohort 500 ;
+    insp:suppressed false .

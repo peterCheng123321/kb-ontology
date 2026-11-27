@@ -1,0 +1,97 @@
+id: https://w3id.org/poc-kb/signal
+name: poc_kb_signal
+title: Vehicle Standard Signals (COVESA VSS / W3C VSSo) and CAN DBC Module
+version: 3.0.0-exp
+description: >-
+  Models selected COVESA VSS v6.1 vehicle signal nodes (with W3C VSSo closeMatch
+  alignments) and real-vehicle CAN bus messages/signals parsed from commaai/opendbc.
+imports:
+  - prefixes
+  - linkml:types
+  - core
+prefixes:
+  linkml: https://w3id.org/linkml/
+  signal: https://w3id.org/poc-kb/signal/
+default_prefix: signal
+default_range: string
+
+enums:
+  VssNodeTypeEnum:
+    permissible_values:
+      branch:
+      attribute:
+      sensor:
+      actuator:
+
+classes:
+  VehicleSignal:
+    is_a: NamedThing
+    description: A standardized COVESA VSS v6.1 branch, attribute, sensor, or actuator node.
+    annotations:
+      bfo_alignment: sosa:ObservableProperty / sosa:ActuatableProperty alignment
+    slots:
+      - description
+      - unit
+      - minValue
+      - maxValue
+      - broader
+      - closeMatch
+      - exactMatch
+      - seeAlso
+      - fromSource
+      - hasComponent
+    attributes:
+      vssPath:
+        required: true
+      nodeType:
+        range: VssNodeTypeEnum
+        required: true
+      dataType:
+      vssVersion:
+
+  CanMessage:
+    is_a: NamedThing
+    description: A CAN bus message frame (BO_) parsed from an opendbc DBC specification.
+    slots:
+      - hasComponent
+      - closeMatch
+      - fromSource
+    attributes:
+      dbcFile:
+        required: true
+      vehiclePlatform:
+        description: Target vehicle platform (e.g. HONDA_2018_BOSCH, BYD_ATTO3, TESLA_MODEL3).
+      frameId:
+        range: integer
+        required: true
+      messageName:
+        required: true
+      byteLength:
+        range: integer
+      senderNode:
+      mapsToVss:
+        range: VehicleSignal
+        multivalued: true
+
+  CanSignal:
+    is_a: NamedThing
+    description: A CAN bus signal (SG_) belonging to a CanMessage.
+    slots:
+      - unit
+      - minValue
+      - maxValue
+      - fromSource
+    attributes:
+      inMessage:
+        range: CanMessage
+        required: true
+      signalName:
+        required: true
+      startBit:
+        range: integer
+      bitLength:
+        range: integer
+      scaleFactor:
+        range: decimal
+      scaleOffset:
+        range: decimal

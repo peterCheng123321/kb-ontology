@@ -1,0 +1,1463 @@
+{
+  "measured_at": "2026-11-25 16:25 Asia/Shanghai",
+  "privacy_note": "Metadata, field names, taxonomy counts, and join rates only. Zero VINs, zero PII, zero raw narratives.",
+  "verified_endpoints": [
+    {
+      "url": "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip",
+      "dest": "data/raw/FLAT_RCL_POST_2010.zip",
+      "bytes": 15064058,
+      "cached": true,
+      "status": 200,
+      "key": "nhtsa_rcl_post2010",
+      "license": "Public Domain (U.S. Government)"
+    },
+    {
+      "url": "https://huggingface.co/datasets/CodesList/obd2-codes/resolve/main/obd2-codes.csv",
+      "dest": "data/raw/obd2-codes.csv",
+      "bytes": 1039969,
+      "cached": true,
+      "status": 200,
+      "key": "codeslist_obd2_csv",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "url": "https://opendatatc.tc.canada.ca/vrdb_full_monthly.csv",
+      "dest": "data/raw/extended/vrdb_full_monthly.csv",
+      "bytes": 186728093,
+      "cached": true,
+      "status": 200,
+      "key": "tc_vrdb_csv",
+      "license": "Open Government Licence - Canada"
+    },
+    {
+      "url": "https://data.dft.gov.uk/anonymised-mot-test/lookup.zip",
+      "dest": "data/raw/extended/uk_mot_lookup.zip",
+      "bytes": 254053,
+      "cached": true,
+      "status": 200,
+      "key": "uk_mot_lookup",
+      "license": "UK Open Government Licence (OGL)"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Wal33D/dtc-database/main/data/dtc_codes.db",
+      "dest": "data/raw/extended/wal33d_dtc_codes.db",
+      "bytes": 3256320,
+      "cached": true,
+      "status": 200,
+      "key": "wal33d_dtc_db",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/COVESA/vehicle_signal_specification/releases/download/v6.1/vss.csv",
+      "dest": "data/raw/extended/covesa_vss_v6.1.csv",
+      "bytes": 342380,
+      "cached": true,
+      "status": 200,
+      "key": "covesa_vss_csv",
+      "license": "MPL-2.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/w3c/vsso/gh-pages/spec/vsso-core.ttl",
+      "dest": "data/raw/extended/w3c_vsso/vsso-core.ttl",
+      "bytes": 9205,
+      "cached": true,
+      "status": 200,
+      "key": "w3c_vsso_core_ttl",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/w3c/vsso/gh-pages/spec/vss_rel_2.2.ttl",
+      "dest": "data/raw/extended/w3c_vsso/vss_rel_2.2.ttl",
+      "bytes": 215547,
+      "cached": true,
+      "status": 200,
+      "key": "w3c_vsso_vss22_ttl",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/generic/B0xxx_enriched.yaml",
+      "dest": "data/raw/extended/obdex/data/generic/B0xxx_enriched.yaml",
+      "bytes": 1176032,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/generic/B0xxx_enriched.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/generic/C0xxx_enriched.yaml",
+      "dest": "data/raw/extended/obdex/data/generic/C0xxx_enriched.yaml",
+      "bytes": 2097476,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/generic/C0xxx_enriched.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/generic/P0xxx_enriched.yaml",
+      "dest": "data/raw/extended/obdex/data/generic/P0xxx_enriched.yaml",
+      "bytes": 12892135,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/generic/P0xxx_enriched.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/generic/P2xxx_enriched.yaml",
+      "dest": "data/raw/extended/obdex/data/generic/P2xxx_enriched.yaml",
+      "bytes": 11909371,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/generic/P2xxx_enriched.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/generic/P3xxx_enriched.yaml",
+      "dest": "data/raw/extended/obdex/data/generic/P3xxx_enriched.yaml",
+      "bytes": 518159,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/generic/P3xxx_enriched.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/generic/U0xxx_enriched.yaml",
+      "dest": "data/raw/extended/obdex/data/generic/U0xxx_enriched.yaml",
+      "bytes": 3638502,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/generic/U0xxx_enriched.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/generic/U3xxx_enriched.yaml",
+      "dest": "data/raw/extended/obdex/data/generic/U3xxx_enriched.yaml",
+      "bytes": 586508,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/generic/U3xxx_enriched.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/pids/mode01.yaml",
+      "dest": "data/raw/extended/obdex/data/pids/mode01.yaml",
+      "bytes": 32408,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/pids/mode01.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foerbsnavi/OBDex/main/data/pids/mode09.yaml",
+      "dest": "data/raw/extended/obdex/data/pids/mode09.yaml",
+      "bytes": 2893,
+      "cached": true,
+      "status": 200,
+      "key": "obdex:data/pids/mode09.yaml",
+      "license": "CC0-1.0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/commaai/opendbc/master/opendbc/dbc/generator/honda/_bosch_2018.dbc",
+      "dest": "data/raw/extended/opendbc/_bosch_2018.dbc",
+      "bytes": 10129,
+      "cached": true,
+      "status": 200,
+      "key": "opendbc:_bosch_2018.dbc",
+      "license": "MIT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/commaai/opendbc/master/opendbc/dbc/generator/honda/_bosch_radar_acc.dbc",
+      "dest": "data/raw/extended/opendbc/_bosch_radar_acc.dbc",
+      "bytes": 1697,
+      "cached": true,
+      "status": 200,
+      "key": "opendbc:_bosch_radar_acc.dbc",
+      "license": "MIT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/commaai/opendbc/master/opendbc/dbc/generator/honda/_honda_common.dbc",
+      "dest": "data/raw/extended/opendbc/_honda_common.dbc",
+      "bytes": 9432,
+      "cached": true,
+      "status": 200,
+      "key": "opendbc:_honda_common.dbc",
+      "license": "MIT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/commaai/opendbc/master/opendbc/dbc/generator/honda/honda_crv_ex_2017_body.dbc",
+      "dest": "data/raw/extended/opendbc/honda_crv_ex_2017_body.dbc",
+      "bytes": 379,
+      "cached": true,
+      "status": 200,
+      "key": "opendbc:honda_crv_ex_2017_body.dbc",
+      "license": "MIT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/commaai/opendbc/master/opendbc/dbc/generator/honda/honda_clarity_hybrid_2018_can.dbc",
+      "dest": "data/raw/extended/opendbc/honda_clarity_hybrid_2018_can.dbc",
+      "bytes": 882,
+      "cached": true,
+      "status": 200,
+      "key": "opendbc:honda_clarity_hybrid_2018_can.dbc",
+      "license": "MIT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/commaai/opendbc/master/opendbc/dbc/byd_atto3.dbc",
+      "dest": "data/raw/extended/opendbc/byd_atto3.dbc",
+      "bytes": 7897,
+      "cached": true,
+      "status": 200,
+      "key": "opendbc:byd_atto3.dbc",
+      "license": "MIT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/commaai/opendbc/master/opendbc/dbc/tesla_model3_vehicle.dbc",
+      "dest": "data/raw/extended/opendbc/tesla_model3_vehicle.dbc",
+      "bytes": 24328,
+      "cached": true,
+      "status": 200,
+      "key": "opendbc:tesla_model3_vehicle.dbc",
+      "license": "MIT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/commaai/opendbc/master/opendbc/dbc/tesla_powertrain.dbc",
+      "dest": "data/raw/extended/opendbc/tesla_powertrain.dbc",
+      "bytes": 7716,
+      "cached": true,
+      "status": 200,
+      "key": "opendbc:tesla_powertrain.dbc",
+      "license": "MIT"
+    },
+    {
+      "url": "https://data.dft.gov.uk/anonymised-mot-test/test_data/dft_test_result_2023.zip",
+      "status": 200,
+      "content_length": "1192881905",
+      "content_range": null,
+      "last_modified": null,
+      "key": "probe:uk_mot_result_2023"
+    },
+    {
+      "url": "https://data.dft.gov.uk/anonymised-mot-test/test_data/dft_test_item_2023.zip",
+      "status": 200,
+      "content_length": "460112607",
+      "content_range": null,
+      "last_modified": null,
+      "key": "probe:uk_mot_item_2023"
+    }
+  ],
+  "track1_global_and_diagnostic_joins": {
+    "transport_canada_recalls_vs_nhtsa": {
+      "tc_total_rows": 134329,
+      "tc_columns": [
+        "RECALL_NUMBER_NUM",
+        "YEAR",
+        "MANUFACTURER_RECALL_NO_TXT",
+        "CATEGORY_ETXT",
+        "CATEGORY_FTXT",
+        "MAKE_NAME_NM",
+        "MODEL_NAME_NM",
+        "UNIT_AFFECTED_NBR",
+        "SYSTEM_TYPE_ETXT",
+        "SYSTEM_TYPE_FTXT",
+        "NOTIFICATION_TYPE_ETXT",
+        "NOTIFICATION_TYPE_FTXT",
+        "COMMENT_ETXT",
+        "COMMENT_FTXT",
+        "RECALL_DATE_DTE"
+      ],
+      "tc_column_fill_rates": {
+        "RECALL_NUMBER_NUM": 1.0,
+        "YEAR": 1.0,
+        "MANUFACTURER_RECALL_NO_TXT": 0.7183,
+        "CATEGORY_ETXT": 1.0,
+        "CATEGORY_FTXT": 1.0,
+        "MAKE_NAME_NM": 1.0,
+        "MODEL_NAME_NM": 1.0,
+        "UNIT_AFFECTED_NBR": 1.0,
+        "SYSTEM_TYPE_ETXT": 1.0,
+        "SYSTEM_TYPE_FTXT": 1.0,
+        "NOTIFICATION_TYPE_ETXT": 1.0,
+        "NOTIFICATION_TYPE_FTXT": 1.0,
+        "COMMENT_ETXT": 1.0,
+        "COMMENT_FTXT": 1.0,
+        "RECALL_DATE_DTE": 1.0
+      },
+      "tc_distinct_recall_numbers": 16479,
+      "tc_distinct_mfr_tokens": 12324,
+      "tc_distinct_mmy": 52089,
+      "tc_top_categories": {
+        "CAR": 23747,
+        "TRUCK - MED. & H.D.": 21916,
+        "SUV": 16360,
+        "MOTORHOME": 14653,
+        "LIGHT TRUCK & VAN": 10841,
+        "RV TRAILER": 9054,
+        "BUS": 7950,
+        "MOTORCYCLE": 5551
+      },
+      "tc_top_system_types": {
+        "OTHER": 18062,
+        "BRAKES": 13074,
+        "ELECTRICAL": 12571,
+        "ACCESSORIES": 9951,
+        "FUEL SYSTEM": 8950,
+        "STRUCTURE": 7177,
+        "STEERING": 7101,
+        "LIGHTS AND INSTRUMENTS": 7056,
+        "SEATS AND RESTRAINTS": 6867,
+        "AIRBAG": 6698,
+        "LABEL": 6213,
+        "ENGINE": 6107,
+        "NOT ENTERED": 5416,
+        "VISUAL SYSTEM": 4850,
+        "POWERTRAIN": 4569,
+        "SUSPENSION": 4358,
+        "TIRES": 2321,
+        "WHEELS": 946,
+        "HIGH VOLTAGE": 701,
+        "EMISSIONS": 666
+      },
+      "tc_system_type_nhtsa_head_coverage_pct": 81.23,
+      "nhtsa_post2010_rows": 248685,
+      "nhtsa_distinct_mfr_tokens": 10324,
+      "cross_border_global_joins": {
+        "shared_mmy_count": 13748,
+        "shared_mfr_recall_tokens": 4131,
+        "tc_recalls_linked_to_nhtsa_post2010": 4461,
+        "tc_recalls_linked_pct": 27.07,
+        "nhtsa_post2010_camps_linked_to_tc": 4333
+      },
+      "honda_2018_slice_cross_border": {
+        "tc_rows": 40,
+        "tc_distinct_recalls": 8,
+        "nhtsa_distinct_camps_in_slice": 8,
+        "nhtsa_camps_matched_via_mfr_no_to_tc": [],
+        "nhtsa_camps_matched_count": 0,
+        "tc_recalls_detail": [
+          {
+            "tc_recall_number": "2018500",
+            "models": [
+              "ACCORD"
+            ],
+            "mfr_tokens": [
+              "HN47"
+            ],
+            "system_types": [
+              "VISUAL SYSTEM"
+            ],
+            "recall_date": "2018-09-13",
+            "matched_nhtsa_campnos": [],
+            "matched_via_tokens": []
+          },
+          {
+            "tc_recall_number": "2020236",
+            "models": [
+              "ACCORD"
+            ],
+            "mfr_tokens": [],
+            "system_types": [
+              "FUEL SYSTEM"
+            ],
+            "recall_date": "2020-05-28",
+            "matched_nhtsa_campnos": [],
+            "matched_via_tokens": []
+          },
+          {
+            "tc_recall_number": "2020611",
+            "models": [
+              "ACCORD"
+            ],
+            "mfr_tokens": [],
+            "system_types": [
+              "ELECTRICAL"
+            ],
+            "recall_date": "2020-12-10",
+            "matched_nhtsa_campnos": [],
+            "matched_via_tokens": []
+          },
+          {
+            "tc_recall_number": "2023127",
+            "models": [
+              "ACCORD",
+              "CR-V"
+            ],
+            "mfr_tokens": [
+              "AM20",
+              "HP27",
+              "HP28 & AM19"
+            ],
+            "system_types": [
+              "SEATS AND RESTRAINTS"
+            ],
+            "recall_date": "2023-03-09",
+            "matched_nhtsa_campnos": [],
+            "matched_via_tokens": []
+          },
+          {
+            "tc_recall_number": "2023679",
+            "models": [
+              "ACCORD",
+              "CR-V"
+            ],
+            "mfr_tokens": [],
+            "system_types": [
+              "FUEL SYSTEM"
+            ],
+            "recall_date": "2023-12-18",
+            "matched_nhtsa_campnos": [],
+            "matched_via_tokens": []
+          },
+          {
+            "tc_recall_number": "2024262",
+            "models": [
+              "ACCORD",
+              "CR-V"
+            ],
+            "mfr_tokens": [],
+            "system_types": [
+              "FUEL SYSTEM"
+            ],
+            "recall_date": "2024-05-06",
+            "matched_nhtsa_campnos": [],
+            "matched_via_tokens": []
+          },
+          {
+            "tc_recall_number": "2025599",
+            "models": [
+              "ACCORD"
+            ],
+            "mfr_tokens": [
+              "HQ40"
+            ],
+            "system_types": [
+              "WHEELS"
+            ],
+            "recall_date": "2025-10-30",
+            "matched_nhtsa_campnos": [],
+            "matched_via_tokens": []
+          },
+          {
+            "tc_recall_number": "2026251",
+            "models": [
+              "ACCORD",
+              "CR-V"
+            ],
+            "mfr_tokens": [
+              "AM96-AN00",
+              "HQ62-70"
+            ],
+            "system_types": [
+              "SEATS AND RESTRAINTS"
+            ],
+            "recall_date": "2026-05-21",
+            "matched_nhtsa_campnos": [],
+            "matched_via_tokens": []
+          }
+        ]
+      }
+    },
+    "uk_dvsa_mot_taxonomy": {
+      "files": {
+        "item_detail.csv": {
+          "rows": 21069,
+          "cols": [
+            "rfr_id",
+            "test_class_id",
+            "test_item_id",
+            "minor_item",
+            "rfr_deficiency_category",
+            "rfr_desc",
+            "rfr_loc_marker",
+            "rfr_insp_manual_desc",
+            "rfr_advisory_text",
+            "test_item_set_section_id"
+          ],
+          "delimiter": "|"
+        },
+        "item_group.csv": {
+          "rows": 4136,
+          "cols": [
+            "test_item_id",
+            "test_class_id",
+            "parent_id",
+            "test_item_set_section_id",
+            "item_name"
+          ],
+          "delimiter": "|"
+        },
+        "mdr_fuel_types.csv": {
+          "rows": 14,
+          "cols": [
+            "type_code",
+            "fuel_type"
+          ],
+          "delimiter": "|"
+        },
+        "mdr_rfr_location.csv": {
+          "rows": 129,
+          "cols": [
+            "id",
+            "lateral",
+            "longitudinal",
+            "vertical"
+          ],
+          "delimiter": "|"
+        },
+        "mdr_test_outcome.csv": {
+          "rows": 7,
+          "cols": [
+            "result_code",
+            "result"
+          ],
+          "delimiter": "|"
+        },
+        "mdr_test_type.csv": {
+          "rows": 6,
+          "cols": [
+            "type_code",
+            "test_type"
+          ],
+          "delimiter": "|"
+        }
+      },
+      "class4_passenger_car_taxonomy": {
+        "total_item_group_nodes": 934,
+        "top_level_groups_count": 30,
+        "max_tree_depth": 5,
+        "class4_rfr_defect_items": 4432,
+        "rfr_deficiency_categories": {
+          "Pre-EU Directive": 2511,
+          "Major": 1196,
+          "Dangerous": 525,
+          "Minor": 200
+        }
+      },
+      "rfr_locations_count": 129,
+      "fuel_types": [
+        {
+          "type_code": "CN",
+          "fuel_type": "Compressed Natural Gas (CNG)"
+        },
+        {
+          "type_code": "DI",
+          "fuel_type": "Diesel"
+        },
+        {
+          "type_code": "ED",
+          "fuel_type": "Electric Diesel"
+        },
+        {
+          "type_code": "EL",
+          "fuel_type": "Electric"
+        },
+        {
+          "type_code": "FC",
+          "fuel_type": "Fuel Cells"
+        },
+        {
+          "type_code": "GA",
+          "fuel_type": "Gas"
+        },
+        {
+          "type_code": "GB",
+          "fuel_type": "Gas Bi-Fuel"
+        },
+        {
+          "type_code": "GD",
+          "fuel_type": "Gas Diesel"
+        },
+        {
+          "type_code": "HY",
+          "fuel_type": "Hybrid Electric (Clean)"
+        },
+        {
+          "type_code": "LN",
+          "fuel_type": "Liquefied Natural Gas (LNG)"
+        },
+        {
+          "type_code": "LP",
+          "fuel_type": "Liquefied Petrolum Gas (LPG)"
+        },
+        {
+          "type_code": "OT",
+          "fuel_type": "Other"
+        },
+        {
+          "type_code": "PE",
+          "fuel_type": "Petrol"
+        },
+        {
+          "type_code": "ST",
+          "fuel_type": "Steam"
+        }
+      ],
+      "test_outcomes": [
+        {
+          "result_code": "ABA",
+          "result": "Abandoned"
+        },
+        {
+          "result_code": "ABR",
+          "result": "Aborted"
+        },
+        {
+          "result_code": "ABRVE",
+          "result": "Aborted by VE"
+        },
+        {
+          "result_code": "F",
+          "result": "Failed"
+        },
+        {
+          "result_code": "P",
+          "result": "Passed"
+        },
+        {
+          "result_code": "R",
+          "result": "Refused"
+        },
+        {
+          "result_code": "PRS",
+          "result": "Pass with Rectification at Station"
+        }
+      ],
+      "test_types": [
+        {
+          "type_code": "EI",
+          "test_type": "Inverted Appeal"
+        },
+        {
+          "type_code": "ES",
+          "test_type": "Statutory Appeal"
+        },
+        {
+          "type_code": "NT",
+          "test_type": "Normal Test"
+        },
+        {
+          "type_code": "PL",
+          "test_type": "Partial Retest Left VTS"
+        },
+        {
+          "type_code": "PV",
+          "test_type": "Partial Retest Repaired at VTS"
+        },
+        {
+          "type_code": "RT",
+          "test_type": "Re-Test"
+        }
+      ],
+      "mot_top_group_to_nhtsa_alignment": {
+        "mapped_count": 25,
+        "total_top_groups": 30,
+        "coverage_pct": 83.33,
+        "mapped_top_groups": [
+          {
+            "mot_top_group": "Lamps, Reflectors and Electrical Equipment",
+            "nhtsa_head": "EXTERIOR LIGHTING"
+          },
+          {
+            "mot_top_group": "Steering",
+            "nhtsa_head": "STEERING"
+          },
+          {
+            "mot_top_group": "Suspension",
+            "nhtsa_head": "SUSPENSION"
+          },
+          {
+            "mot_top_group": "Brakes",
+            "nhtsa_head": "SERVICE BRAKES"
+          },
+          {
+            "mot_top_group": "Tyres",
+            "nhtsa_head": "TIRES"
+          },
+          {
+            "mot_top_group": "Road Wheels",
+            "nhtsa_head": "WHEELS"
+          },
+          {
+            "mot_top_group": "Seat Belts and Supplementary Restraint Systems",
+            "nhtsa_head": "SEAT BELTS"
+          },
+          {
+            "mot_top_group": "Body, Structure and General Items",
+            "nhtsa_head": "STRUCTURE"
+          },
+          {
+            "mot_top_group": "Exhaust, Fuel and Emissions",
+            "nhtsa_head": "ENGINE AND ENGINE COOLING"
+          },
+          {
+            "mot_top_group": "Driver's View of the Road",
+            "nhtsa_head": "VISIBILITY"
+          },
+          {
+            "mot_top_group": "Driving Controls and Speed Limiters",
+            "nhtsa_head": "VEHICLE SPEED CONTROL"
+          },
+          {
+            "mot_top_group": "Registration Plates and VIN",
+            "nhtsa_head": "EQUIPMENT"
+          },
+          {
+            "mot_top_group": "Identification of the vehicle",
+            "nhtsa_head": "EQUIPMENT"
+          },
+          {
+            "mot_top_group": "Brakes",
+            "nhtsa_head": "SERVICE BRAKES"
+          },
+          {
+            "mot_top_group": "Steering",
+            "nhtsa_head": "STEERING"
+          },
+          {
+            "mot_top_group": "Lamps, reflectors and electrical equipment",
+            "nhtsa_head": "EXTERIOR LIGHTING"
+          },
+          {
+            "mot_top_group": "Suspension",
+            "nhtsa_head": "SUSPENSION"
+          },
+          {
+            "mot_top_group": "Body, chassis, structure",
+            "nhtsa_head": "STRUCTURE"
+          },
+          {
+            "mot_top_group": "Speedometer and speed limiter",
+            "nhtsa_head": "VEHICLE SPEED CONTROL"
+          },
+          {
+            "mot_top_group": "Seat belts and supplementary restraint systems",
+            "nhtsa_head": "SEAT BELTS"
+          },
+          {
+            "mot_top_group": "Noise, emissions and leaks",
+            "nhtsa_head": "ENGINE AND ENGINE COOLING"
+          },
+          {
+            "mot_top_group": "Buses and coaches supplementary tests",
+            "nhtsa_head": "AIR BAGS"
+          },
+          {
+            "mot_top_group": "Seat belt installation check",
+            "nhtsa_head": "SEAT BELTS"
+          },
+          {
+            "mot_top_group": "Road Wheels",
+            "nhtsa_head": "WHEELS"
+          },
+          {
+            "mot_top_group": "Tyres",
+            "nhtsa_head": "TIRES"
+          }
+        ],
+        "unmapped_top_groups": [
+          "Towbars",
+          "Items Not Tested",
+          "Motor tricycles and quadricycles",
+          "Non-component advisories",
+          "Visibility"
+        ]
+      }
+    },
+    "open_dtc_expansion_vs_baseline": {
+      "codeslist_unique": 9414,
+      "wal33d": {
+        "tables": {
+          "dtc_definitions": {
+            "rows": 18805,
+            "cols": [
+              "code",
+              "manufacturer",
+              "description",
+              "type",
+              "locale",
+              "is_generic",
+              "source_file"
+            ]
+          },
+          "statistics": {
+            "rows": 34,
+            "cols": [
+              "manufacturer",
+              "total_codes",
+              "unique_codes",
+              "p_codes",
+              "b_codes",
+              "c_codes",
+              "u_codes"
+            ]
+          }
+        },
+        "unique_codes": 12128,
+        "generic_codes": 9415,
+        "manufacturer_specific_codes": 2911,
+        "distinct_manufacturers": 33,
+        "top_manufacturers": {
+          "OTHER": 2620,
+          "VOLKSWAGEN": 528,
+          "FORD": 413,
+          "LINCOLN": 413,
+          "MERCURY": 413,
+          "BUICK": 403,
+          "CHEVY": 403,
+          "CADILLAC": 402,
+          "GM": 402,
+          "GMC": 402,
+          "SATURN": 402,
+          "OLDSMOBILE": 401,
+          "CHRYSLER": 283,
+          "BMW": 250,
+          "MAZDA": 233
+        },
+        "honda_code_count": 94,
+        "prefix_distribution": {
+          "P": 14821,
+          "B": 1465,
+          "C": 985,
+          "U": 1534
+        },
+        "new_unique_codes_over_codeslist": 2714
+      },
+      "obdex": {
+        "unique_codes_parsed": 9533,
+        "entries_with_sources_field": 9533,
+        "entries_with_de_translation": 9533,
+        "pid_entries_parsed": 132,
+        "new_unique_codes_over_codeslist": 284
+      },
+      "combined_open_dtc_pool_unique": 12412,
+      "net_gain_over_codeslist": 2998,
+      "nhtsa_top20_extracted_eval": {
+        "total": 20,
+        "baseline_codeslist_hits": 17,
+        "expanded_hits": 18,
+        "newly_covered_non_generic_codes": [
+          "P1326"
+        ],
+        "details": [
+          {
+            "code": "P1326",
+            "nhtsa_cmpl_rows": 580,
+            "in_codeslist": false,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "VOLKSWAGEN"
+            ],
+            "in_obdex": false
+          },
+          {
+            "code": "P0302",
+            "nhtsa_cmpl_rows": 494,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P0300",
+            "nhtsa_cmpl_rows": 472,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P0304",
+            "nhtsa_cmpl_rows": 469,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P0303",
+            "nhtsa_cmpl_rows": 464,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P0301",
+            "nhtsa_cmpl_rows": 439,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "U3000",
+            "nhtsa_cmpl_rows": 432,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "C0020",
+            "nhtsa_cmpl_rows": 423,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P0420",
+            "nhtsa_cmpl_rows": 413,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "C1391",
+            "nhtsa_cmpl_rows": 359,
+            "in_codeslist": false,
+            "in_wal33d": false,
+            "wal33d_manufacturers": [],
+            "in_obdex": false
+          },
+          {
+            "code": "P0087",
+            "nhtsa_cmpl_rows": 248,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P052E",
+            "nhtsa_cmpl_rows": 243,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P0700",
+            "nhtsa_cmpl_rows": 241,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P2138",
+            "nhtsa_cmpl_rows": 223,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P0720",
+            "nhtsa_cmpl_rows": 191,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "C2200",
+            "nhtsa_cmpl_rows": 191,
+            "in_codeslist": false,
+            "in_wal33d": false,
+            "wal33d_manufacturers": [],
+            "in_obdex": false
+          },
+          {
+            "code": "P0128",
+            "nhtsa_cmpl_rows": 187,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "AUDI",
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P1450",
+            "nhtsa_cmpl_rows": 186,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "BMW",
+              "BUICK",
+              "CADILLAC",
+              "CHEVY",
+              "CHRYSLER",
+              "FORD",
+              "GENERIC",
+              "GEO",
+              "GM",
+              "GMC",
+              "KIA",
+              "LINCOLN",
+              "MAZDA",
+              "MERCURY",
+              "OLDSMOBILE",
+              "OTHER",
+              "PLYMOUTH",
+              "PONTIAC",
+              "SATURN",
+              "SUZUKI",
+              "VOLKSWAGEN"
+            ],
+            "in_obdex": false
+          },
+          {
+            "code": "P0316",
+            "nhtsa_cmpl_rows": 184,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "GENERIC"
+            ],
+            "in_obdex": true
+          },
+          {
+            "code": "P0016",
+            "nhtsa_cmpl_rows": 180,
+            "in_codeslist": true,
+            "in_wal33d": true,
+            "wal33d_manufacturers": [
+              "GENERIC"
+            ],
+            "in_obdex": true
+          }
+        ]
+      }
+    },
+    "covesa_vss_vsso_and_opendbc": {
+      "covesa_vss_v6_1": {
+        "columns": [
+          "Signal",
+          "Type",
+          "DataType",
+          "Deprecated",
+          "Unit",
+          "Min",
+          "Max",
+          "Desc",
+          "Comment",
+          "Allowed",
+          "Default"
+        ],
+        "total_nodes": 1737,
+        "by_type": {
+          "branch": 355,
+          "attribute": 164,
+          "sensor": 575,
+          "actuator": 643
+        },
+        "by_l2_domain": {
+          "Vehicle.Cabin": 637,
+          "Vehicle.Powertrain": 312,
+          "Vehicle.Body": 128,
+          "Vehicle.MotionManagement": 128,
+          "Vehicle.ControlUnit": 115,
+          "Vehicle.Chassis": 107,
+          "Vehicle.ADAS": 91,
+          "Vehicle.Occupant": 87,
+          "Vehicle.Exterior": 23,
+          "Vehicle.VehicleIdentification": 22,
+          "Vehicle.CurrentLocation": 14,
+          "Vehicle.Driver": 7,
+          "Vehicle.Safety": 6,
+          "Vehicle.VersionVSS": 5,
+          "Vehicle.LowVoltageBattery": 5,
+          "Vehicle.Service": 4,
+          "Vehicle.Acceleration": 4,
+          "Vehicle.AngularVelocity": 4,
+          "Vehicle.Orientation": 4,
+          "Vehicle.Diagnostics": 3
+        },
+        "traction_battery_and_charging_signals": 96,
+        "traction_battery_examples": [
+          "Vehicle.Powertrain.TractionBattery.Id",
+          "Vehicle.Powertrain.TractionBattery.ProductionDate",
+          "Vehicle.Powertrain.TractionBattery.ErrorCodes",
+          "Vehicle.Powertrain.TractionBattery.IsPowerConnected",
+          "Vehicle.Powertrain.TractionBattery.IsGroundConnected",
+          "Vehicle.Powertrain.TractionBattery.Temperature.Average",
+          "Vehicle.Powertrain.TractionBattery.Temperature.Min",
+          "Vehicle.Powertrain.TractionBattery.Temperature.Max",
+          "Vehicle.Powertrain.TractionBattery.Temperature.CellTemperature",
+          "Vehicle.Powertrain.TractionBattery.CellVoltage.Min",
+          "Vehicle.Powertrain.TractionBattery.CellVoltage.IdMin",
+          "Vehicle.Powertrain.TractionBattery.CellVoltage.Max"
+        ],
+        "electric_motor_signals": 84,
+        "diagnostics_signals_count": 2,
+        "diagnostics_signal_examples": [
+          "Vehicle.Diagnostics.DTCCount",
+          "Vehicle.Diagnostics.DTCList"
+        ],
+        "adas_signals_count": 72,
+        "adas_signal_examples": [
+          "Vehicle.ADAS.ActiveAutonomyLevel",
+          "Vehicle.ADAS.SupportedAutonomyLevel",
+          "Vehicle.ADAS.CruiseControl.IsEnabled",
+          "Vehicle.ADAS.CruiseControl.IsActive",
+          "Vehicle.ADAS.CruiseControl.SpeedSet",
+          "Vehicle.ADAS.CruiseControl.IsError",
+          "Vehicle.ADAS.CruiseControl.IsAdaptive",
+          "Vehicle.ADAS.CruiseControl.AdaptiveDistanceSet",
+          "Vehicle.ADAS.CruiseControl.AdaptiveIntervalSet",
+          "Vehicle.ADAS.LaneDepartureDetection.IsEnabled",
+          "Vehicle.ADAS.LaneDepartureDetection.IsWarning",
+          "Vehicle.ADAS.LaneDepartureDetection.IsError"
+        ]
+      },
+      "w3c_vsso": {
+        "vsso_core_ttl": {
+          "bytes": 9205,
+          "owl_classes": 8,
+          "sosa_links": 2,
+          "object_properties": 6,
+          "datatype_properties": 3
+        },
+        "vss_rel_2_2_ttl": {
+          "bytes": 215547,
+          "owl_classes": 508,
+          "sosa_links": 0,
+          "object_properties": 0,
+          "datatype_properties": 0
+        }
+      },
+      "commaai_opendbc": {
+        "_bosch_2018.dbc": {
+          "messages_BO": 20,
+          "signals_SG": 166,
+          "domain_signal_hits": {
+            "STEERING_OR_ADAS": 22,
+            "SERVICE_BRAKES_OR_AEB": 10
+          },
+          "sample_messages": [
+            "STEERING_CONTROL",
+            "BOSCH_SUPPLEMENTAL_1",
+            "BRAKE_HOLD",
+            "STEER_STATUS",
+            "BRAKE_MODULE",
+            "LEGACY_BRAKE_COMMAND",
+            "ECON_STATUS",
+            "LEFT_LANE_LINE_1"
+          ]
+        },
+        "_bosch_radar_acc.dbc": {
+          "messages_BO": 2,
+          "signals_SG": 25,
+          "domain_signal_hits": {
+            "SERVICE_BRAKES_OR_AEB": 5,
+            "ENGINE_POWERTRAIN": 2
+          },
+          "sample_messages": [
+            "ACC_CONTROL",
+            "ACC_CONTROL_ON"
+          ]
+        },
+        "_honda_common.dbc": {
+          "messages_BO": 23,
+          "signals_SG": 160,
+          "domain_signal_hits": {
+            "STEERING_OR_ADAS": 5,
+            "ENGINE_POWERTRAIN": 6,
+            "SERVICE_BRAKES_OR_AEB": 15
+          },
+          "sample_messages": [
+            "KINEMATICS_ALT",
+            "KINEMATICS",
+            "GAS_PEDAL_2",
+            "GAS_PEDAL",
+            "ENGINE_DATA",
+            "POWERTRAIN_DATA",
+            "HYBRID_BRAKE_ERROR",
+            "VSA_STATUS"
+          ]
+        },
+        "byd_atto3.dbc": {
+          "messages_BO": 14,
+          "signals_SG": 103,
+          "domain_signal_hits": {
+            "STEERING_OR_ADAS": 18,
+            "ENGINE_POWERTRAIN": 1,
+            "SERVICE_BRAKES_OR_AEB": 2
+          },
+          "sample_messages": [
+            "STEER_MODULE_2",
+            "WHEEL_SPEED",
+            "STALKS",
+            "STEERING_MODULE_ADAS",
+            "WHEELSPEED_CLEAN",
+            "STEERING_TORQUE",
+            "DRIVE_STATE",
+            "METER_CLUSTER"
+          ]
+        },
+        "honda_clarity_hybrid_2018_can.dbc": {
+          "messages_BO": 2,
+          "signals_SG": 12,
+          "domain_signal_hits": {},
+          "sample_messages": [
+            "VEHICLE_STATE",
+            "VEHICLE_STATE2"
+          ]
+        },
+        "honda_crv_ex_2017_body.dbc": {
+          "messages_BO": 2,
+          "signals_SG": 4,
+          "domain_signal_hits": {},
+          "sample_messages": [
+            "BSM_STATUS_RIGHT",
+            "BSM_STATUS_LEFT"
+          ]
+        },
+        "tesla_model3_vehicle.dbc": {
+          "messages_BO": 11,
+          "signals_SG": 156,
+          "domain_signal_hits": {
+            "SERVICE_BRAKES_OR_AEB": 1,
+            "EV_BATTERY_CHARGING": 1,
+            "STEERING_OR_ADAS": 10
+          },
+          "sample_messages": [
+            "VCLEFT_switchStatus",
+            "VCRIGHT_doorStatus",
+            "SCCM_leftStalk",
+            "DI_systemStatus",
+            "VCRIGHT_status",
+            "SCCM_rightStalk",
+            "SCCM_steeringAngleSensor",
+            "VCLEFT_doorStatus"
+          ]
+        },
+        "tesla_powertrain.dbc": {
+          "messages_BO": 6,
+          "signals_SG": 74,
+          "domain_signal_hits": {
+            "STEERING_OR_ADAS": 10,
+            "ENGINE_POWERTRAIN": 1,
+            "SERVICE_BRAKES_OR_AEB": 6
+          },
+          "sample_messages": [
+            "DI_torque1",
+            "DI_torque2",
+            "BrakeMessage",
+            "STW_ACTN_RQ",
+            "DI_state",
+            "DAS_control"
+          ]
+        }
+      }
+    }
+  },
+  "track2_nev_and_chinese_profiling": {
+    "academic_ev_bms_and_fault_datasets": {
+      "figshare": [
+        {
+          "id": 23659323,
+          "doi": "10.6084/m9.figshare.23659323.v1",
+          "title": "Realistic fault detection of Li-ion battery via dynamical deep learning approach",
+          "url": "https://figshare.com/articles/dataset/Realistic_fault_detection_of_Li-ion_battery_via_dynamical_deep_learning_approach/23659323",
+          "license": "CC BY 4.0",
+          "published_date": "2023-07-11T07:39:54Z",
+          "total_bytes": 1484381511,
+          "files": [
+            {
+              "name": "battery_brand3.tar.gz",
+              "size": 55469605
+            },
+            {
+              "name": "battery_brand2.tar.gz",
+              "size": 236920600
+            },
+            {
+              "name": "battery_brand1.tar.gz",
+              "size": 1191991306
+            }
+          ]
+        },
+        {
+          "id": 30162841,
+          "doi": "10.6084/m9.figshare.30162841.v1",
+          "title": "Multimodal Deep Learning Framework for Electric Vehicle Battery Fault Diagnosis via Spectrogram–Time Series Fusion (preprocessed data)",
+          "url": "https://figshare.com/articles/dataset/Multimodal_Deep_Learning_Framework_for_Electric_Vehicle_Battery_Fault_Diagnosis_via_Spectrogram_Time_Series_Fusion_preprocessed_data_/30162841",
+          "license": "CC BY 4.0",
+          "published_date": "2025-09-19T04:24:06Z",
+          "total_bytes": 52166692,
+          "files": [
+            {
+              "name": "battery_dataset.zip",
+              "size": 52166692
+            }
+          ]
+        },
+        {
+          "id": 23301881,
+          "doi": "10.6084/m9.figshare.23301881.v1",
+          "title": "EVBattery: A Large-Scale Electric Vehicle Dataset for Battery Health and Capacity Estimation",
+          "url": "https://figshare.com/articles/dataset/EVBattery_A_Large-Scale_Electric_Vehicle_Dataset_for_Battery_Health_and_Capacity_Estimation/23301881",
+          "license": "CC BY 4.0",
+          "published_date": "2023-06-06T14:15:36Z",
+          "total_bytes": 1408209405,
+          "files": [
+            {
+              "name": "battery_dataset1.tar.gz",
+              "size": 812110847
+            },
+            {
+              "name": "battery_dataset3.tar.gz",
+              "size": 177847087
+            },
+            {
+              "name": "battery_dataset2.tar.gz",
+              "size": 418251471
+            }
+          ]
+        }
+      ],
+      "datacite_zenodo": [
+        {
+          "doi": "10.5281/zenodo.19006180",
+          "url": "https://zenodo.org/doi/10.5281/zenodo.19006180",
+          "title": "Battery fault diagnosis for in-service electric vehicles",
+          "publication_year": 2026,
+          "licenses": [
+            "cc-by-4.0"
+          ],
+          "publisher": "Zenodo"
+        },
+        {
+          "doi": "10.5281/zenodo.10656500",
+          "url": "https://zenodo.org/doi/10.5281/zenodo.10656500",
+          "title": "Model-Constrained Deep Learning for Online Fault Diagnosis in Li-ion Batteries over Stochastic Conditions",
+          "publication_year": 2024,
+          "licenses": [
+            "cc-by-4.0"
+          ],
+          "publisher": "Zenodo"
+        },
+        {
+          "doi": "10.5281/zenodo.18328700",
+          "url": "https://zenodo.org/doi/10.5281/zenodo.18328700",
+          "title": "Dataset for : Realistic Multi-Fault Diagnostics of Millions-Scale Li-ion batteries with Rapid Unsupervised Learning",
+          "publication_year": 2026,
+          "licenses": [
+            "Copyright (c) 2026 Shaohua Xie and co-authors",
+            "cc-by-4.0"
+          ],
+          "publisher": "Zenodo"
+        },
+        {
+          "doi": "10.5281/zenodo.15626055",
+          "url": "https://zenodo.org/doi/10.5281/zenodo.15626055",
+          "title": "Automotive Faults Dataset for Diagnostic and Maintenance Systems",
+          "publication_year": 2025,
+          "licenses": [
+            "cc-by-4.0"
+          ],
+          "publisher": "Zenodo"
+        }
+      ]
+    },
+    "new_ontology_capability_slots_evidenced": [
+      {
+        "domain": "EV Traction Battery & BMS Faults (Track 2)",
+        "evidence_sources": [
+          "Figshare 23659323 / 30162841",
+          "Figshare 23301881 (EVBattery)",
+          "Zenodo 10656500 / 19006180 / 18328700",
+          "COVESA VSS TractionBattery.*",
+          "opendbc byd_atto3 / tesla_powertrain"
+        ],
+        "candidate_slots": [
+          "cellVoltageEnvelope",
+          "cellTemperature",
+          "stateOfCharge",
+          "stateOfHealth",
+          "insulationResistance",
+          "chargingSessionPhase",
+          "thermalRunawayFlag",
+          "microShortCircuitFlag"
+        ]
+      },
+      {
+        "domain": "Periodic Inspection & Mileage Defect History (Track 1)",
+        "evidence_sources": [
+          "UK DVSA MOT Testing Data (lookup.zip + annual test_result/test_item)"
+        ],
+        "candidate_slots": [
+          "testMileage",
+          "firstUseYear",
+          "fuelTypeCode",
+          "motTestOutcome",
+          "rfrItemGroup",
+          "rfrLocation",
+          "defectSeverity"
+        ]
+      },
+      {
+        "domain": "Cross-Border Recall Alignment (Track 1)",
+        "evidence_sources": [
+          "Transport Canada VRDB (vrdb_full_monthly.csv)",
+          "NHTSA FLAT_RCL"
+        ],
+        "candidate_slots": [
+          "manufacturerRecallNumber",
+          "jurisdictionRecallId",
+          "recallCategory",
+          "unitsAffected"
+        ]
+      },
+      {
+        "domain": "Structured Symptom -> Diagnostic Flowchart -> Resolution (Track 1/2)",
+        "evidence_sources": [
+          "Zenodo 15626055 (Automotive Faults Dataset)"
+        ],
+        "candidate_slots": [
+          "symptomList",
+          "diagnosticProcedureSteps",
+          "resolutionOutcome"
+        ]
+      }
+    ]
+  }
+}

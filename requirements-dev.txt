@@ -1,0 +1,5 @@
+# 实验辅助依赖（切分 parquet、出图、夹具测试），与 requirements.txt 本体工具链钉版解耦
+pyarrow==19.0.1
+matplotlib==3.10.1
+networkx==3.4.2
+pytest==8.3.5

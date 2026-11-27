@@ -1,0 +1,9 @@
+@prefix diag: <https://w3id.org/poc-kb/diag/> .
+@prefix core: <https://w3id.org/poc-kb/core/> .
+
+<https://w3id.org/poc-kb/diag/dtc/P1326> a diag:DTC, core:NamedThing ;
+    diag:code "P1326" .
+
+# Deliberate negative fixture: DtcDefinition missing required makeContext violates generated LinkML SHACL.
+<https://w3id.org/poc-kb/diag/dtc-def/BAD_DEF> a diag:DtcDefinition, core:NamedThing ;
+    diag:definesCode <https://w3id.org/poc-kb/diag/dtc/P1326> .

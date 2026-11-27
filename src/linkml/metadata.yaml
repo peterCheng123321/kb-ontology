@@ -1,0 +1,19 @@
+id: https://w3id.org/poc-kb/metadata
+name: poc_kb_metadata
+title: Automotive After-Sales Knowledge Base Ontology (POC v3.0-exp)
+version: 3.0.0-exp
+license: https://www.apache.org/licenses/LICENSE-2.0
+description: >-
+  Data-first modular LinkML ontology for multi-source automotive after-sales
+  knowledge base experiments. Covers Track 1 (Honda CR-V/Accord 2018 anchored
+  complaints, US/CA cross-jurisdiction recalls, multi-OEM DTC definitions,
+  UK DVSA MOT defect taxonomy & aggregated mileage stats, COVESA VSS / Honda
+  opendbc CAN signals) and Track 2 (EV traction battery fault observation
+  summaries aligned to VSS TractionBattery). Strictly excludes VINs, MOT
+  vehicle_id, raw consumer complaint narratives, and Tier-B non-commercial data.
+imports:
+  - prefixes
+annotations:
+  owl_version_iri: https://w3id.org/poc-kb/catalog/3.0.0-exp
+  upper_ontology_policy: BFO 2020 (ISO/IEC 21838-2:2021) annotation-level alignment; full BFO axioms not imported at runtime
+  privacy_policy: No VIN, no vehicle_id, no raw complaint or QA dialogue text, MOT cell count < 5 suppressed

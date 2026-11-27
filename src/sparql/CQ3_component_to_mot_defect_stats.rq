@@ -1,0 +1,26 @@
+PREFIX core: <https://w3id.org/poc-kb/core/>
+PREFIX insp: <https://w3id.org/poc-kb/insp/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+# CQ3: NHTSA component head -> SKOS UK MOT top group -> CR-V 2018 2023 non-suppressed defect stats by severity & mileage
+SELECT ?nhtsaHead ?topGroupName ?rfrId ?rfrDesc ?severity ?mileageBucket ?defectCount ?testsInCohort
+WHERE {
+  ?stat a insp:InspectionDefectStat ;
+        insp:forVehicle <https://w3id.org/poc-kb/core/vehicle/HONDA_CR-V_2018> ;
+        insp:suppressed false ;
+        insp:defectCount ?defectCount ;
+        insp:testsInCohort ?testsInCohort ;
+        insp:observedSeverity ?severity ;
+        insp:mileageBucket ?mileageBucket ;
+        insp:forDefectItem ?item .
+  ?item insp:rfrId ?rfrId ;
+        core:description ?rfrDesc ;
+        insp:inItemGroup ?grp .
+  ?grp skos:broader* ?topGrp .
+  ?topGrp insp:itemName ?topGroupName ;
+          skos:exactMatch|skos:closeMatch ?comp .
+  ?comp a core:Component ;
+        core:head ?nhtsaHead .
+}
+ORDER BY DESC(?defectCount) ?nhtsaHead ?rfrId
+LIMIT 30
