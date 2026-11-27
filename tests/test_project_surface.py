@@ -1,0 +1,21 @@
+"""VSSo 许可、说明文档与 Makefile 目标。"""
+import subprocess
+from pathlib import Path
+R = Path(__file__).resolve().parents[1]
+def _make(*args: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(["make", *args], cwd=R, capture_output=True, text=True, check=False)
+def test_notice_vsso_uses_w3c_document_license() -> None:
+    text = (R / "NOTICE").read_text(encoding="utf-8")
+    assert "W3C Document License" in text and "https://www.w3.org/Consortium/Legal/copyright-documents" in text
+    assert "https://github.com/w3c/vsso/blob/gh-pages/LICENSE.md" in text
+    assert not any("VSSo" in line and ("CC" in line or "Apache" in line) for line in text.splitlines())
+def test_readme_explains_offline_pytest() -> None:
+    text = (R / "README.md").read_text(encoding="utf-8")
+    assert "pip install -r requirements.txt -r requirements-dev.txt && python -m pytest -q" in text
+    assert "候选池生成器不在本仓库" in text
+def test_make_dry_run_lists_gen_and_pytest() -> None:
+    gen, test = _make("-n", "gen"), _make("-n", "test")
+    assert gen.returncode == 0 and "gen-shacl" in gen.stdout and test.returncode == 0 and "pytest -q" in test.stdout
+def test_make_test_missing_interpreter_errors() -> None:
+    result = _make("test", "PY=/nonexistent/python-b8")
+    assert result.returncode != 0 and "找不到" in result.stderr + result.stdout
