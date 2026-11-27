@@ -40,18 +40,24 @@ def _has_service(node) -> bool:
     return False
 
 
+def pytest_generate_tests(metafunc):
+    if metafunc.definition.name in (
+        "test_query_parses",
+        "test_query_runs_on_empty_graph",
+    ):
+        metafunc.parametrize("name", NAMES)
+
+
 def test_query_set_complete():
     found = sorted(p.name for p in ROOT.glob("CQ*.rq")) if ROOT.is_dir() else []
     assert len(found) == 7
     assert found == sorted(NAMES)
 
 
-@pytest.mark.parametrize("name", NAMES)
 def test_query_parses(name):
     _load(name)
 
 
-@pytest.mark.parametrize("name", NAMES)
 def test_query_runs_on_empty_graph(name):
     prepared = _load(name)
     assert not _has_service(prepared.algebra), name
