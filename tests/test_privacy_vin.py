@@ -69,6 +69,19 @@ def test_sixteen_and_eighteen_character_tokens_not_flagged(shapes_graph: Graph) 
         conforms, report = outcome(shapes_graph, complaint(f'{LABEL} "{literal}"'))
         assert conforms and "17-character VIN" not in report, report
 
+def test_digit_prefixed_eighteen_not_flagged(shapes_graph: Graph) -> None:
+    """数字开头的 18 位字母数字串不是识别号。"""
+    literal = "1" + synthetic_vin()
+    conforms, report = outcome(shapes_graph, complaint(f'{LABEL} "{literal}"'))
+    assert conforms and "17-character VIN" not in report, report
+
+def test_token_containing_i_not_flagged(shapes_graph: Graph) -> None:
+    """含 I、O、Q 的 17 位串不是识别号。"""
+    token = synthetic_vin()
+    literal = token[:4] + "I" + token[5:]
+    conforms, report = outcome(shapes_graph, complaint(f'{LABEL} "{literal}"'))
+    assert conforms and "17-character VIN" not in report, report
+
 def test_typed_and_language_tagged_vin_rejected(shapes_graph: Graph) -> None:
     vin = synthetic_vin()
     flagged(shapes_graph, complaint(f'{LABEL} "{vin}"^^xsd:string'))
