@@ -1,0 +1,9 @@
+# v3 本体实验工具链版本清单（与 docs/ONTOLOGY-TECH-STACK-v3.md §2.9 对齐）
+python=3.12.9
+linkml=1.12.1
+linkml-runtime>=1.12.0
+rdflib=7.6.0
+pyshacl=0.40.2
+jdk=21+ (local tested: OpenJDK 23.0.2 Homebrew)
+robot=1.9.11
+robot_url=https://github.com/ontodev/robot/releases/download/v1.9.11/robot.jar

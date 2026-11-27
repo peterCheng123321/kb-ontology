@@ -74,6 +74,7 @@ def index_pool(doc: object) -> dict[str, tuple[str, dict]]:
     if not isinstance(doc, dict):
         raise InputError("候选池结构无效：顶层必须是对象")
     indexed: dict[str, tuple[str, dict]] = {}
+    duplicates: list[str] = []
     for method, items in doc.items():
         if not isinstance(method, str) or not isinstance(items, list):
             raise InputError("候选池结构无效：每个方法的值必须是数组")
@@ -83,7 +84,12 @@ def index_pool(doc: object) -> dict[str, tuple[str, dict]]:
             link_id = item.get("link_id")
             if not isinstance(link_id, str) or not link_id.strip():
                 raise InputError("候选池结构无效：条目缺少 link_id")
+            if link_id in indexed:
+                duplicates.append(link_id)
+                continue
             indexed[link_id] = (method, item)
+    if duplicates:
+        raise InputError("候选池中的 link_id 重复：" + "、".join(duplicates))
     return indexed
 
 def join_rows(rows: list[dict], pool_by_id: dict[str, tuple[str, dict]]) -> tuple[list[dict], list[str], dict[str, Counter]]:
@@ -113,6 +119,14 @@ def shorten(evidence: dict) -> dict:
     for key, value in evidence.items():
         out[key] = value[:177] + "..." if isinstance(value, str) and len(value) > 180 else value
     return out
+
+def assert_output_dir_allowed(output_dir: Path) -> None:
+    """脚本所在目录内只允许写到 review/ 之下。先解析符号链接和 ..，再创建目录。"""
+    root = Path(__file__).resolve().parents[1]
+    resolved = output_dir.resolve()
+    review = (root / "review").resolve()
+    if resolved.is_relative_to(root) and not resolved.is_relative_to(review):
+        raise InputError(f"拒绝把输出写到仓库内 review/ 以外的目录：{output_dir}")
 
 def write_outputs(output_dir: Path, full: dict, summary: dict) -> None:
     try:
@@ -144,6 +158,7 @@ def main(argv: list[str] | None = None) -> int:
     pool_path = args.pool or (REVIEW_DIR / "v3_candidate_pool.json")
     output_dir = args.output_dir or REVIEW_DIR
     try:
+        assert_output_dir_allowed(output_dir)
         reviewer, reviewed_at, rows = parse_judgments(read_json(judgments_path, "判定文件"))
         items, missing, counts = join_rows(rows, index_pool(read_json(pool_path, "候选池文件")))
         full = {

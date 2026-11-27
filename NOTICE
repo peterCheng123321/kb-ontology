@@ -18,6 +18,16 @@
   https://huggingface.co/datasets/BAAI/IndustryCorpus2_automobile
 - PedroCuisinier2025/OBD2_panel_opel_2012：见该数据集卡片上的许可证声明
   https://huggingface.co/datasets/PedroCuisinier2025/OBD2_panel_opel_2012
+- 加拿大 Transport Canada 机动车召回数据库（VRDB）：Contains information licensed under the Open Government Licence – Canada。https://open.canada.ca/data/en/dataset/1ec92326-47ef-4110-b7ca-959fab03f96d
+- 英国 DVSA MOT 年检公开数据与查找字典：Contains public sector information licensed under the Open Government Licence v3.0。https://data.gov.uk/dataset/e3939ef8-30c7-4ca8-9c7c-ad9475cc9b2f/anonymised-mot-tests-and-results
+- Wal33D/dtc-database（MIT）：https://github.com/Wal33D/dtc-database
+- foerbsnavi/OBDex（数据 CC0-1.0 / 代码 MIT）：https://github.com/foerbsnavi/OBDex
+- COVESA Vehicle Signal Specification (VSS v6.1, MPL-2.0)：https://github.com/COVESA/vehicle_signal_specification
+- W3C Vehicle Signal Specification Ontology (VSSo) — W3C Document License：https://www.w3.org/Consortium/Legal/copyright-documents
+  https://github.com/w3c/vsso/blob/gh-pages/LICENSE.md
+- commaai/opendbc（MIT）：https://github.com/commaai/opendbc
+- Figshare 动力电池与 EVBattery 公开研究数据集（CC BY 4.0）：https://doi.org/10.6084/m9.figshare.30162841
+- Zenodo 实车 BMS 故障诊断与结构化汽车故障数据集（CC BY 4.0）
 
 CodesList 词表是第三方汇编，不是 SAE J2012 官方文本，不能当作法规引用源。
 NHTSA 投诉是车主陈述，不是已证实的缺陷。不得暗示美国政府或上述数据集作者背书。

@@ -52,6 +52,15 @@ kb-ontology/
   gen/                      本地生成物，不提交
 ```
 
+## 模式、校验与测试
+
+- [src/linkml/catalog.yaml](src/linkml/catalog.yaml) 是模块目录，[src/shacl/README.md](src/shacl/README.md) 是手写补充形状，[src/sparql/README.md](src/sparql/README.md) 是能力问题查询。测试在进程内生成形状，不必先执行 `make gen`。
+- [scripts/v3_apply_review.py](scripts/v3_apply_review.py) 连接外部候选池与判定文件。候选池生成器不在本仓库。行为测试在 `tests/`。[ci/pins.txt](ci/pins.txt) 钉死工具链版本。[Makefile](Makefile) 的 `gen` 只写已忽略的 `gen/`，`test` 运行 pytest。
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt && python -m pytest -q
+```
+
 ## 数据来源、直接链接与许可证
 
 下列链接在 2026-11-24（Asia/Shanghai）核对。`static.nhtsa.gov` 与 Hugging Face 数据集页返回 HTTP 200。官方门户 https://www.nhtsa.gov/nhtsa-datasets-and-apis 是 NHTSA 公开的数据集说明页；部分网络环境对该门户会返回 403，但不影响下面的直接文件链接。第三方原始文件请下载到本地 `data/`，不要提交到 git。

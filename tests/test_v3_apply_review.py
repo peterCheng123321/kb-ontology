@@ -9,6 +9,8 @@ import sys
 import time
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "v3_apply_review.py"
 FIXTURES = ROOT / "tests" / "fixtures" / "review"
@@ -120,6 +122,7 @@ def test_unknown_link_ids_reported(tmp_path: Path) -> None:
     assert [row["link_id"] for row in payload["items"]] == ["link-alpha-001"]
 
 def test_never_writes_tracked_paths(tmp_path: Path) -> None:
+    """脚本根内、review 以外的目录必须拒绝。A5 把根从 .git 改成脚本的上两级后，given-out 不再允许写入。"""
     layout, script = stage_repo(tmp_path)
     pool, body = fixture_pair()
     work = layout / "inputs"
@@ -130,8 +133,8 @@ def test_never_writes_tracked_paths(tmp_path: Path) -> None:
     before_docs, before_files = docs_text(layout), {path.relative_to(layout) for path in layout.rglob("*") if path.is_file()}
     result = execute(script, ["--pool", str(work / "pool.json"), "--judgments", str(work / "judgments.json"), "--output-dir", str(given)])
     new_files = {path.relative_to(layout) for path in layout.rglob("*") if path.is_file()} - before_files
-    assert result.returncode == 0, result.stderr
-    assert docs_text(layout) == before_docs and new_files and all(path.parts[0] == "given-out" for path in new_files)
+    assert result.returncode == 1 and "拒绝" in result.stderr, result.stderr
+    assert docs_text(layout) == before_docs and not new_files and not given.exists()
 
 def _corrupt(tmp_path: Path, name: str) -> tuple[subprocess.CompletedProcess[str], Path]:
     pool_path, judgments_path, out = tmp_path / "pool.json", tmp_path / "judgments.json", tmp_path / "out"
@@ -204,6 +207,91 @@ def test_summary_truncates_long_evidence(tmp_path: Path) -> None:
     summary = {row["link_id"]: row["evidence"]["note"] for row in json.loads((out / "v3-review.json").read_text())["items"]}
     assert full["link-keep-001"] == kept and summary["link-keep-001"] == kept
     assert full["link-long-001"] == long and summary["link-long-001"] == ("x" * 177) + "..."
+
+def _reject_pool(tmp_path: Path, pool: dict) -> None:
+    result, out = run_raw(tmp_path, pool, judged([ACCEPTED]))
+    assert result.returncode == 1 and not out.exists()
+    assert "候选池" in result.stderr and "重复" in result.stderr and "link-alpha-001" in result.stderr
+
+def test_pool_duplicate_link_id_same_family_rejected(tmp_path: Path) -> None:
+    """同一方法里 link_id 出现两次时拒绝，且不写文件。"""
+    _reject_pool(tmp_path, {"family_alpha": [
+        {"link_id": "link-alpha-001", "note": "first"}, {"link_id": "link-alpha-001", "note": "second"},
+    ]})
+
+def test_pool_duplicate_link_id_across_families_rejected(tmp_path: Path) -> None:
+    """不同方法里出现同一个 link_id 时拒绝，且不写文件。"""
+    _reject_pool(tmp_path, {
+        "family_alpha": [{"link_id": "link-alpha-001", "note": "a"}],
+        "family_beta": [{"link_id": "link-alpha-001", "note": "b"}],
+    })
+
+def _run_in(script: Path, output: str, pool_path: Path, judgments_path: Path, cwd: Path) -> subprocess.CompletedProcess[str]:
+    env = os.environ.copy()
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    env["PYTHONIOENCODING"] = "utf-8"
+    return subprocess.run(
+        [sys.executable, str(script), "--pool", str(pool_path), "--judgments", str(judgments_path), "--output-dir", output],
+        capture_output=True, text=True, encoding="utf-8", env=env, check=False, cwd=cwd,
+    )
+
+def test_output_dir_refused_without_git_dir(tmp_path: Path) -> None:
+    """没有 .git 时，脚本根目录下的 docs/stats 仍然拒绝写入。"""
+    layout, script = stage_repo(tmp_path)
+    assert not (layout / ".git").exists()
+    inputs = tmp_path / "inputs"
+    inputs.mkdir()
+    pool_path, judgments_path = inputs / "pool.json", inputs / "judgments.json"
+    pool_path.write_text(json.dumps(one_pool()), encoding="utf-8")
+    judgments_path.write_text(json.dumps(judged([ACCEPTED]), ensure_ascii=False), encoding="utf-8")
+    keep = layout / "docs" / "stats" / "keep.txt"
+    before = keep.read_bytes()
+    result = _run_in(script, str(layout / "docs" / "stats"), pool_path, judgments_path, layout)
+    assert result.returncode == 1 and "拒绝" in result.stderr, (result.returncode, result.stderr)
+    assert keep.read_bytes() == before and not (layout / "docs" / "stats" / "v3_review_samples.json").exists()
+
+def test_output_dir_inside_repo_outside_review_refused(tmp_path: Path) -> None:
+    """仓库内除 review/ 以外的输出目录（含相对路径、..、符号链接和仓库根）一律拒绝。"""
+    layout, script = stage_repo(tmp_path)
+    subprocess.run(["git", "init", "-q"], cwd=layout, check=True)
+    inputs = tmp_path / "inputs"
+    inputs.mkdir()
+    pool_path, judgments_path = inputs / "pool.json", inputs / "judgments.json"
+    pool_path.write_text(json.dumps(one_pool()), encoding="utf-8")
+    judgments_path.write_text(json.dumps(judged([ACCEPTED]), ensure_ascii=False), encoding="utf-8")
+    keep, stats = layout / "docs" / "stats" / "keep.txt", layout / "docs" / "stats"
+    before = keep.read_bytes()
+    docs_before = {path.relative_to(layout) for path in (layout / "docs").rglob("*")}
+    link = layout / "via-docs"
+    link.symlink_to(stats, target_is_directory=True)
+    refused = [str(stats), "docs/stats", "review/../docs/stats", str(layout), ".", "not-review-new", str(link)]
+    for output in refused:
+        result = _run_in(script, output, pool_path, judgments_path, layout)
+        assert result.returncode == 1 and "拒绝" in result.stderr, (output, result.returncode, result.stderr)
+        assert keep.read_bytes() == before and not (layout / "not-review-new").exists()
+        assert not (stats / "v3_review_samples.json").exists()
+    assert {path.relative_to(layout) for path in (layout / "docs").rglob("*")} == docs_before
+    allowed = _run_in(script, str(layout / "review" / "x"), pool_path, judgments_path, layout)
+    assert allowed.returncode == 0 and (layout / "review" / "x" / "v3_review_samples.json").is_file(), allowed.stderr
+    assert keep.read_bytes() == before
+
+def test_gitignore_review_is_root_anchored(tmp_path: Path) -> None:
+    """只忽略仓库根的 review/，不忽略嵌套的 tests/fixtures/review/。"""
+    if shutil.which("git") is None:
+        pytest.skip("git 不在 PATH 上")
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    subprocess.run(["git", "init", "-q"], cwd=repo, check=True)
+    shutil.copy(ROOT / ".gitignore", repo / ".gitignore")
+    (repo / "review").mkdir()
+    (repo / "review" / "v3_judgments.json").write_text("{}\n", encoding="utf-8")
+    nested = repo / "tests" / "fixtures" / "review"
+    nested.mkdir(parents=True)
+    (nested / "new_case.json").write_text("{}\n", encoding="utf-8")
+    def check(relative: str) -> int:
+        return subprocess.run(["git", "check-ignore", "--no-index", relative], cwd=repo, capture_output=True, check=False).returncode
+    assert check("review/v3_judgments.json") == 0 and check("tests/fixtures/review/new_case.json") != 0
+
 
 def test_default_paths_stay_inside_review_dir(tmp_path: Path) -> None:
     layout, script = stage_repo(tmp_path)

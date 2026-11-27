@@ -1,0 +1,16 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://w3id.org/poc-kb/core/> .
+
+# Enforces unified xsd:decimal score in [0.0, 1.0] (moved out of LinkML float facet for HermiT compatibility).
+core:CandidateLinkScoreRangeShape a sh:NodeShape ;
+    sh:targetClass core:CandidateLink ;
+    sh:property [
+        sh:path core:score ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "CandidateLink score must be xsd:decimal in [0.0, 1.0]." ;
+    ] .

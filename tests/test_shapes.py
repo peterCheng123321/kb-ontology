@@ -1,0 +1,90 @@
+"""正例与反例夹具对照测试时生成的 SHACL；extras 目录存在时一并加载。"""
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+from pyshacl import validate
+from rdflib import Graph
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+EXTRAS_DIR = REPO_ROOT / "src" / "shacl" / "extras"
+FIXTURES_DIR = REPO_ROOT / "tests" / "fixtures"
+POSITIVE_DIR = FIXTURES_DIR / "positive"
+VIN_PLACEHOLDER = "VIN_PLACEHOLDER"
+NEGATIVE_EXPECTATIONS = {
+    "neg_privacy_vin.ttl": "17-character VIN", "neg_privacy_predicate.ttl": "forbidden PII/narrative",
+    "neg_mot_unsuppressed_small_cell.ttl": "defectCount >= 5",
+    "neg_candidate_score_oob.ttl": "score must be xsd:decimal in [0.0, 1.0]", "neg_dtc_def_missing_make.ttl": "makeContext",
+}
+
+def synthetic_vin() -> str:
+    return "JH4KA" + "8260MC000000"
+def load_combined_shapes(schema_gen) -> Graph:
+    shapes = Graph()
+    shapes.parse(schema_gen.artifacts()["shacl"], format="turtle")
+    if EXTRAS_DIR.is_dir():
+        for path in sorted(EXTRAS_DIR.glob("*.ttl")):
+            shapes.parse(path, format="turtle")
+    return shapes
+
+def parse_data(path: Path, text: str | None = None) -> Graph:
+    graph = Graph()
+    try:
+        graph.parse(path, format="turtle") if text is None else graph.parse(data=text, format="turtle")
+    except Exception as exc:
+        raise AssertionError(f"夹具无法解析：{path.name}：{exc}") from exc
+    return graph
+
+def load_fixture(path: Path) -> Graph:
+    if path.name != "neg_privacy_vin.ttl":
+        return parse_data(path)
+    text = path.read_text(encoding="utf-8").replace(VIN_PLACEHOLDER, synthetic_vin())
+    return parse_data(path, text)
+
+def _check(shapes: Graph, data: Graph) -> tuple[bool, str]:
+    conforms, _, report = validate(
+        data_graph=data, shacl_graph=shapes, inference="none", abort_on_first=False, advanced=True,
+    )
+    return bool(conforms), report
+
+def shapes_graph(schema_gen):
+    return load_combined_shapes(schema_gen)
+shapes_graph = pytest.fixture(scope="module")(shapes_graph)
+
+def pytest_generate_tests(metafunc):
+    if "fixture_path" in metafunc.fixturenames:
+        paths = _positive_paths() or [None]
+        metafunc.parametrize("fixture_path", paths, ids=lambda path: path.name if isinstance(path, Path) else "none")
+    if "filename" in metafunc.fixturenames:
+        metafunc.parametrize("filename,expected_substr", sorted(NEGATIVE_EXPECTATIONS.items()))
+
+def _positive_paths() -> list[Path]:
+    return sorted(POSITIVE_DIR.glob("*.ttl")) if POSITIVE_DIR.is_dir() else []
+
+def test_positive_fixture_set_not_empty() -> None:
+    """正例目录至少有一份 ttl。"""
+    assert _positive_paths(), "positive 目录没有 ttl 夹具"
+
+def test_positive_fixtures_conform(shapes_graph: Graph, fixture_path: Path | None) -> None:
+    """每份正例图符合生成形状；extras 目录不存在时仍只检查生成形状。"""
+    assert fixture_path is not None, "没有正例夹具"
+    conforms, report = _check(shapes_graph, parse_data(fixture_path))
+    assert conforms, f"正例 {fixture_path.name} 未通过 SHACL:\n{report}"
+
+def test_empty_data_graph_conforms(shapes_graph: Graph) -> None:
+    conforms, report = _check(shapes_graph, Graph())
+    assert conforms, report
+
+def test_negative_fixtures_fail_with_expected_reason(shapes_graph: Graph, filename: str, expected_substr: str) -> None:
+    """每份反例都不符合，且报告含预期原文。"""
+    path = FIXTURES_DIR / "negative" / filename
+    assert path.is_file(), f"缺少反例夹具：{filename}"
+    conforms, report = _check(shapes_graph, load_fixture(path))
+    assert not conforms and expected_substr in report, f"反例 {filename}:\n{report}"
+
+def test_unparseable_fixture_names_file(tmp_path: Path) -> None:
+    bad = tmp_path / "broken.ttl"
+    bad.write_text("@prefix x: <not-closed", encoding="utf-8")
+    with pytest.raises(AssertionError, match="broken.ttl"):
+        parse_data(bad)
