@@ -1,0 +1,1372 @@
+{
+  "measured_at": "2026-11-25 Asia/Shanghai",
+  "engine": "pyoxigraph (SPARQL 1.1)",
+  "store_triples": 721685,
+  "load_seconds": 1.11,
+  "all_assertions_passed": true,
+  "assertions": [
+    {
+      "check": "CQ1_non_empty",
+      "passed": true,
+      "detail": "n=7"
+    },
+    {
+      "check": "CQ1_hard_key_zero_matches_stats",
+      "passed": true,
+      "detail": "hard_rows=0"
+    },
+    {
+      "check": "CQ1_fuel_pump_ca_match",
+      "passed": true,
+      "detail": "matched_fuel_ca=['2020236', '2023679', '2024262']"
+    },
+    {
+      "check": "CQ1_candidates_have_provenance",
+      "passed": true,
+      "detail": "all rows carry method/score/reviewStatus"
+    },
+    {
+      "check": "CQ2_P1326_vw_mismatch",
+      "passed": true,
+      "detail": "P1326 rows=[{'code': 'P1326', 'makeContext': 'VOLKSWAGEN', 'sourceKey': 'wal33d_dtc', 'score': '0.2', 'mismatch': 'true', 'reviewStatus': 'rejected', 'defText': 'Cylinder 2 Knock Control Limit Attained'}]"
+    },
+    {
+      "check": "CQ2_C1391_C2200_uncovered",
+      "passed": true,
+      "detail": "C1391=1, C2200=1"
+    },
+    {
+      "check": "CQ3_nhtsa_to_mot_visible",
+      "passed": true,
+      "detail": "rows=30, heads=['ELECTRICAL SYSTEM', 'EXTERIOR LIGHTING', 'SERVICE BRAKES', 'TIRES', 'VISIBILITY']"
+    },
+    {
+      "check": "CQ3_suppressed_zero_leak",
+      "passed": true,
+      "detail": "leak_rows=0, min_visible_cnt=59"
+    },
+    {
+      "check": "CQ4_all_three_heads_covered",
+      "passed": true,
+      "detail": "covered=['FORWARD COLLISION AVOIDANCE', 'SERVICE BRAKES', 'STEERING']"
+    },
+    {
+      "check": "CQ4_vsso_alignment_present",
+      "passed": true,
+      "detail": "vsso_aligned_rows=13"
+    },
+    {
+      "check": "CQ5_both_dtcs_mapped",
+      "passed": true,
+      "detail": "codes=['P0172', 'P0300'], rows=18"
+    },
+    {
+      "check": "CQ5_formula_and_vss_present",
+      "passed": true,
+      "detail": "formula=17, vss=6"
+    },
+    {
+      "check": "CQ6_three_brands_and_labels",
+      "passed": true,
+      "detail": "brands=['battery_brand1', 'battery_brand2', 'battery_brand3'], labels=['fault_abnormal', 'normal']"
+    },
+    {
+      "check": "CQ6_snippets_and_vss_aligned",
+      "passed": true,
+      "detail": "total_snippets=700582"
+    },
+    {
+      "check": "CQ7_all_four_multisource_hops",
+      "passed": true,
+      "detail": "hops=['1_recall_us_ca', '2_dtc_repair_part', '3_uk_mot_stat', '4_can_vss_signal'], rows=32"
+    }
+  ],
+  "figures": [
+    "figs/v3_chain_odino_11407338.png",
+    "figs/v3_module_overview.png"
+  ],
+  "queries": {
+    "CQ1_cross_jurisdiction_recall": {
+      "n": 7,
+      "seconds": 0.005,
+      "rows": [
+        {
+          "usId": "18V629000",
+          "usDate": "2018-09-13",
+          "caId": "2018500",
+          "caDate": "2018-09-13",
+          "caSystem": "Visual System",
+          "linkKind": "candidate",
+          "method": "xjur_mmy_system_window",
+          "score": "0.87",
+          "reviewStatus": "accepted",
+          "matchedHead": "BACK OVER PREVENTION, VISIBILITY",
+          "note": "date_diff=0d, jaccard=0.148, tc_sys=Visual System | 审核: 发布日期差 0 天，美加官方摘要均明确为 2018 雅阁倒车影像中控不显示软件故障（FMVSS/CMVSS 111），同源跨国召回成立。"
+        },
+        {
+          "usId": "20V314000",
+          "usDate": "2020-05-28",
+          "caId": "2020236",
+          "caDate": "2020-05-28",
+          "caSystem": "Fuel System",
+          "linkKind": "candidate",
+          "method": "xjur_mmy_system_window",
+          "score": "0.84",
+          "reviewStatus": "accepted",
+          "matchedHead": "FUEL SYSTEM",
+          "note": "date_diff=0d, jaccard=0.118, tc_sys=Fuel System | 审核: 发布日期差 0 天，美加官方摘要均明确为 2018 雅阁低压燃油泵失效导致熄火，同源跨国召回成立。"
+        },
+        {
+          "usId": "20V771000",
+          "usDate": "2020-12-10",
+          "caId": "2020611",
+          "caDate": "2020-12-10",
+          "caSystem": "Electrical",
+          "linkKind": "candidate",
+          "method": "xjur_mmy_system_window",
+          "score": "0.86",
+          "reviewStatus": "accepted",
+          "matchedHead": "ELECTRICAL SYSTEM",
+          "note": "date_diff=0d, jaccard=0.138, tc_sys=Electrical | 审核: 发布日期差 0 天，美加官方摘要均明确为 2018 雅阁车身控制模块（BCM）软件通信中断，同源跨国召回成立。"
+        },
+        {
+          "usId": "23V158000",
+          "usDate": "2023-03-09",
+          "caId": "2023127",
+          "caDate": "2023-03-09",
+          "caSystem": "Seats And Restraints",
+          "linkKind": "candidate",
+          "method": "xjur_mmy_system_window",
+          "score": "0.81",
+          "reviewStatus": "accepted",
+          "matchedHead": "SEAT BELTS",
+          "note": "date_diff=0d, jaccard=0.076, tc_sys=Seats And Restraints | 审核: 发布日期差 0 天，美加官方摘要均明确为 2018 CR-V/雅阁前排安全带锁扣缺陷，同源跨国召回成立。"
+        },
+        {
+          "usId": "23V858000",
+          "usDate": "2023-12-18",
+          "caId": "2023679",
+          "caDate": "2023-12-18",
+          "caSystem": "Fuel System",
+          "linkKind": "candidate",
+          "method": "xjur_mmy_system_window",
+          "score": "0.78",
+          "reviewStatus": "accepted",
+          "matchedHead": "FUEL SYSTEM",
+          "note": "date_diff=0d, jaccard=0.036, tc_sys=Fuel System | 审核: 发布日期差 0 天，美加均指向 2018 CR-V/雅阁低压燃油泵召回；加方官方摘要注明后续由 2024-262 替代。"
+        },
+        {
+          "usId": "23V858000",
+          "usDate": "2023-12-18",
+          "caId": "2024262",
+          "caDate": "2024-05-06",
+          "caSystem": "Fuel System",
+          "linkKind": "candidate",
+          "method": "xjur_mmy_system_window",
+          "score": "0.68",
+          "reviewStatus": "accepted",
+          "matchedHead": "FUEL SYSTEM",
+          "note": "date_diff=140d, jaccard=0.032, tc_sys=Fuel System | 审核: 日期差 140 天，加方官方摘要显式说明 2024-262 替代 2023-679 且同为低压燃油泵召回，属于跨国替代活动有效对应。"
+        },
+        {
+          "usId": "26V332000",
+          "usDate": "2026-05-21",
+          "caId": "2026251",
+          "caDate": "2026-05-21",
+          "caSystem": "Seats And Restraints",
+          "linkKind": "candidate",
+          "method": "xjur_mmy_system_window",
+          "score": "0.77",
+          "reviewStatus": "accepted",
+          "matchedHead": "AIR BAGS",
+          "note": "date_diff=0d, jaccard=0.031, tc_sys=Seats And Restraints | 审核: 发布日期差 0 天，美加均明确为 2018 CR-V/雅阁前排乘客座椅重量传感器缺陷影响气囊展开，同源跨国召回成立。"
+        }
+      ]
+    },
+    "CQ2_dtc_make_context_disambiguation": {
+      "n": 14,
+      "seconds": 0.1546,
+      "rows": [
+        {
+          "code": "B1234",
+          "makeContext": "OTHER",
+          "sourceKey": "wal33d_dtc",
+          "score": "0.2",
+          "mismatch": "true",
+          "reviewStatus": "rejected",
+          "defText": "Mirror Switch Invalid Code"
+        },
+        {
+          "code": "C1250",
+          "makeContext": "OTHER",
+          "sourceKey": "wal33d_dtc",
+          "score": "0.2",
+          "mismatch": "true",
+          "reviewStatus": "rejected",
+          "defText": "ABS Inlet Valve Coil LR Circuit Failure"
+        },
+        {
+          "code": "C1391",
+          "makeContext": "UNCOVERED",
+          "sourceKey": "none",
+          "score": "0",
+          "mismatch": "false",
+          "reviewStatus": "uncovered",
+          "defText": "No open definition in CodesList/Wal33D/OBDex"
+        },
+        {
+          "code": "C2200",
+          "makeContext": "UNCOVERED",
+          "sourceKey": "none",
+          "score": "0",
+          "mismatch": "false",
+          "reviewStatus": "uncovered",
+          "defText": "No open definition in CodesList/Wal33D/OBDex"
+        },
+        {
+          "code": "P0300",
+          "makeContext": "GENERIC",
+          "sourceKey": "codeslist_obd2",
+          "score": "0.7",
+          "mismatch": "false",
+          "reviewStatus": "unreviewed",
+          "defText": "Random/Multiple Cylinder Misfire Detected"
+        },
+        {
+          "code": "P0300",
+          "makeContext": "GENERIC",
+          "sourceKey": "obdex_dtc",
+          "score": "0.7",
+          "mismatch": "false",
+          "reviewStatus": "accepted",
+          "defText": "Random/Multiple Cylinder Misfire Detected"
+        },
+        {
+          "code": "P0300",
+          "makeContext": "GENERIC",
+          "sourceKey": "wal33d_dtc",
+          "score": "0.7",
+          "mismatch": "false",
+          "reviewStatus": "unreviewed",
+          "defText": "Random/Multiple Cylinder Misfire Detected"
+        },
+        {
+          "code": "P0300",
+          "makeContext": "AUDI",
+          "sourceKey": "wal33d_dtc",
+          "score": "0.2",
+          "mismatch": "true",
+          "reviewStatus": "rejected",
+          "defText": "Worn out spark plugs, ignition wires, coil(s), distributor cap and rotor (when applicable), Incorrect ignition timing, Vacuum leak(s), Low or weak fuel pressure, Improperly functioning EGR system, Defective Mass Air Flow Sensor, Defective Crankshaft and or Camshaft Sensor, Defective Throttle Position Sensor, Mechanical engine problems (i.e.—low..."
+        },
+        {
+          "code": "P0420",
+          "makeContext": "GENERIC",
+          "sourceKey": "codeslist_obd2",
+          "score": "0.7",
+          "mismatch": "false",
+          "reviewStatus": "unreviewed",
+          "defText": "Catalyst System Efficiency Below Threshold (Bank 1)"
+        },
+        {
+          "code": "P0420",
+          "makeContext": "GENERIC",
+          "sourceKey": "obdex_dtc",
+          "score": "0.7",
+          "mismatch": "false",
+          "reviewStatus": "unreviewed",
+          "defText": "Catalyst System Efficiency Below Threshold Bank 1"
+        },
+        {
+          "code": "P0420",
+          "makeContext": "GENERIC",
+          "sourceKey": "wal33d_dtc",
+          "score": "0.7",
+          "mismatch": "false",
+          "reviewStatus": "accepted",
+          "defText": "Catalyst System Efficiency Below Threshold Bank 1"
+        },
+        {
+          "code": "P0420",
+          "makeContext": "AUDI",
+          "sourceKey": "wal33d_dtc",
+          "score": "0.2",
+          "mismatch": "true",
+          "reviewStatus": "unreviewed",
+          "defText": "Inefficient Catalytic Converter(s), Defective Front or Rear Oxygen Sensor(s), Misfiring engines"
+        },
+        {
+          "code": "P1009",
+          "makeContext": "UNCOVERED",
+          "sourceKey": "none",
+          "score": "0",
+          "mismatch": "false",
+          "reviewStatus": "uncovered",
+          "defText": "No open definition in CodesList/Wal33D/OBDex"
+        },
+        {
+          "code": "P1326",
+          "makeContext": "VOLKSWAGEN",
+          "sourceKey": "wal33d_dtc",
+          "score": "0.2",
+          "mismatch": "true",
+          "reviewStatus": "rejected",
+          "defText": "Cylinder 2 Knock Control Limit Attained"
+        }
+      ]
+    },
+    "CQ3_component_to_mot_defect_stats": {
+      "n": 30,
+      "seconds": 0.0039,
+      "rows": [
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31194",
+          "rfrDesc": "tread depth below requirements of 1.6mm",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "1278",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "SERVICE BRAKES",
+          "topGroupName": "Brakes",
+          "rfrId": "30329",
+          "rfrDesc": "less than 1.5 mm thick",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "636",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "32037",
+          "rfrDesc": "has a tear, caused by separation or partial failure of its structure",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "549",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "32037",
+          "rfrDesc": "has a tear, caused by separation or partial failure of its structure",
+          "severity": "Advisory",
+          "mileageBucket": "0_30k",
+          "defectCount": "463",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31194",
+          "rfrDesc": "tread depth below requirements of 1.6mm",
+          "severity": "Advisory",
+          "mileageBucket": "0_30k",
+          "defectCount": "428",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31194",
+          "rfrDesc": "tread depth below requirements of 1.6mm",
+          "severity": "Advisory",
+          "mileageBucket": "60k_90k",
+          "defectCount": "264",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31195",
+          "rfrDesc": "tread pattern not visible over the whole tread area when minimum depth required is 1.0mm",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "216",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "SERVICE BRAKES",
+          "topGroupName": "Brakes",
+          "rfrId": "30333",
+          "rfrDesc": "significantly and obviously worn",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "156",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "ELECTRICAL SYSTEM",
+          "topGroupName": "Lamps, reflectors and electrical equipment",
+          "rfrId": "30969",
+          "rfrDesc": "with a multiple light source more than 1/2 not functioning",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "143",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "EXTERIOR LIGHTING",
+          "topGroupName": "Lamps, reflectors and electrical equipment",
+          "rfrId": "30969",
+          "rfrDesc": "with a multiple light source more than 1/2 not functioning",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "143",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "VISIBILITY",
+          "topGroupName": "Visibility",
+          "rfrId": "30856",
+          "rfrDesc": "blade defective",
+          "severity": "Minor",
+          "mileageBucket": "30k_60k",
+          "defectCount": "141",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "SERVICE BRAKES",
+          "topGroupName": "Brakes",
+          "rfrId": "30335",
+          "rfrDesc": "in such a condition that it is seriously weakened",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "139",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "SERVICE BRAKES",
+          "topGroupName": "Brakes",
+          "rfrId": "30329",
+          "rfrDesc": "less than 1.5 mm thick",
+          "severity": "Advisory",
+          "mileageBucket": "0_30k",
+          "defectCount": "131",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "VISIBILITY",
+          "topGroupName": "Visibility",
+          "rfrId": "30858",
+          "rfrDesc": "does not clear the windscreen effectively",
+          "severity": "Major",
+          "mileageBucket": "30k_60k",
+          "defectCount": "130",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "VISIBILITY",
+          "topGroupName": "Visibility",
+          "rfrId": "30856",
+          "rfrDesc": "blade defective",
+          "severity": "Minor",
+          "mileageBucket": "0_30k",
+          "defectCount": "129",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "ELECTRICAL SYSTEM",
+          "topGroupName": "Lamps, reflectors and electrical equipment",
+          "rfrId": "30895",
+          "rfrDesc": "too high",
+          "severity": "Major",
+          "mileageBucket": "30k_60k",
+          "defectCount": "128",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "EXTERIOR LIGHTING",
+          "topGroupName": "Lamps, reflectors and electrical equipment",
+          "rfrId": "30895",
+          "rfrDesc": "too high",
+          "severity": "Major",
+          "mileageBucket": "30k_60k",
+          "defectCount": "128",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "SERVICE BRAKES",
+          "topGroupName": "Brakes",
+          "rfrId": "30329",
+          "rfrDesc": "less than 1.5 mm thick",
+          "severity": "Advisory",
+          "mileageBucket": "60k_90k",
+          "defectCount": "123",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31186",
+          "rfrDesc": "has a cut in excess of the requirements deep enough to reach the ply or cords",
+          "severity": "Advisory",
+          "mileageBucket": "30k_60k",
+          "defectCount": "114",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "VISIBILITY",
+          "topGroupName": "Visibility",
+          "rfrId": "30823",
+          "rfrDesc": "damaged but not adversely affecting driver's view",
+          "severity": "Minor",
+          "mileageBucket": "30k_60k",
+          "defectCount": "107",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "VISIBILITY",
+          "topGroupName": "Visibility",
+          "rfrId": "30858",
+          "rfrDesc": "does not clear the windscreen effectively",
+          "severity": "Major",
+          "mileageBucket": "0_30k",
+          "defectCount": "107",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "ELECTRICAL SYSTEM",
+          "topGroupName": "Lamps, reflectors and electrical equipment",
+          "rfrId": "30969",
+          "rfrDesc": "with a multiple light source more than 1/2 not functioning",
+          "severity": "Advisory",
+          "mileageBucket": "0_30k",
+          "defectCount": "100",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "EXTERIOR LIGHTING",
+          "topGroupName": "Lamps, reflectors and electrical equipment",
+          "rfrId": "30969",
+          "rfrDesc": "with a multiple light source more than 1/2 not functioning",
+          "severity": "Advisory",
+          "mileageBucket": "0_30k",
+          "defectCount": "100",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31194",
+          "rfrDesc": "tread depth below requirements of 1.6mm",
+          "severity": "Dangerous",
+          "mileageBucket": "30k_60k",
+          "defectCount": "94",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31186",
+          "rfrDesc": "has a cut in excess of the requirements deep enough to reach the ply or cords",
+          "severity": "Advisory",
+          "mileageBucket": "0_30k",
+          "defectCount": "90",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31195",
+          "rfrDesc": "tread pattern not visible over the whole tread area when minimum depth required is 1.0mm",
+          "severity": "Advisory",
+          "mileageBucket": "0_30k",
+          "defectCount": "90",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "SERVICE BRAKES",
+          "topGroupName": "Brakes",
+          "rfrId": "30329",
+          "rfrDesc": "less than 1.5 mm thick",
+          "severity": "Dangerous",
+          "mileageBucket": "30k_60k",
+          "defectCount": "87",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "ELECTRICAL SYSTEM",
+          "topGroupName": "Lamps, reflectors and electrical equipment",
+          "rfrId": "30895",
+          "rfrDesc": "too high",
+          "severity": "Major",
+          "mileageBucket": "0_30k",
+          "defectCount": "59",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "EXTERIOR LIGHTING",
+          "topGroupName": "Lamps, reflectors and electrical equipment",
+          "rfrId": "30895",
+          "rfrDesc": "too high",
+          "severity": "Major",
+          "mileageBucket": "0_30k",
+          "defectCount": "59",
+          "testsInCohort": "10108"
+        },
+        {
+          "nhtsaHead": "TIRES",
+          "topGroupName": "Tyres",
+          "rfrId": "31186",
+          "rfrDesc": "has a cut in excess of the requirements deep enough to reach the ply or cords",
+          "severity": "Major",
+          "mileageBucket": "30k_60k",
+          "defectCount": "59",
+          "testsInCohort": "10108"
+        }
+      ]
+    },
+    "CQ4_component_to_can_vss": {
+      "n": 19,
+      "seconds": 0.0014,
+      "rows": [
+        {
+          "head": "FORWARD COLLISION AVOIDANCE",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_radar_acc.dbc",
+          "msgName": "ACC_CONTROL",
+          "vssPath": "Vehicle.ADAS.CruiseControl",
+          "vssoClass": "https://github.com/w3c/vsso#ADASCruiseControl",
+          "score": "0.9",
+          "reviewStatus": "accepted",
+          "nCanSignals": "16"
+        },
+        {
+          "head": "FORWARD COLLISION AVOIDANCE",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_radar_acc.dbc",
+          "msgName": "ACC_CONTROL",
+          "vssPath": "Vehicle.ADAS.ObstacleDetection",
+          "vssoClass": "https://github.com/w3c/vsso#ADASObstacleDetection",
+          "score": "0.9",
+          "reviewStatus": "accepted",
+          "nCanSignals": "16"
+        },
+        {
+          "head": "FORWARD COLLISION AVOIDANCE",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_radar_acc.dbc",
+          "msgName": "ACC_CONTROL_ON",
+          "vssPath": "Vehicle.ADAS.CruiseControl.IsActive",
+          "vssoClass": "https://github.com/w3c/vsso#CruiseControlIsActive",
+          "score": "0.85",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "9"
+        },
+        {
+          "head": "FORWARD COLLISION AVOIDANCE",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "ACC_HUD",
+          "vssPath": "Vehicle.ADAS.CruiseControl.SpeedSet",
+          "vssoClass": "https://github.com/w3c/vsso#CruiseControlSpeedSet",
+          "score": "0.85",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "25"
+        },
+        {
+          "head": "FORWARD COLLISION AVOIDANCE",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_2018.dbc",
+          "msgName": "RADAR_HUD",
+          "vssPath": "",
+          "vssoClass": "",
+          "score": "0.85",
+          "reviewStatus": "accepted",
+          "nCanSignals": "15"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_2018.dbc",
+          "msgName": "BRAKE_MODULE",
+          "vssPath": "Vehicle.Chassis.Brake.PedalPosition",
+          "vssoClass": "https://github.com/w3c/vsso#BrakePedalPosition",
+          "score": "0.9",
+          "reviewStatus": "accepted",
+          "nCanSignals": "4"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "VSA_STATUS",
+          "vssPath": "Vehicle.ADAS.ESC.IsError",
+          "vssoClass": "",
+          "score": "0.9",
+          "reviewStatus": "accepted",
+          "nCanSignals": "8"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "VSA_STATUS",
+          "vssPath": "Vehicle.ADAS.TCS.IsError",
+          "vssoClass": "",
+          "score": "0.9",
+          "reviewStatus": "accepted",
+          "nCanSignals": "8"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "EPB_STATUS",
+          "vssPath": "Vehicle.Chassis.ParkingBrake.IsEngaged",
+          "vssoClass": "https://github.com/w3c/vsso#ParkingBrakeIsEngaged",
+          "score": "0.85",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "5"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "HYBRID_BRAKE_ERROR",
+          "vssPath": "Vehicle.ADAS.ABS.IsError",
+          "vssoClass": "",
+          "score": "0.85",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "4"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "POWERTRAIN_DATA",
+          "vssPath": "Vehicle.Chassis.Brake.PedalPosition",
+          "vssoClass": "https://github.com/w3c/vsso#BrakePedalPosition",
+          "score": "0.85",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "11"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "POWERTRAIN_DATA",
+          "vssPath": "Vehicle.Powertrain.CombustionEngine.TPS",
+          "vssoClass": "",
+          "score": "0.85",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "11"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "WHEEL_SPEEDS",
+          "vssPath": "Vehicle.Chassis.Axle.Row1.Wheel.Left.Speed",
+          "vssoClass": "https://github.com/w3c/vsso#Speed",
+          "score": "0.85",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "5"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "WHEEL_SPEEDS",
+          "vssPath": "Vehicle.Chassis.Axle.Row1.Wheel.Right.Speed",
+          "vssoClass": "https://github.com/w3c/vsso#Speed",
+          "score": "0.85",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "5"
+        },
+        {
+          "head": "SERVICE BRAKES",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_2018.dbc",
+          "msgName": "BRAKE_HOLD",
+          "vssPath": "Vehicle.Chassis.Brake.IsDriverEmergencyBrakingDetected",
+          "vssoClass": "",
+          "score": "0.8",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "5"
+        },
+        {
+          "head": "STEERING",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_2018.dbc",
+          "msgName": "STEERING_CONTROL",
+          "vssPath": "Vehicle.ADAS.LaneDepartureDetection",
+          "vssoClass": "https://github.com/w3c/vsso#ADASLaneDepartureDetection",
+          "score": "0.9",
+          "reviewStatus": "accepted",
+          "nCanSignals": "8"
+        },
+        {
+          "head": "STEERING",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_2018.dbc",
+          "msgName": "STEERING_CONTROL",
+          "vssPath": "Vehicle.Chassis.SteeringWheel.Angle",
+          "vssoClass": "https://github.com/w3c/vsso#SteeringWheelAngle",
+          "score": "0.9",
+          "reviewStatus": "accepted",
+          "nCanSignals": "8"
+        },
+        {
+          "head": "STEERING",
+          "platform": "HONDA_COMMON",
+          "dbcFile": "_honda_common.dbc",
+          "msgName": "STEER_MOTOR_TORQUE",
+          "vssPath": "Vehicle.Chassis.SteeringWheel.Angle",
+          "vssoClass": "https://github.com/w3c/vsso#SteeringWheelAngle",
+          "score": "0.9",
+          "reviewStatus": "unreviewed",
+          "nCanSignals": "6"
+        },
+        {
+          "head": "STEERING",
+          "platform": "HONDA_2018_BOSCH",
+          "dbcFile": "_bosch_2018.dbc",
+          "msgName": "STEER_STATUS",
+          "vssPath": "Vehicle.Chassis.SteeringWheel.Angle",
+          "vssoClass": "https://github.com/w3c/vsso#SteeringWheelAngle",
+          "score": "0.9",
+          "reviewStatus": "accepted",
+          "nCanSignals": "7"
+        }
+      ]
+    },
+    "CQ5_dtc_to_obd_pid_vss": {
+      "n": 18,
+      "seconds": 0.0009,
+      "rows": [
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "03",
+          "pidName": "Fuel system status (system 1 and system 2)",
+          "unit": "encoded",
+          "formula": "",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "05",
+          "pidName": "Engine coolant temperature",
+          "unit": "°C",
+          "formula": "A - 40",
+          "vssPath": "Vehicle.Powertrain.CombustionEngine.EngineCoolant.Temperature",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "06",
+          "pidName": "Short term fuel trim — Bank 1",
+          "unit": "%",
+          "formula": "100/128 * A - 100",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "accepted"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "07",
+          "pidName": "Long term fuel trim — Bank 1",
+          "unit": "%",
+          "formula": "100/128 * A - 100",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "accepted"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "0B",
+          "pidName": "Intake manifold absolute pressure",
+          "unit": "kPa",
+          "formula": "A",
+          "vssPath": "Vehicle.Powertrain.CombustionEngine.MAP",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "0F",
+          "pidName": "Intake air temperature",
+          "unit": "°C",
+          "formula": "A - 40",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "10",
+          "pidName": "Mass air flow rate",
+          "unit": "g/s",
+          "formula": "(256*A + B) / 100",
+          "vssPath": "Vehicle.Powertrain.CombustionEngine.MAF",
+          "score": "0.85",
+          "reviewStatus": "accepted"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "11",
+          "pidName": "Throttle position",
+          "unit": "%",
+          "formula": "100/255 * A",
+          "vssPath": "Vehicle.Powertrain.CombustionEngine.TPS",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "14",
+          "pidName": "Oxygen sensor 1 (Bank 1 Sensor 1) — voltage and short term fuel trim",
+          "unit": "V; %",
+          "formula": "A/200 (voltage); 100/128 * B - 100 (trim)",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "accepted"
+        },
+        {
+          "code": "P0172",
+          "mode": "01",
+          "pidHex": "23",
+          "pidName": "Fuel rail gauge pressure (diesel or petrol direct injection)",
+          "unit": "kPa",
+          "formula": "10 * (256 * A + B)",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0300",
+          "mode": "01",
+          "pidHex": "04",
+          "pidName": "Calculated engine load",
+          "unit": "%",
+          "formula": "100/255 * A",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0300",
+          "mode": "01",
+          "pidHex": "06",
+          "pidName": "Short term fuel trim — Bank 1",
+          "unit": "%",
+          "formula": "100/128 * A - 100",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "accepted"
+        },
+        {
+          "code": "P0300",
+          "mode": "01",
+          "pidHex": "07",
+          "pidName": "Long term fuel trim — Bank 1",
+          "unit": "%",
+          "formula": "100/128 * A - 100",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0300",
+          "mode": "01",
+          "pidHex": "0C",
+          "pidName": "Engine RPM",
+          "unit": "rpm",
+          "formula": "(256*A + B) / 4",
+          "vssPath": "Vehicle.Powertrain.CombustionEngine.Speed",
+          "score": "0.85",
+          "reviewStatus": "accepted"
+        },
+        {
+          "code": "P0300",
+          "mode": "01",
+          "pidHex": "0E",
+          "pidName": "Timing advance (cylinder 1)",
+          "unit": "° before TDC",
+          "formula": "A/2 - 64",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "accepted"
+        },
+        {
+          "code": "P0300",
+          "mode": "01",
+          "pidHex": "10",
+          "pidName": "Mass air flow rate",
+          "unit": "g/s",
+          "formula": "(256*A + B) / 100",
+          "vssPath": "Vehicle.Powertrain.CombustionEngine.MAF",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "code": "P0300",
+          "mode": "01",
+          "pidHex": "23",
+          "pidName": "Fuel rail gauge pressure (diesel or petrol direct injection)",
+          "unit": "kPa",
+          "formula": "10 * (256 * A + B)",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "accepted"
+        },
+        {
+          "code": "P0300",
+          "mode": "01",
+          "pidHex": "42",
+          "pidName": "Control module voltage",
+          "unit": "V",
+          "formula": "(256*A + B) / 1000",
+          "vssPath": "",
+          "score": "0.85",
+          "reviewStatus": "unreviewed"
+        }
+      ]
+    },
+    "CQ6_ev_battery_fault_summary_vss": {
+      "n": 6,
+      "seconds": 0.0059,
+      "rows": [
+        {
+          "brandCohort": "battery_brand1",
+          "faultLabel": "fault_abnormal",
+          "nVehicles": "30",
+          "totalSnippets": "17031",
+          "minMileageKm": "14.57",
+          "maxMileageKm": "1799.28",
+          "maxChargeSegment": "314",
+          "alignedVssSignals": "7"
+        },
+        {
+          "brandCohort": "battery_brand1",
+          "faultLabel": "normal",
+          "nVehicles": "168",
+          "totalSnippets": "459708",
+          "minMileageKm": "14.57",
+          "maxMileageKm": "3709.37",
+          "maxChargeSegment": "1430",
+          "alignedVssSignals": "7"
+        },
+        {
+          "brandCohort": "battery_brand2",
+          "faultLabel": "fault_abnormal",
+          "nVehicles": "16",
+          "totalSnippets": "111287",
+          "minMileageKm": "14.57",
+          "maxMileageKm": "2791.77",
+          "maxChargeSegment": "1335",
+          "alignedVssSignals": "7"
+        },
+        {
+          "brandCohort": "battery_brand2",
+          "faultLabel": "normal",
+          "nVehicles": "33",
+          "totalSnippets": "82958",
+          "minMileageKm": "14.57",
+          "maxMileageKm": "13817.39",
+          "maxChargeSegment": "1255",
+          "alignedVssSignals": "7"
+        },
+        {
+          "brandCohort": "battery_brand3",
+          "faultLabel": "fault_abnormal",
+          "nVehicles": "9",
+          "totalSnippets": "1774",
+          "minMileageKm": "2010.41",
+          "maxMileageKm": "24036.84",
+          "maxChargeSegment": "208",
+          "alignedVssSignals": "7"
+        },
+        {
+          "brandCohort": "battery_brand3",
+          "faultLabel": "normal",
+          "nVehicles": "91",
+          "totalSnippets": "27824",
+          "minMileageKm": "0",
+          "maxMileageKm": "44362.38",
+          "maxChargeSegment": "304",
+          "alignedVssSignals": "7"
+        }
+      ]
+    },
+    "CQ7_multisource_closed_loop_chain": {
+      "n": 32,
+      "seconds": 0.0034,
+      "rows": [
+        {
+          "odino": "11407338",
+          "hopKind": "1_recall_us_ca",
+          "sourceEntity": "US:21V215000",
+          "targetEntity": "no_ca_match",
+          "detail": "us_only",
+          "score": "0.6"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "1_recall_us_ca",
+          "sourceEntity": "US:23V858000",
+          "targetEntity": "CA:2023679",
+          "detail": "xjur_score=0.78",
+          "score": "0.6"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "1_recall_us_ca",
+          "sourceEntity": "US:23V858000",
+          "targetEntity": "CA:2024262",
+          "detail": "xjur_score=0.68",
+          "score": "0.6"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0172",
+          "targetEntity": "Fuel injector",
+          "detail": "Test fuel injectors for leakage and replace as needed",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0172",
+          "targetEntity": "Fuel pressure regulator",
+          "detail": "Replace stuck-open fuel pressure regulator",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0172",
+          "targetEntity": "Injector seal/washer kit",
+          "detail": "Test fuel injectors for leakage and replace as needed",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0172",
+          "targetEntity": "Mass air flow sensor cleaner spray",
+          "detail": "Clean MAF sensor and inspect for false-high airflow readings",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0172",
+          "targetEntity": "Regulator seal kit",
+          "detail": "Replace stuck-open fuel pressure regulator",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0300",
+          "targetEntity": "Electric fuel pump assembly",
+          "detail": "Test fuel pump output pressure and delivery volume",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0300",
+          "targetEntity": "Engine smoke machine test solution",
+          "detail": "Smoke-test intake and vacuum lines for a shared leak",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0300",
+          "targetEntity": "Fresh fuel (top off tank)",
+          "detail": "Verify fuel delivery and refuel if the tank is low",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0300",
+          "targetEntity": "Fuel pressure test gauge",
+          "detail": "Test fuel pump output pressure and delivery volume",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0300",
+          "targetEntity": "Ignition coil boot/seal kit",
+          "detail": "Replace spark plugs and inspect ignition coils as a set",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0300",
+          "targetEntity": "Intake gasket set",
+          "detail": "Smoke-test intake and vacuum lines for a shared leak",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0300",
+          "targetEntity": "Spark plug set",
+          "detail": "Replace spark plugs and inspect ignition coils as a set",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0301",
+          "targetEntity": "Compression tester kit",
+          "detail": "Run a cylinder compression or leak-down test",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0301",
+          "targetEntity": "Cylinder head gasket set",
+          "detail": "Inspect and replace a leaking or damaged cylinder head gasket/valve",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "2_dtc_repair_part",
+          "sourceEntity": "P0301",
+          "targetEntity": "Valve seat/guide service kit",
+          "detail": "Inspect and replace a leaking or damaged cylinder head gasket/valve",
+          "score": "1"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "3_uk_mot_stat",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "RFR_31885 (Major/30k_60k)",
+          "detail": "count=9 | inoperative or indicates a malfunction",
+          "score": "0.75"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "3_uk_mot_stat",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "RFR_31938 (Major/30k_60k)",
+          "detail": "count=13 | inoperative or indicates a malfunction",
+          "score": "0.75"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "3_uk_mot_stat",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "RFR_31938 (Major/60k_90k)",
+          "detail": "count=9 | inoperative or indicates a malfunction",
+          "score": "0.75"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "3_uk_mot_stat",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "RFR_31940 (Advisory/0_30k)",
+          "detail": "count=15 | leaking excessively from engine",
+          "score": "0.75"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "3_uk_mot_stat",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "RFR_31940 (Advisory/30k_60k)",
+          "detail": "count=15 | leaking excessively from engine",
+          "score": "0.75"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "3_uk_mot_stat",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "RFR_31940 (Advisory/60k_90k)",
+          "detail": "count=8 | leaking excessively from engine",
+          "score": "0.75"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "3_uk_mot_stat",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "RFR_31942 (Advisory/30k_60k)",
+          "detail": "count=5 | leaking excessively from transmission",
+          "score": "0.75"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "4_can_vss_signal",
+          "sourceEntity": "FORWARD COLLISION AVOIDANCE",
+          "targetEntity": "ACC_CONTROL",
+          "detail": "Vehicle.ADAS.CruiseControl",
+          "score": "0.9"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "4_can_vss_signal",
+          "sourceEntity": "FORWARD COLLISION AVOIDANCE",
+          "targetEntity": "ACC_CONTROL",
+          "detail": "Vehicle.ADAS.ObstacleDetection",
+          "score": "0.9"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "4_can_vss_signal",
+          "sourceEntity": "FORWARD COLLISION AVOIDANCE",
+          "targetEntity": "ACC_CONTROL_ON",
+          "detail": "Vehicle.ADAS.CruiseControl.IsActive",
+          "score": "0.85"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "4_can_vss_signal",
+          "sourceEntity": "FORWARD COLLISION AVOIDANCE",
+          "targetEntity": "ACC_HUD",
+          "detail": "Vehicle.ADAS.CruiseControl.SpeedSet",
+          "score": "0.85"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "4_can_vss_signal",
+          "sourceEntity": "FORWARD COLLISION AVOIDANCE",
+          "targetEntity": "RADAR_HUD",
+          "detail": "HONDA_2018_BOSCH",
+          "score": "0.85"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "4_can_vss_signal",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "ENGINE_DATA",
+          "detail": "Vehicle.Powertrain.CombustionEngine.Speed",
+          "score": "0.9"
+        },
+        {
+          "odino": "11407338",
+          "hopKind": "4_can_vss_signal",
+          "sourceEntity": "FUEL SYSTEM",
+          "targetEntity": "ENGINE_DATA",
+          "detail": "Vehicle.Speed",
+          "score": "0.9"
+        }
+      ]
+    }
+  }
+}

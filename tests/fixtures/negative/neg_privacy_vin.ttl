@@ -1,0 +1,13 @@
+@prefix core: <https://w3id.org/poc-kb/core/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://w3id.org/poc-kb/core/vehicle/BAD_VEH> a core:VehicleModelYear, core:NamedThing ;
+    core:make "HONDA" ;
+    core:model "CR-V" ;
+    core:modelYear "2018" .
+
+# Deliberate negative fixture: synthetic 17-char VIN-shaped literal must be rejected by PrivacyGuardShape.
+<https://w3id.org/poc-kb/core/complaint/BAD_VIN> a core:Complaint, core:NamedThing ;
+    core:odino "99999999" ;
+    core:vehicle <https://w3id.org/poc-kb/core/vehicle/BAD_VEH> ;
+    rdfs:label "1HGCV1F30JA000001" .

@@ -1,0 +1,130 @@
+id: https://w3id.org/poc-kb/evb
+name: poc_kb_ev_battery
+title: Track 2 EV Traction Battery Fault Observation Module
+version: 3.0.0-exp
+description: >-
+  Models Track 2 new-energy vehicle (NEV) traction battery fault datasets,
+  anonymous vehicle cohort references, and snippet-level telemetry summaries
+  aligned to COVESA VSS TractionBattery signals (sourced from Figshare CC-BY-4.0
+  and DataCite Zenodo metadata).
+imports:
+  - prefixes
+  - linkml:types
+  - core
+  - signal
+prefixes:
+  linkml: https://w3id.org/linkml/
+  evb: https://w3id.org/poc-kb/evb/
+  sosa: http://www.w3.org/ns/sosa/
+default_prefix: evb
+default_range: string
+
+slots:
+  brandCohort:
+    description: Anonymized EV OEM cohort label from dataset (e.g. battery_brand1/2/3).
+
+enums:
+  BatteryFaultTypeEnum:
+    permissible_values:
+      normal:
+        description: Normal / non-faulty charging or driving snippet.
+      fault_abnormal:
+        description: Labeled abnormal / faulty battery snippet (binary anomaly label).
+      thermal_runaway:
+        description: Severe thermal runaway or over-temperature fault.
+      voltage_anomaly:
+        description: Cell voltage drop, over-voltage, or extreme voltage inconsistency.
+      internal_short:
+        description: Micro / internal short circuit fault.
+      capacity_degradation:
+        description: Accelerated SOH / capacity fade anomaly.
+      unknown_fault:
+        description: Unspecified fault label.
+
+classes:
+  BatteryDataset:
+    is_a: NamedThing
+    description: Metadata record for an open-licensed EV BMS dataset (Figshare / Zenodo).
+    slots:
+      - description
+      - fromSource
+      - seeAlso
+    attributes:
+      doi:
+        required: true
+      vehicleCount:
+        range: integer
+      snippetCount:
+        range: integer
+      dataFormat:
+
+  BatteryVehicleRef:
+    is_a: NamedThing
+    description: Dataset-internal anonymous vehicle identifier (never a real VIN).
+    slots:
+      - fromSource
+      - brandCohort
+    attributes:
+      datasetVehicleCode:
+        required: true
+      inDataset:
+        range: BatteryDataset
+        required: true
+      vehicleFaultStatus:
+        range: BatteryFaultTypeEnum
+
+  BatterySnippetSummary:
+    is_a: NamedThing
+    description: >-
+      Aggregated telemetry/charging-segment summary for an EV or fault cohort
+      aligned to SOSA Observation and COVESA VSS TractionBattery signals.
+    close_mappings:
+      - sosa:Observation
+    annotations:
+      bfo_alignment: BFO_0000015 (process / observation) summary artifact
+    slots:
+      - fromSource
+      - brandCohort
+    attributes:
+      snippetId:
+        required: true
+      forBatteryVehicle:
+        range: BatteryVehicleRef
+        required: true
+      faultLabel:
+        range: BatteryFaultTypeEnum
+        required: true
+      rawLabelCode:
+        description: Original label token from source dataset (e.g. 0, 1).
+      sampleCount:
+        range: integer
+        description: Number of charging snippets aggregated into this summary node.
+      chargeSegmentMax:
+        range: integer
+      mileageMinKm:
+        range: decimal
+      mileageMaxKm:
+        range: decimal
+      mileageMeanKm:
+        range: decimal
+      socMin:
+        range: decimal
+      socMax:
+        range: decimal
+      voltageMin:
+        range: decimal
+      voltageMax:
+        range: decimal
+      cellVoltageMin:
+        range: decimal
+      cellVoltageMax:
+        range: decimal
+      cellTempMax:
+        range: decimal
+      cellTempMin:
+        range: decimal
+      currentAbsMax:
+        range: decimal
+      observesSignal:
+        range: VehicleSignal
+        multivalued: true

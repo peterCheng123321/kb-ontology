@@ -1,0 +1,960 @@
+{
+  "measured_at": "2026-11-25 Asia/Shanghai",
+  "protocol": "Up to 10 sampled edges per new v3 CandidateLink family reviewed strictly from official/structured fields.",
+  "total_reviewed": 57,
+  "overall_counts": {
+    "accepted": 42,
+    "rejected": 6,
+    "uncertain": 9
+  },
+  "by_method_counts": {
+    "battery_fault_signal": {
+      "accepted": 8,
+      "uncertain": 2
+    },
+    "component_can_message": {
+      "accepted": 8,
+      "uncertain": 2
+    },
+    "component_mot_group": {
+      "accepted": 7,
+      "uncertain": 3
+    },
+    "dtc_make_context": {
+      "rejected": 6,
+      "accepted": 4
+    },
+    "dtc_pid_subsystem": {
+      "accepted": 8,
+      "uncertain": 2
+    },
+    "xjur_mmy_system_window": {
+      "accepted": 7
+    }
+  },
+  "items": [
+    {
+      "link_id": "xjur-18V629000-CA_2018500",
+      "method": "xjur_mmy_system_window",
+      "judgment": "accepted",
+      "reason": "发布日期差 0 天，美加官方摘要均明确为 2018 雅阁倒车影像中控不显示软件故障（FMVSS/CMVSS 111），同源跨国召回成立。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "us_recall": "18V629000",
+        "ca_recall": "2018500",
+        "shared_models": [
+          "ACCORD"
+        ],
+        "shared_heads": [
+          "BACK OVER PREVENTION",
+          "VISIBILITY"
+        ],
+        "days_diff": 0,
+        "jaccard": 0.148,
+        "score": 0.87,
+        "us_defect": "Honda (American Honda Motor Co.) is recalling certain 2018 Honda Accord and 2019 Honda Insight vehicles. In certain scenarios, the back-up camera center display may not function...",
+        "ca_defect": "Certain vehicles do not comply with the requirements of Canada Motor Vehicle Safety Standard (CMVSS) 111 - Mirrors and Rear Visibility Systems. Due to a software programming err..."
+      }
+    },
+    {
+      "link_id": "xjur-20V314000-CA_2020236",
+      "method": "xjur_mmy_system_window",
+      "judgment": "accepted",
+      "reason": "发布日期差 0 天，美加官方摘要均明确为 2018 雅阁低压燃油泵失效导致熄火，同源跨国召回成立。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "us_recall": "20V314000",
+        "ca_recall": "2020236",
+        "shared_models": [
+          "ACCORD"
+        ],
+        "shared_heads": [
+          "FUEL SYSTEM"
+        ],
+        "days_diff": 0,
+        "jaccard": 0.118,
+        "score": 0.84,
+        "us_defect": "Honda (American Honda Motor Co.) is recalling certain 2018-2019 Acura NSX, 2019 Acura RDX, RLX and RLX Sport Hybrid, 2018-2019 Honda Accord, Civic Hatchback, Civic Type R and HR...",
+        "ca_defect": "Issue: On certain vehicles, the low-pressure fuel pump could fail. If this happens, then engine may run rough or may not start and the check engine light may turn on. This could..."
+      }
+    },
+    {
+      "link_id": "xjur-20V771000-CA_2020611",
+      "method": "xjur_mmy_system_window",
+      "judgment": "accepted",
+      "reason": "发布日期差 0 天，美加官方摘要均明确为 2018 雅阁车身控制模块（BCM）软件通信中断，同源跨国召回成立。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "us_recall": "20V771000",
+        "ca_recall": "2020611",
+        "shared_models": [
+          "ACCORD"
+        ],
+        "shared_heads": [
+          "ELECTRICAL SYSTEM"
+        ],
+        "days_diff": 0,
+        "jaccard": 0.138,
+        "score": 0.86,
+        "us_defect": "Honda (American Honda Motor Co.) is recalling certain 2018-2020 Accord Sedan, Accord Hybrid, and 2019-2020 Insight vehicles. A software error may cause intermittent or continuou...",
+        "ca_defect": "Issue: On certain vehicles, a software problem in the Body Control Module (BCM) could cause different systems and warnings to stop working. This can include: the window defrosti..."
+      }
+    },
+    {
+      "link_id": "xjur-23V158000-CA_2023127",
+      "method": "xjur_mmy_system_window",
+      "judgment": "accepted",
+      "reason": "发布日期差 0 天，美加官方摘要均明确为 2018 CR-V/雅阁前排安全带锁扣缺陷，同源跨国召回成立。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "us_recall": "23V158000",
+        "ca_recall": "2023127",
+        "shared_models": [
+          "ACCORD",
+          "CR-V"
+        ],
+        "shared_heads": [
+          "SEAT BELTS"
+        ],
+        "days_diff": 0,
+        "jaccard": 0.076,
+        "score": 0.81,
+        "us_defect": "Honda (American Honda Motor Co.) is recalling certain 2017-2020 CR-V, 2018-2019 Accord and Accord Hybrid, 2018-2020 Odyssey, 2019 Insight, and 2019-2020 Acura RDX vehicles. A ma...",
+        "ca_defect": "Issue: On certain vehicles, the seat belt buckles for the driver and front-passenger seats could wear over time and may not latch securely. If this happens, the seat belt could ..."
+      }
+    },
+    {
+      "link_id": "xjur-23V858000-CA_2023679",
+      "method": "xjur_mmy_system_window",
+      "judgment": "accepted",
+      "reason": "发布日期差 0 天，美加均指向 2018 CR-V/雅阁低压燃油泵召回；加方官方摘要注明后续由 2024-262 替代。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "us_recall": "23V858000",
+        "ca_recall": "2023679",
+        "shared_models": [
+          "ACCORD",
+          "CR-V"
+        ],
+        "shared_heads": [
+          "FUEL SYSTEM"
+        ],
+        "days_diff": 0,
+        "jaccard": 0.036,
+        "score": 0.78,
+        "us_defect": "Honda (American Honda Motor Co.) is recalling certain 2013-2023 Honda Accord, Civic Coupe, Civic Sedan, Civic Hatchback, Civic Type R, CR-V, HR-V, Ridgeline, Odyssey, Acura ILX,...",
+        "ca_defect": "This recall was replaced by Transport Canada recall no. 2024-262. Issue: This recall is for low-pressure fuel pumps installed on certain vehicles or sold at dealerships as a rep..."
+      }
+    },
+    {
+      "link_id": "xjur-23V858000-CA_2024262",
+      "method": "xjur_mmy_system_window",
+      "judgment": "accepted",
+      "reason": "日期差 140 天，加方官方摘要显式说明 2024-262 替代 2023-679 且同为低压燃油泵召回，属于跨国替代活动有效对应。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "us_recall": "23V858000",
+        "ca_recall": "2024262",
+        "shared_models": [
+          "ACCORD",
+          "CR-V"
+        ],
+        "shared_heads": [
+          "FUEL SYSTEM"
+        ],
+        "days_diff": 140,
+        "jaccard": 0.032,
+        "score": 0.68,
+        "us_defect": "Honda (American Honda Motor Co.) is recalling certain 2013-2023 Honda Accord, Civic Coupe, Civic Sedan, Civic Hatchback, Civic Type R, CR-V, HR-V, Ridgeline, Odyssey, Acura ILX,...",
+        "ca_defect": "Issue: This recall is for low-pressure fuel pumps installed on certain vehicles or sold at dealerships as a replacement part. On certain vehicles, the low-pressure fuel pump cou..."
+      }
+    },
+    {
+      "link_id": "xjur-26V332000-CA_2026251",
+      "method": "xjur_mmy_system_window",
+      "judgment": "accepted",
+      "reason": "发布日期差 0 天，美加均明确为 2018 CR-V/雅阁前排乘客座椅重量传感器缺陷影响气囊展开，同源跨国召回成立。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "us_recall": "26V332000",
+        "ca_recall": "2026251",
+        "shared_models": [
+          "ACCORD",
+          "CR-V"
+        ],
+        "shared_heads": [
+          "AIR BAGS"
+        ],
+        "days_diff": 0,
+        "jaccard": 0.031,
+        "score": 0.77,
+        "us_defect": "Honda (American Honda Motor Co.) is recalling certain 2018-2021, 2023 Acura TLX, 2019-2024 RDX, 2017-2020, 2022-2026 MDX, 2017-2021, 2023, 2025 Honda Ridgeline, 2017-2022 Pilot,...",
+        "ca_defect": "Issue: On certain vehicles, the weight sensor for the front passenger seat may not have been manufactured properly. As a result, the passenger-front airbag and knee airbag could..."
+      }
+    },
+    {
+      "link_id": "dmc-P1326-VOLKSWAGEN-wal33d",
+      "method": "dtc_make_context",
+      "judgment": "rejected",
+      "reason": "跨品牌冲突：Wal33D 仅收录 VOLKSWAGEN 释义，而 NHTSA 高频投诉属现代/起亚 KSDS，更不可套用到本田上下文（mismatchFlag=true）。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P1326",
+        "makeContext": "VOLKSWAGEN",
+        "source": "wal33d",
+        "score": 0.2,
+        "mismatch": true,
+        "desc": "Cylinder 2 Knock Control Limit Attained"
+      }
+    },
+    {
+      "link_id": "dmc-P0300-AUDI-wal33d",
+      "method": "dtc_make_context",
+      "judgment": "rejected",
+      "reason": "跨品牌冗余：AUDI 厂标条目包含排查建议文本而非标准定义，套用于本田上下文应拒绝并优先采用 SAE GENERIC。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0300",
+        "makeContext": "AUDI",
+        "source": "wal33d",
+        "score": 0.2,
+        "mismatch": true,
+        "desc": "Worn out spark plugs, ignition wires, coil(s), distributor cap and rotor (when applicable), Incorrect ignition timing, Vacuum leak(s), Lo..."
+      }
+    },
+    {
+      "link_id": "dmc-P0301-AUDI-wal33d",
+      "method": "dtc_make_context",
+      "judgment": "rejected",
+      "reason": "跨品牌冗余：AUDI 厂标释义不应套用于本田 2018 投诉，应使用 SAE J2012 通用定义。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0301",
+        "makeContext": "AUDI",
+        "source": "wal33d",
+        "score": 0.2,
+        "mismatch": true,
+        "desc": "Worn out spark plugs, ignition wires, coil(s), distributor cap and rotor (when applicable), Incorrect ignition timing, Vacuum leak(s), Lo..."
+      }
+    },
+    {
+      "link_id": "dmc-B1234-OTHER-wal33d",
+      "method": "dtc_make_context",
+      "judgment": "rejected",
+      "reason": "Wal33D 归类为未定厂商 OTHER（Mirror Switch），无本田官方厂标佐证，禁止直接套用。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "B1234",
+        "makeContext": "OTHER",
+        "source": "wal33d",
+        "score": 0.2,
+        "mismatch": true,
+        "desc": "Mirror Switch Invalid Code"
+      }
+    },
+    {
+      "link_id": "dmc-C1250-OTHER-wal33d",
+      "method": "dtc_make_context",
+      "judgment": "rejected",
+      "reason": "Wal33D 归类为未定厂商 OTHER 的底盘厂标码，无法确认与本田 2018 底盘码义一致。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "C1250",
+        "makeContext": "OTHER",
+        "source": "wal33d",
+        "score": 0.2,
+        "mismatch": true,
+        "desc": "ABS Inlet Valve Coil LR Circuit Failure"
+      }
+    },
+    {
+      "link_id": "dmc-C1870-OTHER-wal33d",
+      "method": "dtc_make_context",
+      "judgment": "rejected",
+      "reason": "Wal33D 归类为 OTHER（Air Suspension Gate Solenoid），本田 CR-V/雅阁 2018 无空气悬架配置，明显跨厂误配。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "C1870",
+        "makeContext": "OTHER",
+        "source": "wal33d",
+        "score": 0.2,
+        "mismatch": true,
+        "desc": "Air Suspension Gate Solenoid Output Circuit Open"
+      }
+    },
+    {
+      "link_id": "dmc-P0300-GENERIC-obdex",
+      "method": "dtc_make_context",
+      "judgment": "accepted",
+      "reason": "SAE J2012 标准通用随机/多缸失火码，OBDex 经外部溯源审校且英德释义清晰，可安全用于本田。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0300",
+        "makeContext": "GENERIC",
+        "source": "obdex",
+        "score": 0.7,
+        "mismatch": false,
+        "desc": "Random/Multiple Cylinder Misfire Detected"
+      }
+    },
+    {
+      "link_id": "dmc-P0172-GENERIC-obdex",
+      "method": "dtc_make_context",
+      "judgment": "accepted",
+      "reason": "SAE J2012 标准通用燃油系统过浓码，OBDex 定义准确且与燃油系统切片高度相关。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0172",
+        "makeContext": "GENERIC",
+        "source": "obdex",
+        "score": 0.7,
+        "mismatch": false,
+        "desc": "System Too Rich Bank 1"
+      }
+    },
+    {
+      "link_id": "dmc-B0020-GENERIC-codeslist",
+      "method": "dtc_make_context",
+      "judgment": "accepted",
+      "reason": "SAE J2012 通用车身侧气囊展开控制码，CodesList/Wal33D/OBDex 三库释义完全一致。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "B0020",
+        "makeContext": "GENERIC",
+        "source": "codeslist",
+        "score": 0.7,
+        "mismatch": false,
+        "desc": "Left Side Airbag Deployment Control"
+      }
+    },
+    {
+      "link_id": "dmc-P0420-GENERIC-wal33d",
+      "method": "dtc_make_context",
+      "judgment": "accepted",
+      "reason": "SAE J2012 通用三元催化效率低于阈值码，跨库通用定义一致。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0420",
+        "makeContext": "GENERIC",
+        "source": "wal33d",
+        "score": 0.7,
+        "mismatch": false,
+        "desc": "Catalyst System Efficiency Below Threshold Bank 1"
+      }
+    },
+    {
+      "link_id": "cmot-SERVICE_BRAKES-20003",
+      "method": "component_mot_group",
+      "judgment": "accepted",
+      "reason": "SKOS exactMatch：MOT Class 4 Brakes（20003）与 NHTSA SERVICE BRAKES 语义等价。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "SERVICE BRAKES",
+        "mot_item_id": "20003",
+        "mot_name": "Brakes",
+        "relation": "exactMatch",
+        "score": 0.9
+      }
+    },
+    {
+      "link_id": "cmot-STEERING-20106",
+      "method": "component_mot_group",
+      "judgment": "accepted",
+      "reason": "SKOS exactMatch：MOT Class 4 Steering（20106）与 NHTSA STEERING 语义等价。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "STEERING",
+        "mot_item_id": "20106",
+        "mot_name": "Steering",
+        "relation": "exactMatch",
+        "score": 0.9
+      }
+    },
+    {
+      "link_id": "cmot-VISIBILITY-20147",
+      "method": "component_mot_group",
+      "judgment": "accepted",
+      "reason": "SKOS exactMatch：MOT Class 4 Visibility（20147）与 NHTSA VISIBILITY 语义等价。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "VISIBILITY",
+        "mot_item_id": "20147",
+        "mot_name": "Visibility",
+        "relation": "exactMatch",
+        "score": 0.9
+      }
+    },
+    {
+      "link_id": "cmot-SUSPENSION-20218",
+      "method": "component_mot_group",
+      "judgment": "accepted",
+      "reason": "SKOS exactMatch：MOT Class 4 Suspension（20218）与 NHTSA SUSPENSION 语义等价。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "SUSPENSION",
+        "mot_item_id": "20218",
+        "mot_name": "Suspension",
+        "relation": "exactMatch",
+        "score": 0.9
+      }
+    },
+    {
+      "link_id": "cmot-WHEELS-20448",
+      "method": "component_mot_group",
+      "judgment": "accepted",
+      "reason": "SKOS exactMatch：MOT Class 4 Road Wheels（20448）与 NHTSA WHEELS 语义等价。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "WHEELS",
+        "mot_item_id": "20448",
+        "mot_name": "Road Wheels",
+        "relation": "exactMatch",
+        "score": 0.9
+      }
+    },
+    {
+      "link_id": "cmot-SEAT_BELTS-20431",
+      "method": "component_mot_group",
+      "judgment": "accepted",
+      "reason": "SKOS exactMatch：MOT Seat belt installation check（20431）精准对应 SEAT BELTS。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "SEAT BELTS",
+        "mot_item_id": "20431",
+        "mot_name": "Seat belt installation check",
+        "relation": "exactMatch",
+        "score": 0.9
+      }
+    },
+    {
+      "link_id": "cmot-EXTERIOR_LIGHTING-20158",
+      "method": "component_mot_group",
+      "judgment": "accepted",
+      "reason": "SKOS closeMatch：MOT 20158 含灯光、反光镜与电气设备，对外部灯光统计方向准确，需注明略宽。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "EXTERIOR LIGHTING",
+        "mot_item_id": "20158",
+        "mot_name": "Lamps, reflectors and electrical equipment",
+        "relation": "closeMatch",
+        "score": 0.75
+      }
+    },
+    {
+      "link_id": "cmot-ELECTRICAL_SYSTEM-20158",
+      "method": "component_mot_group",
+      "judgment": "uncertain",
+      "reason": "MOT 20158 偏重外部灯光/蓄电池与基础线路，范围窄于 NHTSA 广义 ELECTRICAL SYSTEM（含 BCM/车机/传感器）。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "ELECTRICAL SYSTEM",
+        "mot_item_id": "20158",
+        "mot_name": "Lamps, reflectors and electrical equipment",
+        "relation": "closeMatch",
+        "score": 0.75
+      }
+    },
+    {
+      "link_id": "cmot-FUEL_SYSTEM-20385",
+      "method": "component_mot_group",
+      "judgment": "uncertain",
+      "reason": "MOT 20385（Noise, emissions and leaks）包含燃油渗漏但也混杂排气噪声，归属燃油系统时范围过宽。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "FUEL SYSTEM",
+        "mot_item_id": "20385",
+        "mot_name": "Noise, emissions and leaks",
+        "relation": "closeMatch",
+        "score": 0.75
+      }
+    },
+    {
+      "link_id": "cmot-ENGINE-20385",
+      "method": "component_mot_group",
+      "judgment": "uncertain",
+      "reason": "MOT 20385 仅检验排放与渗漏，不能代表 NHTSA 发动机机械/失火投诉全集，仅作弱对应。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "ENGINE",
+        "mot_item_id": "20385",
+        "mot_name": "Noise, emissions and leaks",
+        "relation": "closeMatch",
+        "score": 0.75
+      }
+    },
+    {
+      "link_id": "ccan-FORWARD_COLLISION_AVOIDANCE-_bosch_radar_acc-ACC_CONTROL",
+      "method": "component_can_message",
+      "judgment": "accepted",
+      "reason": "本田 2018 Bosch 雷达 ACC/FCW 减速度控制报文，精准对应前向碰撞避免。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "FORWARD COLLISION AVOIDANCE",
+        "dbc_file": "_bosch_radar_acc.dbc",
+        "message": "ACC_CONTROL",
+        "platform": "HONDA_2018_BOSCH",
+        "vss_paths": [
+          "Vehicle.ADAS.CruiseControl",
+          "Vehicle.ADAS.ObstacleDetection"
+        ],
+        "score": 0.9,
+        "note": "Bosch radar ACC deceleration/FCW control command on 2018 Honda CR-V/Accord"
+      }
+    },
+    {
+      "link_id": "ccan-FORWARD_COLLISION_AVOIDANCE-_bosch_2018-RADAR_HUD",
+      "method": "component_can_message",
+      "judgment": "accepted",
+      "reason": "本田 Bosch 雷达 CMBS/FCW 预警显示报文，直接关联前向碰撞避免。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "FORWARD COLLISION AVOIDANCE",
+        "dbc_file": "_bosch_2018.dbc",
+        "message": "RADAR_HUD",
+        "platform": "HONDA_2018_BOSCH",
+        "vss_paths": [
+          "Vehicle.ADAS.ObstacleDetection.IsWarning"
+        ],
+        "score": 0.85,
+        "note": "CMBS / forward collision HUD warning flags"
+      }
+    },
+    {
+      "link_id": "ccan-STEERING-_bosch_2018-STEERING_CONTROL",
+      "method": "component_can_message",
+      "judgment": "accepted",
+      "reason": "本田 Bosch LKAS/EPS 转向力矩控制报文，精准对应转向系统。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "STEERING",
+        "dbc_file": "_bosch_2018.dbc",
+        "message": "STEERING_CONTROL",
+        "platform": "HONDA_2018_BOSCH",
+        "vss_paths": [
+          "Vehicle.Chassis.SteeringWheel.Angle",
+          "Vehicle.ADAS.LaneDepartureDetection"
+        ],
+        "score": 0.9,
+        "note": "LKAS electric power steering torque command"
+      }
+    },
+    {
+      "link_id": "ccan-STEERING-_bosch_2018-STEER_STATUS",
+      "method": "component_can_message",
+      "judgment": "accepted",
+      "reason": "本田 EPS 转向力矩与故障标志报文，精准对应转向系统。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "STEERING",
+        "dbc_file": "_bosch_2018.dbc",
+        "message": "STEER_STATUS",
+        "platform": "HONDA_2018_BOSCH",
+        "vss_paths": [
+          "Vehicle.Chassis.SteeringWheel.Angle"
+        ],
+        "score": 0.9,
+        "note": "EPS steering torque, fault, and status signals"
+      }
+    },
+    {
+      "link_id": "ccan-SERVICE_BRAKES-_bosch_2018-BRAKE_MODULE",
+      "method": "component_can_message",
+      "judgment": "accepted",
+      "reason": "本田 Bosch 液压制动模块压力与踏板状态报文，精准对应制动系统。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "SERVICE BRAKES",
+        "dbc_file": "_bosch_2018.dbc",
+        "message": "BRAKE_MODULE",
+        "platform": "HONDA_2018_BOSCH",
+        "vss_paths": [
+          "Vehicle.Chassis.Brake.PedalPosition"
+        ],
+        "score": 0.9,
+        "note": "Bosch hydraulic brake module pressure and pressed state"
+      }
+    },
+    {
+      "link_id": "ccan-SERVICE_BRAKES-_honda_common-VSA_STATUS",
+      "method": "component_can_message",
+      "judgment": "accepted",
+      "reason": "本田 VSA 车辆稳定辅助制动干预报文，合理关联行车制动。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "SERVICE BRAKES",
+        "dbc_file": "_honda_common.dbc",
+        "message": "VSA_STATUS",
+        "platform": "HONDA_COMMON",
+        "vss_paths": [
+          "Vehicle.ADAS.ESC.IsError",
+          "Vehicle.ADAS.TCS.IsError"
+        ],
+        "score": 0.9,
+        "note": "Honda Vehicle Stability Assist (ESC/TCS/Brake) status"
+      }
+    },
+    {
+      "link_id": "ccan-SEAT_BELTS-_honda_common-SEATBELT_STATUS",
+      "method": "component_can_message",
+      "judgment": "accepted",
+      "reason": "本田主副驾安全带锁扣状态报文，与安全带主类及 23V158000 召回直接对应。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "SEAT BELTS",
+        "dbc_file": "_honda_common.dbc",
+        "message": "SEATBELT_STATUS",
+        "platform": "HONDA_COMMON",
+        "vss_paths": [
+          "Vehicle.Cabin.Seat.Row1.DriverSide.IsBelted"
+        ],
+        "score": 0.9,
+        "note": "Driver and passenger seat belt buckle latch status"
+      }
+    },
+    {
+      "link_id": "ccan-LANE_DEPARTURE-_bosch_2018-LKAS_HUD_A",
+      "method": "component_can_message",
+      "judgment": "accepted",
+      "reason": "本田 LKAS 车道保持仪表提示报文，精准对应车道偏离系统。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "LANE DEPARTURE",
+        "dbc_file": "_bosch_2018.dbc",
+        "message": "LKAS_HUD_A",
+        "platform": "HONDA_2018_BOSCH",
+        "vss_paths": [
+          "Vehicle.ADAS.LaneDepartureDetection.IsWarning"
+        ],
+        "score": 0.85,
+        "note": "Lane keeping assist visual/HUD status"
+      }
+    },
+    {
+      "link_id": "ccan-FUEL_SYSTEM-_honda_common-ENGINE_DATA",
+      "method": "component_can_message",
+      "judgment": "uncertain",
+      "reason": "ENGINE_DATA 仅暴露转速与车速，不直接含低压油泵压力信号，与燃油系统属间接关联。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "FUEL SYSTEM",
+        "dbc_file": "_honda_common.dbc",
+        "message": "ENGINE_DATA",
+        "platform": "HONDA_COMMON",
+        "vss_paths": [
+          "Vehicle.Powertrain.CombustionEngine.Speed",
+          "Vehicle.Speed"
+        ],
+        "score": 0.9,
+        "note": "Engine RPM and vehicle speed telemetry"
+      }
+    },
+    {
+      "link_id": "ccan-BACK_OVER_PREVENTION-honda_crv_ex_2017_body-BSM_STATUS_RIGHT",
+      "method": "component_can_message",
+      "judgment": "uncertain",
+      "reason": "盲区监测雷达涉及侧后方来车预警，但与 18V629000 倒车摄像头中控显示并非同一传感器。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "nhtsa_head": "BACK OVER PREVENTION",
+        "dbc_file": "honda_crv_ex_2017_body.dbc",
+        "message": "BSM_STATUS_RIGHT",
+        "platform": "HONDA_CRV_BODY",
+        "vss_paths": [
+          "Vehicle.ADAS.ObstacleDetection.IsWarning"
+        ],
+        "score": 0.85,
+        "note": "CR-V right blind-spot monitoring radar status"
+      }
+    },
+    {
+      "link_id": "dpid-P0300-01-0C",
+      "method": "dtc_pid_subsystem",
+      "judgment": "accepted",
+      "reason": "多缸失火（P0300）核心需监测发动机转速（PID 01-0C）波动，J2012 P03xx 映射合理。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0300",
+        "pid": "01-0C",
+        "subsystem": "Ignition System or Misfire",
+        "score": 0.85
+      }
+    },
+    {
+      "link_id": "dpid-P0300-01-0E",
+      "method": "dtc_pid_subsystem",
+      "judgment": "accepted",
+      "reason": "多缸失火（P0300）直接关联点火提前角（PID 01-0E），映射合理。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0300",
+        "pid": "01-0E",
+        "subsystem": "Ignition System or Misfire",
+        "score": 0.85
+      }
+    },
+    {
+      "link_id": "dpid-P0300-01-06",
+      "method": "dtc_pid_subsystem",
+      "judgment": "accepted",
+      "reason": "失火排查需同步观察短期燃油修正（PID 01-06）以区分空燃比与点火因素，映射合理。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0300",
+        "pid": "01-06",
+        "subsystem": "Ignition System or Misfire",
+        "score": 0.85
+      }
+    },
+    {
+      "link_id": "dpid-P0300-01-23",
+      "method": "dtc_pid_subsystem",
+      "judgment": "accepted",
+      "reason": "燃油压力不足可引发多缸失火，油轨压力（PID 01-23）具直接诊断价值。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0300",
+        "pid": "01-23",
+        "subsystem": "Ignition System or Misfire",
+        "score": 0.85
+      }
+    },
+    {
+      "link_id": "dpid-P0172-01-06",
+      "method": "dtc_pid_subsystem",
+      "judgment": "accepted",
+      "reason": "系统过浓（P0172）首要验证项即 Bank 1 短期燃油修正（PID 01-06），映射精准。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0172",
+        "pid": "01-06",
+        "subsystem": "Fuel and Air Metering (MAF/MAP/IAT/ECT/O2/Fuel Trim)",
+        "score": 0.85
+      }
+    },
+    {
+      "link_id": "dpid-P0172-01-07",
+      "method": "dtc_pid_subsystem",
+      "judgment": "accepted",
+      "reason": "系统过浓（P0172）触发判据直接依赖长期燃油修正（PID 01-07），映射精准。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0172",
+        "pid": "01-07",
+        "subsystem": "Fuel and Air Metering (MAF/MAP/IAT/ECT/O2/Fuel Trim)",
+        "score": 0.85
+      }
+    },
+    {
+      "link_id": "dpid-P0172-01-10",
+      "method": "dtc_pid_subsystem",
+      "judgment": "accepted",
+      "reason": "空气流量计（MAF，PID 01-10）漂移是 P0172 典型诱因，映射合理。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0172",
+        "pid": "01-10",
+        "subsystem": "Fuel and Air Metering (MAF/MAP/IAT/ECT/O2/Fuel Trim)",
+        "score": 0.85
+      }
+    },
+    {
+      "link_id": "dpid-P0172-01-14",
+      "method": "dtc_pid_subsystem",
+      "judgment": "accepted",
+      "reason": "上游氧传感器电压/修正（PID 01-14）为 P0172 闭环核心信号，映射合理。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "P0172",
+        "pid": "01-14",
+        "subsystem": "Fuel and Air Metering (MAF/MAP/IAT/ECT/O2/Fuel Trim)",
+        "score": 0.85
+      }
+    },
+    {
+      "link_id": "dpid-B0020-01-01",
+      "method": "dtc_pid_subsystem",
+      "judgment": "uncertain",
+      "reason": "Mode 01 仅暴露排放就绪与 MIL 状态，不读取 SRS 安全气囊点火回路阻值（需 UDS 扩展服务），仅属弱提示。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "B0020",
+        "pid": "01-01",
+        "subsystem": "Body (SRS/Airbag/BCM/Lighting/Seatbelt)",
+        "score": 0.55
+      }
+    },
+    {
+      "link_id": "dpid-C0023-01-0D",
+      "method": "dtc_pid_subsystem",
+      "judgment": "uncertain",
+      "reason": "车速 PID（01-0D）与底盘制动灯开关（C0023）仅间接相关，底盘诊断需依赖厂商 UDS DID。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "code": "C0023",
+        "pid": "01-0D",
+        "subsystem": "Chassis (ABS/VSA/Steering/Wheel Speed)",
+        "score": 0.6
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand1-car105-Current",
+      "method": "battery_fault_signal",
+      "judgment": "accepted",
+      "reason": "brand1 异常充电片段沿动力电池 SOC（StateOfCharge.Current）演化，VSS 路径语义一致。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand1",
+        "car": "105",
+        "snippets": 184,
+        "mileage_mean_km": 658.1,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.StateOfCharge.Current",
+        "score": 0.85,
+        "note": "Charging snippet battery SOC trajectory"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand1-car105-Min",
+      "method": "battery_fault_signal",
+      "judgment": "accepted",
+      "reason": "单体最低电压（CellVoltage.Min）是实车锂电故障诊断核心判据，与数据集任务定义一致。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand1",
+        "car": "105",
+        "snippets": 184,
+        "mileage_mean_km": 658.1,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.CellVoltage.Min",
+        "score": 0.85,
+        "note": "Abnormal charging voltage drop / inconsistency indicator"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand1-car105-Max",
+      "method": "battery_fault_signal",
+      "judgment": "accepted",
+      "reason": "最高电芯温度（Temperature.Max）对应充电热异常监测，但须注明纯 CSV 版不含原始温度波形。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand1",
+        "car": "105",
+        "snippets": 184,
+        "mileage_mean_km": 658.1,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.Temperature.Max",
+        "score": 0.8,
+        "note": "Thermal anomaly indicator during charging"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand1-car105-StateOfHealth",
+      "method": "battery_fault_signal",
+      "judgment": "uncertain",
+      "reason": "纯 CSV 仅提供累计里程与充电片段数作 SOH 间接代理，缺乏实测容量标定值，属弱关联。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand1",
+        "car": "105",
+        "snippets": 184,
+        "mileage_mean_km": 658.1,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.StateOfHealth",
+        "score": 0.75,
+        "note": "Long-term mileage-linked degradation proxy"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand2-car204-Current",
+      "method": "battery_fault_signal",
+      "judgment": "accepted",
+      "reason": "brand2 高频异常车（19,423 故障片段）对应 SOC 充电轨迹信号，VSS 对齐合理。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand2",
+        "car": "204",
+        "snippets": 19423,
+        "mileage_mean_km": 519.9,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.StateOfCharge.Current",
+        "score": 0.85,
+        "note": "Charging snippet battery SOC trajectory"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand2-car204-Min",
+      "method": "battery_fault_signal",
+      "judgment": "accepted",
+      "reason": "brand2 异常充电诊断直接关注单体最低电压异常压降，VSS 路径准确。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand2",
+        "car": "204",
+        "snippets": 19423,
+        "mileage_mean_km": 519.9,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.CellVoltage.Min",
+        "score": 0.85,
+        "note": "Abnormal charging voltage drop / inconsistency indicator"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand2-car204-Max",
+      "method": "battery_fault_signal",
+      "judgment": "accepted",
+      "reason": "brand2 异常充电监测包含最高温度维度，语义一致（原始波形留待安全格式验证）。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand2",
+        "car": "204",
+        "snippets": 19423,
+        "mileage_mean_km": 519.9,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.Temperature.Max",
+        "score": 0.8,
+        "note": "Thermal anomaly indicator during charging"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand3-car404-Current",
+      "method": "battery_fault_signal",
+      "judgment": "accepted",
+      "reason": "brand3 高里程异常车（均值 20,409 km）充电片段对齐 VSS TractionBattery SOC 合理。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand3",
+        "car": "404",
+        "snippets": 425,
+        "mileage_mean_km": 20409.1,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.StateOfCharge.Current",
+        "score": 0.85,
+        "note": "Charging snippet battery SOC trajectory"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand3-car404-Min",
+      "method": "battery_fault_signal",
+      "judgment": "accepted",
+      "reason": "brand3 故障车辆对齐单体最低电压信号语义准确。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand3",
+        "car": "404",
+        "snippets": 425,
+        "mileage_mean_km": 20409.1,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.CellVoltage.Min",
+        "score": 0.85,
+        "note": "Abnormal charging voltage drop / inconsistency indicator"
+      }
+    },
+    {
+      "link_id": "ebfs-battery_brand3-car404-StateOfHealth",
+      "method": "battery_fault_signal",
+      "judgment": "uncertain",
+      "reason": "高里程（2 万 km+）虽与电池老化相关，但未见实测容量 SOH 数值，仅作弱关联。",
+      "basis": "Structured/official fields only (no raw consumer complaint narratives or QA dialogues).",
+      "evidence": {
+        "brand": "battery_brand3",
+        "car": "404",
+        "snippets": 425,
+        "mileage_mean_km": 20409.1,
+        "vss_path": "Vehicle.Powertrain.TractionBattery.StateOfHealth",
+        "score": 0.75,
+        "note": "Long-term mileage-linked degradation proxy"
+      }
+    }
+  ]
+}

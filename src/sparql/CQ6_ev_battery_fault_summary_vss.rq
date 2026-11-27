@@ -1,0 +1,40 @@
+PREFIX evb: <https://w3id.org/poc-kb/evb/>
+PREFIX signal: <https://w3id.org/poc-kb/signal/>
+
+# CQ6: Track 2 EV traction battery fault summary statistics grouped by brand cohort & fault label,
+# avoiding join fan-out on observesSignal via subquery separation.
+SELECT ?brandCohort ?faultLabel ?nVehicles ?totalSnippets ?minMileageKm ?maxMileageKm ?maxChargeSegment ?alignedVssSignals
+WHERE {
+  {
+    SELECT ?brandCohort ?faultLabel
+           (COUNT(DISTINCT ?veh) AS ?nVehicles)
+           (SUM(?nSnip) AS ?totalSnippets)
+           (MIN(?milMin) AS ?minMileageKm)
+           (MAX(?milMax) AS ?maxMileageKm)
+           (MAX(?segMax) AS ?maxChargeSegment)
+    WHERE {
+      ?s a evb:BatterySnippetSummary ;
+         evb:brandCohort ?brandCohort ;
+         evb:faultLabel ?faultLabel ;
+         evb:sampleCount ?nSnip ;
+         evb:forBatteryVehicle ?veh .
+      OPTIONAL { ?s evb:mileageMinKm ?milMin . }
+      OPTIONAL { ?s evb:mileageMaxKm ?milMax . }
+      OPTIONAL { ?s evb:chargeSegmentMax ?segMax . }
+    }
+    GROUP BY ?brandCohort ?faultLabel
+  }
+  {
+    SELECT ?brandCohort ?faultLabel (COUNT(DISTINCT ?vssPath) AS ?alignedVssSignals)
+    WHERE {
+      ?s a evb:BatterySnippetSummary ;
+         evb:brandCohort ?brandCohort ;
+         evb:faultLabel ?faultLabel ;
+         evb:observesSignal ?sig .
+      ?sig signal:vssPath ?vssPath .
+      FILTER(STRSTARTS(?vssPath, "Vehicle.Powertrain.TractionBattery"))
+    }
+    GROUP BY ?brandCohort ?faultLabel
+  }
+}
+ORDER BY ?brandCohort ?faultLabel

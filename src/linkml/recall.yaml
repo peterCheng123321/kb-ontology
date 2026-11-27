@@ -1,0 +1,73 @@
+id: https://w3id.org/poc-kb/recall
+name: poc_kb_recall
+title: Multi-Jurisdiction Vehicle Recall Module
+version: 3.0.0-exp
+description: >-
+  Models official vehicle safety recalls across jurisdictions (US NHTSA, Canada
+  Transport Canada VRDB, etc.) without assuming a single global manufacturer campaign key.
+imports:
+  - prefixes
+  - linkml:types
+  - core
+prefixes:
+  linkml: https://w3id.org/linkml/
+  recall: https://w3id.org/poc-kb/recall/
+default_prefix: recall
+default_range: string
+
+enums:
+  JurisdictionEnum:
+    permissible_values:
+      US:
+        description: United States (NHTSA ODI)
+      CA:
+        description: Canada (Transport Canada VRDB)
+      EU:
+        description: European Union (Safety Gate)
+      UK:
+        description: United Kingdom (DVSA)
+      CN:
+        description: China (SAMR)
+
+classes:
+  JurisdictionRecall:
+    is_a: NamedThing
+    description: An official safety recall campaign scoped to a specific regulatory jurisdiction.
+    slots:
+      - coversVehicle
+      - hasComponent
+      - fromSource
+      - closeMatch
+      - seeAlso
+    attributes:
+      jurisdiction:
+        range: JurisdictionEnum
+        required: true
+      officialRecallId:
+        required: true
+        description: Official regulator campaign number (e.g. NHTSA CAMPNO 20V314000 or TC 2020236).
+      manufacturerRecallNumber:
+        multivalued: true
+        description: Normalized manufacturer internal campaign tokens (may differ by jurisdiction or be empty).
+      recallCategory:
+        description: Regulatory category (e.g. Car, Vehicle).
+      systemType:
+        description: Jurisdiction-native system classification (e.g. TC SYSTEM_TYPE_ETXT).
+      unitsAffected:
+        range: integer
+      recallDate:
+        description: ISO-8601 date string (YYYY-MM-DD) when recall was issued or received.
+      defectSummary:
+        description: Official defect summary text (truncated to <= 400 chars in query exports).
+      correctiveAction:
+        description: Official remedy / corrective action summary.
+      linkedByHardKeyRecall:
+        range: JurisdictionRecall
+        multivalued: true
+        description: Hard-key cross-jurisdiction link populated ONLY when manufacturer recall tokens match exactly.
+      replacesRecallId:
+        description: Optional official recall ID superseded by this campaign (e.g. TC 2024262 replaces 2023679).
+      resolvedFromInvestigation:
+        range: Investigation
+        multivalued: true
+        description: Hard-key link from an Investigation whose official CAMPNO matches this recall.

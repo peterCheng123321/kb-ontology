@@ -1,0 +1,354 @@
+{
+  "measured_at": "2026-11-25 Asia/Shanghai",
+  "elapsed_seconds": 34.33,
+  "modules": {
+    "core": {
+      "file": "rdf/v3/core.ttl",
+      "triples": 87704,
+      "bytes": 4282696
+    },
+    "recall": {
+      "file": "rdf/v3/recall.ttl",
+      "triples": 458,
+      "bytes": 33483
+    },
+    "diagnostics": {
+      "file": "rdf/v3/diagnostics.ttl",
+      "triples": 537418,
+      "bytes": 29650153
+    },
+    "inspection": {
+      "file": "rdf/v3/inspection.ttl",
+      "triples": 63590,
+      "bytes": 3463074
+    },
+    "signal": {
+      "file": "rdf/v3/signal.ttl",
+      "triples": 20067,
+      "bytes": 1086624
+    },
+    "ev_battery": {
+      "file": "rdf/v3/ev_battery.ttl",
+      "triples": 12448,
+      "bytes": 789552
+    }
+  },
+  "total_abox_triples": 721685,
+  "nodes": {
+    "DataSource": 16,
+    "VehicleModelYear": 2,
+    "Component": 29,
+    "Complaint": 3296,
+    "Investigation": 4,
+    "QaThread": 301,
+    "JurisdictionRecall_US": 8,
+    "JurisdictionRecall_CA": 8,
+    "DTC": 12420,
+    "DtcDefinition": 37752,
+    "RepairStep": 46,
+    "Part_MechanicDB": 77,
+    "Part_RecallOEM": 141,
+    "ObdPid": 132,
+    "MotItemGroup": 933,
+    "MotDefectItem": 4432,
+    "MotLocation": 129,
+    "FuelType": 14,
+    "InspectionDefectStat_Visible": 141,
+    "InspectionDefectStat_Suppressed": 312,
+    "VehicleSignal_VSS": 905,
+    "VehicleSignal_VSSoMatched": 116,
+    "CanMessage": 80,
+    "CanSignal": 753,
+    "BatteryDataset": 7,
+    "BatteryVehicleRef": 347,
+    "BatterySnippetSummary": 347,
+    "CandidateLink_Total": 6131
+  },
+  "hard_edges": {
+    "dtc_to_repair_step": 46,
+    "repair_step_to_part": 77,
+    "hard_total": 123
+  },
+  "candidate_edges": {
+    "qa_zh_lexicon": 731,
+    "mmy_comp_head": 2591,
+    "complaint_to_investigation": 1805,
+    "dtc_regex_cooccur": 258,
+    "mmy_comp_exact": 50,
+    "xjur_mmy_system_window": 7,
+    "dtc_make_context": 131,
+    "dtc_pid_subsystem": 271,
+    "component_mot_group": 30,
+    "component_can_message": 37,
+    "battery_fault_signal": 220,
+    "candidate_total": 6131
+  },
+  "ratios": {
+    "hard_over_candidate": 0.0201,
+    "hard_share_of_all_edges": 0.0197,
+    "candidate_share_of_all_edges": 0.9803
+  },
+  "cross_jurisdiction_full_corpus_reference": {
+    "tc_total_rows": 134329,
+    "tc_columns": [
+      "RECALL_NUMBER_NUM",
+      "YEAR",
+      "MANUFACTURER_RECALL_NO_TXT",
+      "CATEGORY_ETXT",
+      "CATEGORY_FTXT",
+      "MAKE_NAME_NM",
+      "MODEL_NAME_NM",
+      "UNIT_AFFECTED_NBR",
+      "SYSTEM_TYPE_ETXT",
+      "SYSTEM_TYPE_FTXT",
+      "NOTIFICATION_TYPE_ETXT",
+      "NOTIFICATION_TYPE_FTXT",
+      "COMMENT_ETXT",
+      "COMMENT_FTXT",
+      "RECALL_DATE_DTE"
+    ],
+    "tc_column_fill_rates": {
+      "RECALL_NUMBER_NUM": 1.0,
+      "YEAR": 1.0,
+      "MANUFACTURER_RECALL_NO_TXT": 0.7183,
+      "CATEGORY_ETXT": 1.0,
+      "CATEGORY_FTXT": 1.0,
+      "MAKE_NAME_NM": 1.0,
+      "MODEL_NAME_NM": 1.0,
+      "UNIT_AFFECTED_NBR": 1.0,
+      "SYSTEM_TYPE_ETXT": 1.0,
+      "SYSTEM_TYPE_FTXT": 1.0,
+      "NOTIFICATION_TYPE_ETXT": 1.0,
+      "NOTIFICATION_TYPE_FTXT": 1.0,
+      "COMMENT_ETXT": 1.0,
+      "COMMENT_FTXT": 1.0,
+      "RECALL_DATE_DTE": 1.0
+    },
+    "tc_distinct_recall_numbers": 16479,
+    "tc_distinct_mfr_tokens": 12324,
+    "tc_distinct_mmy": 52089,
+    "tc_top_categories": {
+      "CAR": 23747,
+      "TRUCK - MED. & H.D.": 21916,
+      "SUV": 16360,
+      "MOTORHOME": 14653,
+      "LIGHT TRUCK & VAN": 10841,
+      "RV TRAILER": 9054,
+      "BUS": 7950,
+      "MOTORCYCLE": 5551
+    },
+    "tc_top_system_types": {
+      "OTHER": 18062,
+      "BRAKES": 13074,
+      "ELECTRICAL": 12571,
+      "ACCESSORIES": 9951,
+      "FUEL SYSTEM": 8950,
+      "STRUCTURE": 7177,
+      "STEERING": 7101,
+      "LIGHTS AND INSTRUMENTS": 7056,
+      "SEATS AND RESTRAINTS": 6867,
+      "AIRBAG": 6698,
+      "LABEL": 6213,
+      "ENGINE": 6107,
+      "NOT ENTERED": 5416,
+      "VISUAL SYSTEM": 4850,
+      "POWERTRAIN": 4569,
+      "SUSPENSION": 4358,
+      "TIRES": 2321,
+      "WHEELS": 946,
+      "HIGH VOLTAGE": 701,
+      "EMISSIONS": 666
+    },
+    "tc_system_type_nhtsa_head_coverage_pct": 81.23,
+    "nhtsa_post2010_rows": 248685,
+    "nhtsa_distinct_mfr_tokens": 10324,
+    "cross_border_global_joins": {
+      "shared_mmy_count": 13748,
+      "shared_mfr_recall_tokens": 4131,
+      "tc_recalls_linked_to_nhtsa_post2010": 4461,
+      "tc_recalls_linked_pct": 27.07,
+      "nhtsa_post2010_camps_linked_to_tc": 4333
+    },
+    "honda_2018_slice_cross_border": {
+      "tc_rows": 40,
+      "tc_distinct_recalls": 8,
+      "nhtsa_distinct_camps_in_slice": 8,
+      "nhtsa_camps_matched_via_mfr_no_to_tc": [],
+      "nhtsa_camps_matched_count": 0,
+      "tc_recalls_detail": [
+        {
+          "tc_recall_number": "2018500",
+          "models": [
+            "ACCORD"
+          ],
+          "mfr_tokens": [
+            "HN47"
+          ],
+          "system_types": [
+            "VISUAL SYSTEM"
+          ],
+          "recall_date": "2018-09-13",
+          "matched_nhtsa_campnos": [],
+          "matched_via_tokens": []
+        },
+        {
+          "tc_recall_number": "2020236",
+          "models": [
+            "ACCORD"
+          ],
+          "mfr_tokens": [],
+          "system_types": [
+            "FUEL SYSTEM"
+          ],
+          "recall_date": "2020-05-28",
+          "matched_nhtsa_campnos": [],
+          "matched_via_tokens": []
+        },
+        {
+          "tc_recall_number": "2020611",
+          "models": [
+            "ACCORD"
+          ],
+          "mfr_tokens": [],
+          "system_types": [
+            "ELECTRICAL"
+          ],
+          "recall_date": "2020-12-10",
+          "matched_nhtsa_campnos": [],
+          "matched_via_tokens": []
+        },
+        {
+          "tc_recall_number": "2023127",
+          "models": [
+            "ACCORD",
+            "CR-V"
+          ],
+          "mfr_tokens": [
+            "AM20",
+            "HP27",
+            "HP28 & AM19"
+          ],
+          "system_types": [
+            "SEATS AND RESTRAINTS"
+          ],
+          "recall_date": "2023-03-09",
+          "matched_nhtsa_campnos": [],
+          "matched_via_tokens": []
+        },
+        {
+          "tc_recall_number": "2023679",
+          "models": [
+            "ACCORD",
+            "CR-V"
+          ],
+          "mfr_tokens": [],
+          "system_types": [
+            "FUEL SYSTEM"
+          ],
+          "recall_date": "2023-12-18",
+          "matched_nhtsa_campnos": [],
+          "matched_via_tokens": []
+        },
+        {
+          "tc_recall_number": "2024262",
+          "models": [
+            "ACCORD",
+            "CR-V"
+          ],
+          "mfr_tokens": [],
+          "system_types": [
+            "FUEL SYSTEM"
+          ],
+          "recall_date": "2024-05-06",
+          "matched_nhtsa_campnos": [],
+          "matched_via_tokens": []
+        },
+        {
+          "tc_recall_number": "2025599",
+          "models": [
+            "ACCORD"
+          ],
+          "mfr_tokens": [
+            "HQ40"
+          ],
+          "system_types": [
+            "WHEELS"
+          ],
+          "recall_date": "2025-10-30",
+          "matched_nhtsa_campnos": [],
+          "matched_via_tokens": []
+        },
+        {
+          "tc_recall_number": "2026251",
+          "models": [
+            "ACCORD",
+            "CR-V"
+          ],
+          "mfr_tokens": [
+            "AM96-AN00",
+            "HQ62-70"
+          ],
+          "system_types": [
+            "SEATS AND RESTRAINTS"
+          ],
+          "recall_date": "2026-05-21",
+          "matched_nhtsa_campnos": [],
+          "matched_via_tokens": []
+        }
+      ]
+    }
+  },
+  "cross_jurisdiction_honda2018_slice": {
+    "us_recalls": 8,
+    "ca_recalls": 8,
+    "hard_key_matches_xjur_mfr_token": 0,
+    "candidate_matches_xjur_mmy_system_window": 7
+  },
+  "mot_2023_streaming_stats": {
+    "available": true,
+    "total_result_rows_scanned": 42216722,
+    "total_item_rows_scanned": 89302633,
+    "pass1_seconds": 30.39,
+    "pass2_seconds": 26.79,
+    "cohort_tests": {
+      "CR-V": 10108,
+      "ACCORD": 18
+    },
+    "cohort_outcomes": {
+      "CR-V": {
+        "P": 9060,
+        "F": 645,
+        "PRS": 373,
+        "ABR": 29,
+        "ABA": 1
+      },
+      "ACCORD": {
+        "P": 14,
+        "PRS": 2,
+        "F": 2
+      }
+    },
+    "cohort_fuels": {
+      "CR-V": {
+        "PE": 5509,
+        "DI": 4598,
+        "GB": 1
+      },
+      "ACCORD": {
+        "PE": 18
+      }
+    },
+    "items_matched": 8755,
+    "total_unique_cells": 453,
+    "visible_cells_ge_5": 141,
+    "suppressed_cells_lt_5": 312,
+    "skipped_unknown_rfr": 0
+  },
+  "ev_battery_30162841_stats": {
+    "total_csv_snippets_aggregated": 700582,
+    "vehicles_total": 347,
+    "vehicles_with_fault": 55,
+    "cohort_summary_nodes": 347,
+    "raw_waveforms_note": "Figshare 30162841 safe CSVs contain car, label, mileage, and charge_segment; raw cell voltage/temperature waveforms in Figshare 23659323 are pickled (.pkl) files and were intentionally not unpickled for security."
+  }
+}

@@ -1,0 +1,13 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://w3id.org/poc-kb/core/> .
+
+<https://w3id.org/poc-kb/core/component/A> a core:Component, core:NamedThing ; core:head "ENGINE" .
+<https://w3id.org/poc-kb/core/component/B> a core:Component, core:NamedThing ; core:head "FUEL SYSTEM" .
+
+# Deliberate negative fixture: CandidateLink score > 1.0 violates CandidateLinkScoreRangeShape.
+<https://w3id.org/poc-kb/core/link/BAD_SCORE> a core:CandidateLink, core:NamedThing ;
+    core:fromEntity <https://w3id.org/poc-kb/core/component/A> ;
+    core:toEntity <https://w3id.org/poc-kb/core/component/B> ;
+    core:method "mmy_comp_head" ;
+    core:score "1.50"^^xsd:decimal ;
+    core:reviewStatus "unreviewed" .

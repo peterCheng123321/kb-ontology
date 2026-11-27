@@ -1,0 +1,149 @@
+id: https://w3id.org/poc-kb/insp
+name: poc_kb_inspection
+title: Periodic Vehicle Inspection (UK DVSA MOT) Taxonomy and Aggregated Statistics Module
+version: 3.0.0-exp
+description: >-
+  Models the UK DVSA MOT Class 4 inspection item hierarchy, statutory Reasons
+  for Rejection (RFR), 3D vehicle locations, fuel types, and privacy-preserving
+  aggregated cohort defect statistics (never individual test or vehicle_id records).
+imports:
+  - prefixes
+  - linkml:types
+  - core
+prefixes:
+  linkml: https://w3id.org/linkml/
+  insp: https://w3id.org/poc-kb/insp/
+default_prefix: insp
+default_range: string
+
+slots:
+  testClassId:
+    required: true
+    description: UK DVSA MOT vehicle test class identifier (4 = passenger cars).
+
+enums:
+  DefectSeverityEnum:
+    permissible_values:
+      Dangerous:
+        description: Immediate road safety or environmental risk.
+      Major:
+        description: Fails MOT test; may affect safety or environment.
+      Minor:
+        description: Pass with defect noted; no significant safety impact.
+      PreEU:
+        description: Pre-2018 EU Directive legacy RFR classification.
+      Advisory:
+        description: Advisory or PRS/non-standard deficiency category.
+
+  MileageBucketEnum:
+    permissible_values:
+      0_30k:
+        description: 0 to 29,999 miles
+      30k_60k:
+        description: 30,000 to 59,999 miles
+      60k_90k:
+        description: 60,000 to 89,999 miles
+      90k_plus:
+        description: 90,000 miles or more
+      unknown_mileage:
+        description: Mileage unavailable or invalid
+
+classes:
+  MotItemGroup:
+    is_a: NamedThing
+    description: Node in the UK DVSA MOT Class 4 hierarchical component inspection tree.
+    slots:
+      - testClassId
+      - broader
+      - exactMatch
+      - closeMatch
+      - fromSource
+    attributes:
+      testItemId:
+        required: true
+      itemName:
+        required: true
+      hierarchyDepth:
+        range: integer
+
+  MotDefectItem:
+    is_a: NamedThing
+    description: Statutory MOT Reason for Rejection (RFR) item belonging to an item group.
+    slots:
+      - testClassId
+      - description
+      - fromSource
+    attributes:
+      rfrId:
+        required: true
+      inItemGroup:
+        range: MotItemGroup
+        required: true
+      defaultSeverity:
+        range: DefectSeverityEnum
+      minorItemFlag:
+        range: boolean
+      inspectionManualDesc:
+
+  MotLocation:
+    is_a: NamedThing
+    description: 3D physical installation location code on a vehicle (lateral/longitudinal/vertical).
+    slots:
+      - fromSource
+    attributes:
+      locationId:
+        required: true
+      lateral:
+      longitudinal:
+      vertical:
+
+  FuelType:
+    is_a: NamedThing
+    description: MOT vehicle propulsion / fuel type code (including EV, Hybrid, Fuel Cell).
+    slots:
+      - fromSource
+    attributes:
+      fuelCode:
+        required: true
+      fuelName:
+        required: true
+      isElectrified:
+        range: boolean
+
+  InspectionDefectStat:
+    is_a: NamedThing
+    description: >-
+      Cohort-aggregated MOT defect frequency by VehicleModelYear, test year,
+      defect item, severity, and mileage bucket. Cells with raw count < 5 MUST
+      set suppressed=true and omit defectCount (enforced by SHACL).
+    annotations:
+      bfo_alignment: BFO_0000031 (statistical information content entity)
+    slots:
+      - fromSource
+    attributes:
+      forVehicle:
+        range: VehicleModelYear
+        required: true
+      testYear:
+        range: integer
+        required: true
+      forDefectItem:
+        range: MotDefectItem
+        required: true
+      observedSeverity:
+        range: DefectSeverityEnum
+        required: true
+      mileageBucket:
+        range: MileageBucketEnum
+        required: true
+      defectCount:
+        range: integer
+        description: Present ONLY when raw cell count >= 5.
+      testsInCohort:
+        range: integer
+        required: true
+        description: Total MOT tests in the matching vehicle-year cohort.
+      suppressed:
+        range: boolean
+        required: true
+        description: True if raw cell count < 5 (small-cell privacy suppression).

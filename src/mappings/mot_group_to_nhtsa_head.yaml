@@ -1,0 +1,125 @@
+# Crosswalk: UK DVSA MOT Class 4 top-level item_group (parent_id=0) -> NHTSA canonical Component head
+# Grounded in data/raw/extended/uk_mot_lookup.zip (item_group.csv, test_class_id=4, 30 top groups)
+version: "3.0.0-exp"
+source: "UK DVSA MOT lookup.zip (UK OGL v3.0)"
+entries:
+  - mot_item_id: "501"
+    mot_name: "Towbars"
+    relation: closeMatch
+    nhtsa_heads: ["TRAILER HITCHES"]
+  - mot_item_id: "5000"
+    mot_name: "Lamps, Reflectors and Electrical Equipment"
+    relation: closeMatch
+    nhtsa_heads: ["EXTERIOR LIGHTING", "ELECTRICAL SYSTEM"]
+  - mot_item_id: "5100"
+    mot_name: "Steering"
+    relation: exactMatch
+    nhtsa_heads: ["STEERING"]
+  - mot_item_id: "5190"
+    mot_name: "Suspension"
+    relation: exactMatch
+    nhtsa_heads: ["SUSPENSION"]
+  - mot_item_id: "5430"
+    mot_name: "Brakes"
+    relation: exactMatch
+    nhtsa_heads: ["SERVICE BRAKES"]
+  - mot_item_id: "5650"
+    mot_name: "Tyres"
+    relation: exactMatch
+    nhtsa_heads: ["TIRES"]
+  - mot_item_id: "5670"
+    mot_name: "Road Wheels"
+    relation: exactMatch
+    nhtsa_heads: ["WHEELS"]
+  - mot_item_id: "5680"
+    mot_name: "Seat Belts and Supplementary Restraint Systems"
+    relation: closeMatch
+    nhtsa_heads: ["SEAT BELTS", "AIR BAGS"]
+  - mot_item_id: "5690"
+    mot_name: "Body, Structure and General Items"
+    relation: closeMatch
+    nhtsa_heads: ["STRUCTURE"]
+  - mot_item_id: "5730"
+    mot_name: "Exhaust, Fuel and Emissions"
+    relation: closeMatch
+    nhtsa_heads: ["FUEL SYSTEM", "ENGINE"]
+  - mot_item_id: "5750"
+    mot_name: "Driver's View of the Road"
+    relation: exactMatch
+    nhtsa_heads: ["VISIBILITY"]
+  - mot_item_id: "5780"
+    mot_name: "Driving Controls and Speed Limiters"
+    relation: closeMatch
+    nhtsa_heads: ["VEHICLE SPEED CONTROL"]
+  - mot_item_id: "5785"
+    mot_name: "Registration Plates and VIN"
+    relation: noMatch
+    nhtsa_heads: []
+  - mot_item_id: "5800"
+    mot_name: "Items Not Tested"
+    relation: noMatch
+    nhtsa_heads: []
+  - mot_item_id: "9000"
+    mot_name: "Motor tricycles and quadricycles"
+    relation: noMatch
+    nhtsa_heads: []
+  - mot_item_id: "10000"
+    mot_name: "Non-component advisories"
+    relation: noMatch
+    nhtsa_heads: []
+  - mot_item_id: "20000"
+    mot_name: "Identification of the vehicle"
+    relation: noMatch
+    nhtsa_heads: []
+  - mot_item_id: "20003"
+    mot_name: "Brakes"
+    relation: exactMatch
+    nhtsa_heads: ["SERVICE BRAKES"]
+  - mot_item_id: "20106"
+    mot_name: "Steering"
+    relation: exactMatch
+    nhtsa_heads: ["STEERING"]
+  - mot_item_id: "20147"
+    mot_name: "Visibility"
+    relation: exactMatch
+    nhtsa_heads: ["VISIBILITY"]
+  - mot_item_id: "20158"
+    mot_name: "Lamps, reflectors and electrical equipment"
+    relation: closeMatch
+    nhtsa_heads: ["EXTERIOR LIGHTING", "ELECTRICAL SYSTEM"]
+  - mot_item_id: "20218"
+    mot_name: "Suspension"
+    relation: exactMatch
+    nhtsa_heads: ["SUSPENSION"]
+  - mot_item_id: "20310"
+    mot_name: "Body, chassis, structure"
+    relation: exactMatch
+    nhtsa_heads: ["STRUCTURE"]
+  - mot_item_id: "20365"
+    mot_name: "Speedometer and speed limiter"
+    relation: closeMatch
+    nhtsa_heads: ["VEHICLE SPEED CONTROL"]
+  - mot_item_id: "20366"
+    mot_name: "Seat belts and supplementary restraint systems"
+    relation: closeMatch
+    nhtsa_heads: ["SEAT BELTS", "AIR BAGS"]
+  - mot_item_id: "20385"
+    mot_name: "Noise, emissions and leaks"
+    relation: closeMatch
+    nhtsa_heads: ["FUEL SYSTEM", "ENGINE"]
+  - mot_item_id: "20422"
+    mot_name: "Buses and coaches supplementary tests"
+    relation: noMatch
+    nhtsa_heads: []
+  - mot_item_id: "20431"
+    mot_name: "Seat belt installation check"
+    relation: exactMatch
+    nhtsa_heads: ["SEAT BELTS"]
+  - mot_item_id: "20448"
+    mot_name: "Road Wheels"
+    relation: exactMatch
+    nhtsa_heads: ["WHEELS"]
+  - mot_item_id: "20449"
+    mot_name: "Tyres"
+    relation: exactMatch
+    nhtsa_heads: ["TIRES"]

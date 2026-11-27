@@ -1,0 +1,53 @@
+{
+  "measured_at": "2026-11-25 Asia/Shanghai",
+  "abox_total_triples": 721685,
+  "abox_per_module_incremental_triples": {
+    "core": 87704,
+    "recall": 458,
+    "diagnostics": 537418,
+    "inspection": 63590,
+    "signal": 20067,
+    "ev_battery": 12448
+  },
+  "shacl_shapes_triples": 2272,
+  "shacl_extra_files": [
+    "candidate-link.shacl.ttl",
+    "privacy.shacl.ttl",
+    "stat-suppression.shacl.ttl"
+  ],
+  "pyshacl_conforms": true,
+  "pyshacl_seconds": 125.57,
+  "parse_seconds": 16.45,
+  "privacy_scan": {
+    "vin_17char_hits": 0,
+    "vin_samples": [],
+    "forbidden_predicate_hits": 0,
+    "overlong_literals_gt_400": 0,
+    "max_literal_length": 350,
+    "stats_json_privacy_hits": []
+  },
+  "generated_artifacts": {
+    "owl/poc-kb.owl.ttl": {
+      "path": "gen/owl/poc-kb.owl.ttl",
+      "bytes": 120859,
+      "sha256": "d657e3f54a38fe99ab4c20d5624b677e05ff146bca2ae4f9e8a79e848e403062",
+      "triples": 3438
+    },
+    "shacl/poc-kb.shacl.ttl": {
+      "path": "gen/shacl/poc-kb.shacl.ttl",
+      "bytes": 68123,
+      "sha256": "295b1d0b5587e923f4be5e7fe1b2c7fc405064081f9c679880f0ed9a1de032bd",
+      "triples": 2234
+    },
+    "jsonld/poc-kb.context.jsonld": {
+      "path": "gen/jsonld/poc-kb.context.jsonld",
+      "bytes": 16213,
+      "sha256": "b26a51db164011ca6dc13c547d9e6d5223a28c32ec05d5358b3cd0cf9a6839df"
+    },
+    "jsonschema/poc-kb.schema.json": {
+      "path": "gen/jsonschema/poc-kb.schema.json",
+      "bytes": 68409,
+      "sha256": "80fafbdf4f4a9b003debfdca2fe09f2fe1b58f4c0c57579cf826347e094de709"
+    }
+  }
+}

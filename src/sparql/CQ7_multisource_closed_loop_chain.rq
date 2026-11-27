@@ -1,0 +1,98 @@
+PREFIX core: <https://w3id.org/poc-kb/core/>
+PREFIX recall: <https://w3id.org/poc-kb/recall/>
+PREFIX diag: <https://w3id.org/poc-kb/diag/>
+PREFIX insp: <https://w3id.org/poc-kb/insp/>
+PREFIX signal: <https://w3id.org/poc-kb/signal/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+# CQ7: Multi-source closed-loop chain anchored on Honda CR-V 2018 complaint ODINO 11407338
+# Uses per-branch sub-SELECT limits so every cross-source hop family is represented cleanly.
+SELECT ?odino ?hopKind ?sourceEntity ?targetEntity ?detail ?score
+WHERE {
+  {
+    SELECT ?odino ?hopKind ?sourceEntity ?targetEntity ?detail ?score
+    WHERE {
+      BIND(<https://w3id.org/poc-kb/core/complaint/11407338> AS ?c)
+      ?c core:odino ?odino .
+      ?l1 core:fromEntity ?c ; core:toEntity ?us ; core:score ?s1 .
+      ?us a recall:JurisdictionRecall ; recall:jurisdiction "US" ; recall:officialRecallId ?usId .
+      OPTIONAL {
+        ?l2 core:fromEntity ?us ; core:method "xjur_mmy_system_window" ; core:toEntity ?ca ; core:score ?s2 .
+        ?ca recall:officialRecallId ?caId .
+      }
+      BIND("1_recall_us_ca" AS ?hopKind)
+      BIND(CONCAT("US:", ?usId) AS ?sourceEntity)
+      BIND(COALESCE(CONCAT("CA:", ?caId), "no_ca_match") AS ?targetEntity)
+      BIND(COALESCE(CONCAT("xjur_score=", STR(?s2)), "us_only") AS ?detail)
+      BIND(?s1 AS ?score)
+    }
+    ORDER BY ?sourceEntity ?targetEntity
+    LIMIT 10
+  }
+  UNION
+  {
+    SELECT ?odino ?hopKind ?sourceEntity ?targetEntity ?detail ?score
+    WHERE {
+      BIND(<https://w3id.org/poc-kb/core/complaint/11407338> AS ?c)
+      ?c core:odino ?odino ; diag:mentionsDtc ?dtc .
+      ?dtc diag:code ?code .
+      OPTIONAL {
+        ?step a diag:RepairStep ; diag:forDtc ?dtc ; diag:title ?fixTitle .
+        OPTIONAL { ?step diag:usesPart ?part . ?part diag:partName ?partName . }
+      }
+      BIND("2_dtc_repair_part" AS ?hopKind)
+      BIND(?code AS ?sourceEntity)
+      BIND(COALESCE(?partName, ?fixTitle, "no_mechanic_sample") AS ?targetEntity)
+      BIND(COALESCE(?fixTitle, "DTC definition only") AS ?detail)
+      BIND(1.00 AS ?score)
+    }
+    ORDER BY ?sourceEntity ?detail ?targetEntity
+    LIMIT 15
+  }
+  UNION
+  {
+    SELECT ?odino ?hopKind ?sourceEntity ?targetEntity ?detail ?score
+    WHERE {
+      BIND(<https://w3id.org/poc-kb/core/complaint/11407338> AS ?c)
+      ?c core:odino ?odino ; core:hasComponent ?comp .
+      ?comp core:head ?head .
+      ?topGrp skos:exactMatch|skos:closeMatch ?comp .
+      ?grp skos:broader* ?topGrp .
+      ?item insp:inItemGroup ?grp ; insp:rfrId ?rfrId ; core:description ?rfrDesc .
+      ?stat insp:forVehicle <https://w3id.org/poc-kb/core/vehicle/HONDA_CR-V_2018> ;
+            insp:forDefectItem ?item ;
+            insp:suppressed false ;
+            insp:observedSeverity ?sev ;
+            insp:mileageBucket ?mb ;
+            insp:defectCount ?cnt .
+      BIND("3_uk_mot_stat" AS ?hopKind)
+      BIND(?head AS ?sourceEntity)
+      BIND(CONCAT("RFR_", ?rfrId, " (", ?sev, "/", ?mb, ")") AS ?targetEntity)
+      BIND(CONCAT("count=", STR(?cnt), " | ", SUBSTR(?rfrDesc, 1, 80)) AS ?detail)
+      BIND(0.75 AS ?score)
+    }
+    ORDER BY DESC(?cnt) ?targetEntity
+    LIMIT 10
+  }
+  UNION
+  {
+    SELECT ?odino ?hopKind ?sourceEntity ?targetEntity ?detail ?score
+    WHERE {
+      BIND(<https://w3id.org/poc-kb/core/complaint/11407338> AS ?c)
+      ?c core:odino ?odino ; core:hasComponent ?comp .
+      ?comp core:head ?head .
+      ?l4 core:fromEntity ?comp ; core:method "component_can_message" ; core:toEntity ?msg ; core:score ?s4 .
+      ?msg signal:messageName ?msgName ; signal:vehiclePlatform ?plat .
+      FILTER(STRSTARTS(?plat, "HONDA"))
+      OPTIONAL { ?msg signal:mapsToVss ?vss . ?vss signal:vssPath ?vssPath . }
+      BIND("4_can_vss_signal" AS ?hopKind)
+      BIND(?head AS ?sourceEntity)
+      BIND(?msgName AS ?targetEntity)
+      BIND(COALESCE(?vssPath, ?plat) AS ?detail)
+      BIND(?s4 AS ?score)
+    }
+    ORDER BY ?sourceEntity ?targetEntity ?detail
+    LIMIT 10
+  }
+}
+ORDER BY ?hopKind ?sourceEntity ?targetEntity
