@@ -1,6 +1,6 @@
 """目录模式在测试进程内生成 SHACL / OWL。EXPECTED_MODULES 供后续模块追加。"""
 import pytest
-EXPECTED_MODULES = ("metadata", "core")
+EXPECTED_MODULES = ("metadata", "core", "recall", "diagnostics", "inspection")
 INFRA_IMPORTS = ("prefixes", "linkml:types")
 def _require():
     pytest.importorskip("linkml"); pytest.importorskip("linkml_runtime"); pytest.importorskip("rdflib")
