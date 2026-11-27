@@ -43,7 +43,9 @@ def load_fixture(path: Path) -> Graph:
     return parse_data(path, text)
 
 def _check(shapes: Graph, data: Graph) -> tuple[bool, str]:
-    conforms, _, report = validate(data_graph=data, shacl_graph=shapes, inference="none", abort_on_first=False)
+    conforms, _, report = validate(
+        data_graph=data, shacl_graph=shapes, inference="none", abort_on_first=False, advanced=True,
+    )
     return bool(conforms), report
 
 def shapes_graph(schema_gen):

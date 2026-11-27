@@ -1,8 +1,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix core: <https://w3id.org/poc-kb/core/> .
 core:PrivacyGuardShape a sh:NodeShape ;
-    sh:targetSubjectsOf rdf:type ;
+    sh:target [ a sh:SPARQLTarget ; sh:select """SELECT DISTINCT ?this WHERE { ?this ?p ?o }""" ] ;
     sh:sparql [
         a sh:SPARQLConstraint ;
         sh:message "Privacy violation: literal matches 17-character VIN pattern." ;

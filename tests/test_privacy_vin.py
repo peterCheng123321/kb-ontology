@@ -33,7 +33,9 @@ def pytest_generate_tests(metafunc):
 def outcome(shapes: Graph, turtle: str) -> tuple[bool, str]:
     data = Graph()
     data.parse(data=turtle, format="turtle")
-    conforms, _, report = validate(data_graph=data, shacl_graph=shapes, inference="none", abort_on_first=False)
+    conforms, _, report = validate(
+        data_graph=data, shacl_graph=shapes, inference="none", abort_on_first=False, advanced=True,
+    )
     return bool(conforms), report
 
 def complaint(line: str) -> str:
