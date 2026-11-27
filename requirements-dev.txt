@@ -1,0 +1,2 @@
+# 仅测试依赖。运行时本体工具链见 requirements.txt。
+pytest==8.3.5
