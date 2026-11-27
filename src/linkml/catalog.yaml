@@ -3,7 +3,7 @@ name: poc_kb_v3
 title: Automotive After-Sales Knowledge Base Ontology (Modular v3.0-exp)
 version: 3.0.0-exp
 license: https://www.apache.org/licenses/LICENSE-2.0
-description: Top-level catalog importing prefixes, linkml:types, metadata, and core.
+description: Top-level catalog importing prefixes, linkml:types, metadata, core, recall, diagnostics, and inspection.
 prefixes:
   linkml: https://w3id.org/linkml/
   core: https://w3id.org/poc-kb/core/
@@ -12,5 +12,8 @@ imports:
   - linkml:types
   - metadata
   - core
+  - recall
+  - diagnostics
+  - inspection
 default_prefix: core
 default_range: string
