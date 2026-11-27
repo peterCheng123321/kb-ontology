@@ -73,9 +73,18 @@ def test_typed_and_language_tagged_vin_rejected(shapes_graph: Graph) -> None:
     flagged(shapes_graph, complaint(f'{LABEL} "{vin}"@en'))
 
 def test_untyped_node_with_vin_is_not_targeted(shapes_graph: Graph) -> None:
-    """没有 rdf:type 的节点不是任何类的实例，隐私形状不覆盖它。"""
-    conforms, report = outcome(shapes_graph, f'<urn:bare> {LABEL} "{synthetic_vin()}" .')
-    assert conforms and "17-character VIN" not in report, report
+    """无类型 IRI 上的识别号字面量也必须拒绝。原先把「不覆盖」钉成预期，现已反转。"""
+    flagged(shapes_graph, f'<urn:bare> {LABEL} "{synthetic_vin()}" .')
+
+def test_untyped_blank_node_with_vin_rejected(shapes_graph: Graph) -> None:
+    """挂在有类型投诉上的无类型空白节点，其字面量也必须拒绝。"""
+    vin = synthetic_vin()
+    turtle = (
+        "@prefix core: <https://w3id.org/poc-kb/core/> .\n"
+        "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n"
+        f'<urn:c> a core:Complaint ; core:vehicle [ rdfs:label "{vin}" ] .\n'
+    )
+    flagged(shapes_graph, turtle)
 
 def test_forbidden_predicate_rejected_on_unlisted_class(shapes_graph: Graph) -> None:
     turtle = '@prefix diag: <https://w3id.org/poc-kb/diag/> .\n<urn:d> a diag:DTC ; diag:narrative "synthetic" .\n'
