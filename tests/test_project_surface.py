@@ -1,5 +1,7 @@
 """VSSo 许可、说明文档与 Makefile 目标。"""
+import os
 import subprocess
+import sys
 from pathlib import Path
 R = Path(__file__).resolve().parents[1]
 def _make(*args: str) -> subprocess.CompletedProcess[str]:
@@ -19,3 +21,17 @@ def test_make_dry_run_lists_gen_and_pytest() -> None:
 def test_make_test_missing_interpreter_errors() -> None:
     result = _make("test", "PY=/nonexistent/python-b8")
     assert result.returncode != 0 and "找不到" in result.stderr + result.stdout
+
+def test_make_checks_skip_when_make_missing(tmp_path: Path) -> None:
+    """机器上没有 make 时，两条 make 检查应跳过，而不是失败。"""
+    env = os.environ.copy()
+    env["PATH"] = str(tmp_path)
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    result = subprocess.run(
+        [sys.executable, "-m", "pytest", "-p", "no:cacheprovider", "-rs", "-q",
+         "tests/test_project_surface.py::test_make_dry_run_lists_gen_and_pytest",
+         "tests/test_project_surface.py::test_make_test_missing_interpreter_errors"],
+        cwd=R, env=env, capture_output=True, text=True, check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "make 不在 PATH" in result.stdout + result.stderr
