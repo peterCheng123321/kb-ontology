@@ -1,0 +1,1 @@
+{"reviewer": "fixture-reviewer", "reviewed_at": "2026-01-01T00:00:00Z", "judgments": [{"link_id": "link-alpha-001", "judgment": "accepted", "reason": "合成通过"}, {"link_id": "link-alpha-002", "judgment": "uncertain", "reason": "合成存疑"}, {"link_id": "link-beta-001", "judgment": "rejected", "reason": "合成拒绝"}]}
