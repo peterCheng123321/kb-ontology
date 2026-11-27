@@ -1,9 +1,9 @@
 # 手写补充 SHACL 形状说明（src/shacl/extras/）
 
-依据 [docs/ONTOLOGY-TECH-STACK-v3.md](../../docs/ONTOLOGY-TECH-STACK-v3.md) §2.5，主体形状由 `make gen` 从 LinkML 自动生成至 `gen/shacl/poc-kb.shacl.ttl`；仅当 LinkML 生成器覆盖不到时才在本目录手写补充形状：
+依据 [docs/ONTOLOGY-TECH-STACK-v3.md](../../docs/ONTOLOGY-TECH-STACK-v3.md) §2.5，主体形状在测试进程内从 LinkML 生成；`make gen` 仍把同一结果写到已忽略的 `gen/shacl/poc-kb.shacl.ttl`。仅当 LinkML 生成器覆盖不到时才在本目录手写补充形状：
 
 1. `privacy.shacl.ttl`：
-   - **理由**：LinkML 无法表达全局跨所有类/谓词的隐私禁用规则。本文件使用 SHACL-SPARQL 检查全图任何字面量均不得匹配 17 位车辆识别号（VIN）正则 `^[A-HJ-NPR-Z0-9]{17}$`，且不得出现 `vin`、`vehicle_id`、`cdescr`、`narrative`、`dialogue` 类敏感谓词。
+   - **理由**：LinkML 无法表达跨类、跨谓词的隐私禁用规则。形状用 `sh:targetSubjectsOf rdf:type` 覆盖每一个有类型的节点（没有 `rdf:type` 的节点不在目标内）。字面量用 XPath `REGEX`（没有词边界元字符）和 `"i"` 标志，模式为 `(^|[^A-Za-z0-9])[A-HJ-NPR-Z0-9]{17}([^A-Za-z0-9]|$)`，因此嵌入文本与大小写混排都会命中；并拒绝以 `vin`、`vehicle_id`、`cdescr`、`narrative`、`dialogue` 结尾的敏感谓词。
 2. `stat-suppression.shacl.ttl`：
    - **理由**：LinkML 无法表达跨槽位条件互斥约束（当 `insp:suppressed = true` 时不得携带 `insp:defectCount`；当 `insp:suppressed = false` 时 `insp:defectCount` 必须存在且 `>= 5`）。
 3. `candidate-link.shacl.ttl`：
