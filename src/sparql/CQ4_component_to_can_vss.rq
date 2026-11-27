@@ -1,0 +1,32 @@
+PREFIX core: <https://w3id.org/poc-kb/core/>
+PREFIX signal: <https://w3id.org/poc-kb/signal/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+# CQ4: Safety/chassis components -> Honda opendbc CAN messages & signal counts -> COVESA VSS & W3C VSSo alignment
+SELECT ?head ?platform ?dbcFile ?msgName ?vssPath ?vssoClass ?score ?reviewStatus (COUNT(DISTINCT ?sig) AS ?nCanSignals)
+WHERE {
+  VALUES ?head { "FORWARD COLLISION AVOIDANCE" "STEERING" "SERVICE BRAKES" }
+  ?comp a core:Component ;
+        core:head ?head .
+  ?link core:fromEntity ?comp ;
+        core:method "component_can_message" ;
+        core:toEntity ?msg ;
+        core:score ?score ;
+        core:reviewStatus ?reviewStatus .
+  ?msg a signal:CanMessage ;
+       signal:vehiclePlatform ?platform ;
+       signal:dbcFile ?dbcFile ;
+       signal:messageName ?msgName .
+  FILTER(STRSTARTS(?platform, "HONDA"))
+  OPTIONAL {
+    ?msg signal:mapsToVss ?vss .
+    ?vss signal:vssPath ?vssPath .
+    OPTIONAL {
+      ?vss skos:closeMatch ?vssoClass .
+      FILTER(STRSTARTS(STR(?vssoClass), "https://github.com/w3c/vsso#"))
+    }
+  }
+  OPTIONAL { ?sig signal:inMessage ?msg . }
+}
+GROUP BY ?head ?platform ?dbcFile ?msgName ?vssPath ?vssoClass ?score ?reviewStatus
+ORDER BY ?head DESC(?score) ?msgName ?vssPath

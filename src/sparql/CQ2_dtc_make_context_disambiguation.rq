@@ -1,0 +1,34 @@
+PREFIX core: <https://w3id.org/poc-kb/core/>
+PREFIX diag: <https://w3id.org/poc-kb/diag/>
+
+# CQ2: Multi-OEM DTC contextual definitions (code, makeContext, source) and cross-brand conflict detection
+SELECT ?code ?makeContext ?sourceKey ?score ?mismatch ?reviewStatus ?defText
+WHERE {
+  VALUES ?code { "P0300" "P0420" "P1326" "B1234" "C1250" "P1009" "C1391" "C2200" }
+  ?dtc a diag:DTC ;
+       diag:code ?code .
+  OPTIONAL {
+    ?def a diag:DtcDefinition ;
+         diag:definesCode ?dtc ;
+         diag:makeContext ?mk ;
+         core:fromSource ?src .
+    ?src core:sourceKey ?sk .
+    OPTIONAL { ?def diag:titleEn ?tEn . }
+    OPTIONAL { ?def core:description ?desc . }
+    OPTIONAL {
+      ?link core:fromEntity ?dtc ;
+            core:toEntity ?def ;
+            core:method "dtc_make_context" ;
+            core:score ?sc ;
+            core:reviewStatus ?rs .
+      OPTIONAL { ?link core:mismatchFlag ?mm . }
+    }
+  }
+  BIND(COALESCE(?mk, "UNCOVERED") AS ?makeContext)
+  BIND(COALESCE(?sk, "none") AS ?sourceKey)
+  BIND(COALESCE(?sc, 0.00) AS ?score)
+  BIND(COALESCE(?mm, false) AS ?mismatch)
+  BIND(COALESCE(?rs, "uncovered") AS ?reviewStatus)
+  BIND(COALESCE(?tEn, ?desc, "No open definition in CodesList/Wal33D/OBDex") AS ?defText)
+}
+ORDER BY ?code DESC(?score) ?makeContext ?sourceKey

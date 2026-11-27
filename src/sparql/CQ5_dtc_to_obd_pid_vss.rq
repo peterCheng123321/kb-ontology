@@ -1,0 +1,28 @@
+PREFIX core: <https://w3id.org/poc-kb/core/>
+PREFIX diag: <https://w3id.org/poc-kb/diag/>
+PREFIX signal: <https://w3id.org/poc-kb/signal/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+# CQ5: Given a DTC (P0300, P0172), list candidate live OBD-II PIDs (formula/unit) and aligned VSS signals
+SELECT ?code ?mode ?pidHex ?pidName ?unit ?formula ?vssPath ?score ?reviewStatus
+WHERE {
+  VALUES ?code { "P0300" "P0172" }
+  ?dtc a diag:DTC ;
+       diag:code ?code .
+  ?link core:fromEntity ?dtc ;
+        core:method "dtc_pid_subsystem" ;
+        core:toEntity ?pid ;
+        core:score ?score ;
+        core:reviewStatus ?reviewStatus .
+  ?pid a diag:ObdPid ;
+       diag:obdMode ?mode ;
+       diag:pidHex ?pidHex ;
+       diag:pidNameEn ?pidName .
+  OPTIONAL { ?pid core:unit ?unit . }
+  OPTIONAL { ?pid diag:formula ?formula . }
+  OPTIONAL {
+    ?pid skos:closeMatch ?vss .
+    ?vss signal:vssPath ?vssPath .
+  }
+}
+ORDER BY ?code ?mode ?pidHex
