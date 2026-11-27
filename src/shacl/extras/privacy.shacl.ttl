@@ -2,8 +2,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix core: <https://w3id.org/poc-kb/core/> .
 
-# 每个有 rdf:type 的节点都检查。没有类型的节点不是类实例，不在目标内。
-# REGEX 使用 XPath 语法：不用 \b，用首尾或非字母数字作为边界，并用 i 忽略大小写。
 core:PrivacyGuardShape a sh:NodeShape ;
     sh:targetSubjectsOf rdf:type ;
     sh:sparql [
