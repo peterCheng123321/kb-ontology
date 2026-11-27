@@ -120,18 +120,9 @@ def shorten(evidence: dict) -> dict:
         out[key] = value[:177] + "..." if isinstance(value, str) and len(value) > 180 else value
     return out
 
-def repository_root(start: Path) -> Path | None:
-    """从脚本位置向上找最近的 .git。没有 .git 就不是仓库。"""
-    for parent in (start, *start.parents):
-        if (parent / ".git").exists():
-            return parent
-    return None
-
 def assert_output_dir_allowed(output_dir: Path) -> None:
-    """仓库内只允许写到 review/ 之下。先解析符号链接和 ..，再创建目录。"""
-    root = repository_root(Path(__file__).resolve())
-    if root is None:
-        return
+    """脚本所在目录内只允许写到 review/ 之下。先解析符号链接和 ..，再创建目录。"""
+    root = Path(__file__).resolve().parents[1]
     resolved = output_dir.resolve()
     review = (root / "review").resolve()
     if resolved.is_relative_to(root) and not resolved.is_relative_to(review):

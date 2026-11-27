@@ -122,6 +122,7 @@ def test_unknown_link_ids_reported(tmp_path: Path) -> None:
     assert [row["link_id"] for row in payload["items"]] == ["link-alpha-001"]
 
 def test_never_writes_tracked_paths(tmp_path: Path) -> None:
+    """脚本根内、review 以外的目录必须拒绝。A5 把根从 .git 改成脚本的上两级后，given-out 不再允许写入。"""
     layout, script = stage_repo(tmp_path)
     pool, body = fixture_pair()
     work = layout / "inputs"
@@ -132,8 +133,8 @@ def test_never_writes_tracked_paths(tmp_path: Path) -> None:
     before_docs, before_files = docs_text(layout), {path.relative_to(layout) for path in layout.rglob("*") if path.is_file()}
     result = execute(script, ["--pool", str(work / "pool.json"), "--judgments", str(work / "judgments.json"), "--output-dir", str(given)])
     new_files = {path.relative_to(layout) for path in layout.rglob("*") if path.is_file()} - before_files
-    assert result.returncode == 0, result.stderr
-    assert docs_text(layout) == before_docs and new_files and all(path.parts[0] == "given-out" for path in new_files)
+    assert result.returncode == 1 and "拒绝" in result.stderr, result.stderr
+    assert docs_text(layout) == before_docs and not new_files and not given.exists()
 
 def _corrupt(tmp_path: Path, name: str) -> tuple[subprocess.CompletedProcess[str], Path]:
     pool_path, judgments_path, out = tmp_path / "pool.json", tmp_path / "judgments.json", tmp_path / "out"
