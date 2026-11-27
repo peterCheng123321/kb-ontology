@@ -24,7 +24,6 @@ def generate_owl(catalog, destination):
     """与 gen-owl --no-metaclasses --no-type-objects 相同。"""
     from linkml.generators.owlgen import OwlSchemaGenerator
     return _generate(catalog, destination, lambda: OwlSchemaGenerator(str(catalog), **OWL_FLAGS).serialize())
-@pytest.fixture(scope="session")
 def schema_gen(tmp_path_factory):
     """同一会话只生成一次，再次调用返回同一路径。"""
     directory, cache = tmp_path_factory.mktemp("linkml-gen"), {}
@@ -39,3 +38,4 @@ def schema_gen(tmp_path_factory):
     artifacts.generate_owl = generate_owl
     artifacts.artifacts = artifacts
     return artifacts
+schema_gen = pytest.fixture(scope="session")(schema_gen)
